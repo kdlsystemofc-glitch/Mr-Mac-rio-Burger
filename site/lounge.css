@@ -1,0 +1,195 @@
+/* ==========================================================================
+   04. SEÇÃO SALÃO, GAMES & AVALIAÇÕES (LOUNGE & SOCIAL PROOF)
+   ========================================================================== */
+.section-lounge {
+  background-color: var(--bg-cream);
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(3.5rem, 7vw, 6rem);
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 5rem;
+}
+
+.lounge-header {
+  text-align: center;
+  max-width: var(--max-content-width);
+  margin: 0 auto clamp(2rem, 4vw, 3.5rem);
+}
+
+.lounge-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  letter-spacing: 0.04em;
+  color: var(--text-espresso);
+  line-height: 0.95;
+  margin-bottom: 0.4rem;
+}
+
+.lounge-subtitle {
+  font-family: var(--font-ui);
+  font-size: var(--fs-badge);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.lounge-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.8rem);
+  max-width: min(94vw, 1340px);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Polaroids */
+.polaroid-card {
+  flex: 1;
+  max-width: 390px;
+}
+
+.polaroid-frame {
+  background: #ffffff;
+  padding: 10px 10px 24px 10px;
+  border-radius: 4px;
+  box-shadow: 0 10px 26px rgba(44, 21, 15, 0.12);
+  border: 1px solid rgba(44, 21, 15, 0.06);
+  transition: transform 0.25s ease;
+}
+
+.polaroid-left .polaroid-frame {
+  transform: rotate(-3.5deg);
+}
+
+.polaroid-right .polaroid-frame {
+  transform: rotate(3.5deg);
+}
+
+.polaroid-img {
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Troféu Central & Selo Google */
+.lounge-centerpiece {
+  flex: 1.1;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.trophy-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trophy-img {
+  width: clamp(210px, 24vw, 320px);
+  height: auto;
+  filter: drop-shadow(0 14px 28px rgba(44, 21, 15, 0.22));
+}
+
+.badge-google-reviews {
+  position: absolute;
+  right: clamp(-8px, 1.5vw, 22px);
+  top: 42%;
+  background: #fffdf9;
+  border: 2px dashed rgba(44, 21, 15, 0.35);
+  border-radius: 50%;
+  width: clamp(76px, 8.2vw, 98px);
+  height: clamp(76px, 8.2vw, 98px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(44, 21, 15, 0.12);
+  padding: 4px;
+  transform: rotate(6deg);
+}
+
+.gr-number {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 0.9;
+  color: var(--text-espresso);
+}
+
+.gr-label {
+  font-family: var(--font-ui);
+  font-size: clamp(0.42rem, 0.55vw, 0.52rem);
+  font-weight: 800;
+  color: var(--text-muted);
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+/* Fita Crepe com Depoimento */
+.tape-testimonial-wrapper {
+  position: relative;
+  margin-top: -24px;
+  z-index: 6;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: center;
+}
+
+.tape-strip {
+  background-color: var(--bg-tape-paper);
+  transform: rotate(-1.5deg);
+  padding: 0.65rem clamp(1rem, 2.2vw, 1.8rem);
+  box-shadow: 0 6px 16px rgba(44, 21, 15, 0.12);
+  clip-path: polygon(1% 0%, 99% 2%, 100% 98%, 0% 100%);
+  border-left: 3px dashed rgba(44, 21, 15, 0.2);
+  border-right: 3px dashed rgba(44, 21, 15, 0.2);
+}
+
+.tape-quote {
+  font-family: var(--font-hand);
+  font-size: clamp(1.15rem, 1.6vw, 1.55rem);
+  font-weight: 700;
+  color: var(--text-espresso);
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* Responsividade Mobile (<= 768px) */
+@media (max-width: 768px) {
+  .section-lounge {
+    padding-top: 4.5rem;
+  }
+
+  .lounge-stage {
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+
+  .lounge-centerpiece {
+    order: 1;
+    width: 100%;
+  }
+
+  .polaroid-left {
+    order: 2;
+    max-width: 320px;
+  }
+
+  .polaroid-right {
+    order: 3;
+    max-width: 320px;
+  }
+
+  .badge-google-reviews {
+    right: 12%;
+  }
+}
