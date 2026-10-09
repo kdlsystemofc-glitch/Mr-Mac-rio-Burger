@@ -1,0 +1,505 @@
+/* style.css — Estilos globais e componentes estruturais */
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(242, 233, 226, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(44, 21, 15, 0.08);
+  padding: 0.75rem 1.5rem;
+}
+
+.header-inner {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.9;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  letter-spacing: 0.04em;
+  color: var(--text-espresso);
+}
+
+.brand-sub {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  color: var(--accent-gold-ui);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.8rem);
+}
+
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-espresso);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-gold-ui);
+}
+
+.btn-header-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.1rem;
+  background-color: var(--accent-neon-green);
+  color: #0b1a0e;
+  font-family: var(--font-ui);
+  font-size: var(--fs-badge);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-header-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px rgba(37, 211, 102, 0.7);
+}
+
+@media (max-width: 640px) {
+  .nav-link {
+    display: none;
+  }
+}
+
+/* Regra Mandatória: Cada seção é Full-Bleed */
+section, footer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3.5vw, 2.5rem);
+  position: relative;
+}
+
+/* ==========================================================================
+   01. SEÇÃO HERO
+   ========================================================================== */
+.section-hero {
+  background-color: var(--bg-cream);
+  min-height: clamp(520px, 86vh, 880px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem) 1rem clamp(2.5rem, 5vw, 4rem);
+  position: relative;
+}
+
+/* Marca Superior Central */
+.hero-top-brand {
+  position: absolute;
+  top: clamp(14px, 3vh, 32px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.88;
+  z-index: 5;
+  user-select: none;
+}
+
+.hero-brand-line1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  letter-spacing: 0.05em;
+  color: var(--text-espresso);
+}
+
+.hero-brand-line2 {
+  font-family: var(--font-ui);
+  font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  color: var(--text-espresso);
+  opacity: 0.85;
+}
+
+/* Letreiro de Fundo "MR. MACÁRIO" */
+.hero-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-bg-text span {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 17.5vw, 15.5rem);
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+  color: var(--accent-gold-raw);
+  opacity: 0.95;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Palco Central do Hambúrguer */
+.hero-center-stage {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: min(88vw, 680px);
+}
+
+.hero-burger-picture {
+  display: block;
+  width: 100%;
+}
+
+.hero-burger-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(44, 21, 15, 0.22));
+}
+
+.hero-burger-shadow {
+  width: 75%;
+  height: 28px;
+  margin-top: -14px;
+  background: radial-gradient(ellipse at center, rgba(44, 21, 15, 0.35) 0%, rgba(44, 21, 15, 0.05) 55%, transparent 75%);
+  border-radius: 50%;
+}
+
+/* Camada de Decorações Flutuantes */
+.hero-decorations {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  max-width: min(96vw, 1340px);
+  margin: 0 auto;
+}
+
+/* 1. Comandas / Recibos */
+.receipt {
+  position: absolute;
+  background: #fffdf9;
+  padding: 0.45rem 0.65rem;
+  border: 1px dashed rgba(44, 21, 15, 0.25);
+  box-shadow: 0 4px 12px rgba(44, 21, 15, 0.08);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(0.55rem, 0.75vw, 0.7rem);
+  color: var(--text-espresso);
+  line-height: 1.25;
+}
+
+.receipt-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rc-num {
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.rc-bar {
+  letter-spacing: -2px;
+  font-size: 0.7em;
+  opacity: 0.5;
+}
+
+.receipt-tl {
+  top: clamp(10px, 3vh, 35px);
+  left: clamp(20px, 12vw, 140px);
+  transform: rotate(-12deg);
+}
+
+.receipt-bl {
+  bottom: clamp(15px, 6vh, 45px);
+  left: clamp(10px, 4vw, 40px);
+  transform: rotate(6deg);
+}
+
+.receipt-br {
+  bottom: clamp(20px, 7vh, 50px);
+  right: clamp(10px, 5vw, 50px);
+  transform: rotate(-8deg);
+}
+
+/* 2. Dados 3D */
+.dice-wrapper {
+  position: absolute;
+  top: clamp(14%, 22%, 28%);
+  left: clamp(8%, 15vw, 22%);
+  transform: rotate(-8deg);
+  width: clamp(55px, 8.5vw, 95px);
+}
+
+.hero-dice-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgba(44, 21, 15, 0.18));
+}
+
+/* 3. Neon Doodle */
+.neon-doodle-wrapper {
+  position: absolute;
+  top: clamp(45%, 52%, 58%);
+  left: clamp(12%, 18vw, 24%);
+  width: clamp(50px, 7.5vw, 85px);
+  transform: rotate(5deg);
+}
+
+.hero-neon-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 60, 60, 0.85));
+}
+
+/* 4. Badge 100% Carne Fresca */
+.badge-fresh-meat {
+  position: absolute;
+  bottom: clamp(18%, 23%, 28%);
+  left: clamp(6%, 12vw, 18%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0.95;
+}
+
+.fresh-perc {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  color: var(--text-espresso);
+  letter-spacing: 0.02em;
+}
+
+.fresh-text {
+  font-family: var(--font-ui);
+  font-size: clamp(0.7rem, 1.1vw, 0.95rem);
+  font-weight: 800;
+  color: var(--text-espresso);
+  letter-spacing: 0.04em;
+}
+
+/* 5. Selos Redondos */
+.stamp {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(44, 21, 15, 0.1);
+}
+
+.stamp-blue {
+  top: clamp(12px, 3vh, 30px);
+  right: clamp(28%, 34vw, 40%);
+  width: clamp(42px, 4.8vw, 56px);
+  height: clamp(42px, 4.8vw, 56px);
+  background: #a9d4ed;
+  border: 2px dashed #214b6d;
+  color: #1d405b;
+  transform: rotate(14deg);
+}
+
+.stamp-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.stamp-text {
+  font-family: var(--font-ui);
+  font-size: 8px;
+  font-weight: 800;
+  fill: #1d405b;
+}
+
+.stamp-coral {
+  top: clamp(28px, 6vh, 50px);
+  right: clamp(8%, 15vw, 20%);
+  width: clamp(52px, 5.8vw, 70px);
+  height: clamp(52px, 5.8vw, 70px);
+  background-color: var(--accent-coral-bg);
+  border: 2px dashed rgba(44, 21, 15, 0.35);
+  color: #ffffff;
+  transform: rotate(-10deg);
+  padding: 4px;
+}
+
+.stamp-badge-title {
+  font-family: var(--font-display);
+  font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+  line-height: 1;
+}
+
+.stamp-badge-sub {
+  font-family: var(--font-ui);
+  font-size: clamp(0.42rem, 0.55vw, 0.52rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.stamp-mint {
+  top: clamp(26%, 32%, 36%);
+  right: clamp(26%, 30vw, 34%);
+  width: clamp(44px, 4.8vw, 56px);
+  height: clamp(44px, 4.8vw, 56px);
+  background-color: var(--accent-mint-bg);
+  border: 2px dashed var(--accent-mint-text);
+  color: var(--accent-mint-text);
+  transform: rotate(18deg);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stamp-mint-num {
+  font-size: clamp(0.65rem, 0.85vw, 0.8rem);
+}
+
+.stamp-mint-text {
+  font-size: clamp(0.45rem, 0.55vw, 0.52rem);
+  letter-spacing: 0.04em;
+}
+
+/* 6. Batatas Fritas Voando */
+.fries-fly-wrapper {
+  position: absolute;
+  top: clamp(18%, 24%, 30%);
+  right: clamp(14%, 20vw, 25%);
+  width: clamp(55px, 8vw, 95px);
+  filter: drop-shadow(0 6px 12px rgba(44, 21, 15, 0.15));
+}
+
+.fries-svg {
+  width: 100%;
+  height: auto;
+}
+
+/* 7. Pílulas do Lado Direito */
+.badge-pill {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: 0 4px 12px rgba(44, 21, 15, 0.1);
+  padding: clamp(0.35rem, 0.7vw, 0.55rem) clamp(0.8rem, 1.4vw, 1.4rem);
+}
+
+.pill-saude {
+  bottom: clamp(34%, 38%, 42%);
+  right: clamp(6%, 12vw, 18%);
+  background-color: var(--accent-mint-bg);
+  color: var(--accent-mint-text);
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  border: 2px solid rgba(33, 67, 47, 0.2);
+}
+
+.pill-hours {
+  bottom: clamp(22%, 27%, 30%);
+  right: clamp(6%, 12vw, 18%);
+  background-color: #ffffff;
+  color: var(--bg-diner-red);
+  font-size: clamp(0.72rem, 1.05vw, 0.92rem);
+  border: 1.5px solid rgba(189, 59, 43, 0.4);
+  gap: 6px;
+}
+
+.dot-open {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+}
+
+/* Mobile Adjustments (390px) */
+@media (max-width: 640px) {
+  .section-hero {
+    min-height: 580px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-bg-text span {
+    font-size: clamp(3.8rem, 18vw, 5.5rem);
+  }
+
+  .dice-wrapper {
+    top: 14%;
+    left: 4%;
+    width: 60px;
+  }
+
+  .neon-doodle-wrapper {
+    top: 58%;
+    left: 6%;
+    width: 50px;
+  }
+
+  .receipt-tl, .receipt-br, .receipt-bl {
+    display: none;
+  }
+
+  .badge-fresh-meat {
+    bottom: 5%;
+    left: 5%;
+  }
+
+  .pill-saude {
+    bottom: 22%;
+    right: 4%;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.8rem;
+  }
+
+  .pill-hours {
+    bottom: 12%;
+    right: 4%;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.8rem;
+  }
+}

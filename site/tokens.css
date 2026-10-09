@@ -1,0 +1,64 @@
+/* tokens.css — Design Tokens baseados no DESIGN.md */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Cores de Fundo (Full-bleed por seção) */
+  --bg-cream: #f2e9e2;
+  --bg-cream-card: #f9f4ef;
+  --bg-griddle-black: #0b0e13;
+  --bg-diner-red: #bd3b2b;
+  --bg-tape-paper: #eae2d3;
+
+  /* Cores de Texto */
+  --text-espresso: #2c150f;
+  --text-white: #ffffff;
+  --text-cream-light: #ffefe8;
+  --text-muted: #6b5852;
+
+  /* Acentos, Selos & Efeitos */
+  --accent-gold-raw: #be9032;
+  --accent-gold-ui: #987328;
+  --accent-gold-text: #856423;
+  --accent-mint-bg: #82c399;
+  --accent-mint-text: #21432f;
+  --accent-coral-bg: #ef7367;
+  --accent-coral-text: #2c150f;
+  --accent-neon-green: #25d366;
+  --accent-neon-glow: #91ed96;
+  --accent-trophy-gold: #dfa422;
+
+  /* Tipografia */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-ui: 'Montserrat', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-hand: 'Caveat', cursive;
+
+  /* Escala Fluida (clamp) */
+  --fs-hero-title: clamp(3.2rem, 11vw, 10.5rem);
+  --fs-h2: clamp(2.2rem, 5.5vw, 4.8rem);
+  --fs-h3: clamp(1.4rem, 2.8vw, 2.4rem);
+  --fs-body: clamp(0.95rem, 1.2vw, 1.15rem);
+  --fs-small: clamp(0.75rem, 0.9vw, 0.9rem);
+  --fs-badge: clamp(0.7rem, 0.95vw, 0.95rem);
+
+  /* Espaçamentos Fluidos */
+  --space-xs: clamp(0.35rem, 0.8vw, 0.6rem);
+  --space-sm: clamp(0.6rem, 1.2vw, 1rem);
+  --space-md: clamp(1rem, 2vw, 1.8rem);
+  --space-lg: clamp(1.8rem, 3.5vw, 3.2rem);
+  --space-xl: clamp(2.5rem, 5vw, 5rem);
+  --space-section: clamp(3rem, 7vw, 6.5rem);
+
+  /* Largura Máxima de Conforto de Leitura (apenas para texto, nunca para o site) */
+  --max-reading-width: 68ch;
+  --max-content-width: min(94vw, 1380px);
+
+  /* Bordas & Sombras */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  --shadow-soft: 0 8px 24px rgba(44, 21, 15, 0.08);
+  --shadow-float: 0 16px 36px rgba(44, 21, 15, 0.16);
+  --shadow-neon: 0 0 14px rgba(37, 211, 102, 0.7), 0 0 30px rgba(37, 211, 102, 0.4);
+}
