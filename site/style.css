@@ -1,12 +1,25 @@
-/* style.css — Estilos globais e componentes estruturais */
+/* style.css — Estilos Mr. Macário Burger (Fidelidade Extrema ao Mockup de Referência) */
 
-/* Header */
+/* Textura Analógica Fixa em Toda a Landing Page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url('./assets/paper-noise.png');
+  background-repeat: repeat;
+  opacity: 0.085;
+  mix-blend-mode: multiply;
+}
+
+/* Header de Navegação */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
-  background: rgba(242, 233, 226, 0.94);
+  background: rgba(244, 237, 227, 0.94);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(44, 21, 15, 0.08);
   padding: 0.75rem 1.5rem;
@@ -88,19 +101,11 @@
   }
 }
 
-/* Regra Mandatória: Cada seção é Full-Bleed */
+/* Regra Full-Bleed por Seção */
 section, footer {
   width: 100%;
   position: relative;
   overflow: hidden;
-}
-
-.section-container {
-  width: 100%;
-  max-width: var(--max-content-width);
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 3.5vw, 2.5rem);
-  position: relative;
 }
 
 /* ==========================================================================
@@ -108,13 +113,30 @@ section, footer {
    ========================================================================== */
 .section-hero {
   background-color: var(--bg-cream);
-  min-height: clamp(520px, 86vh, 880px);
+  min-height: clamp(540px, 88vh, 880px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 3vw, 2.5rem) 1rem clamp(2.5rem, 5vw, 4rem);
   position: relative;
+}
+
+/* Gota de Queijo Escorrendo no Canto Superior Esquerdo */
+.cheese-drip-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(55px, 6.5vw, 85px);
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(44, 21, 15, 0.12));
+}
+
+.cheese-drip-svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Marca Superior Central */
@@ -147,31 +169,37 @@ section, footer {
   opacity: 0.85;
 }
 
-/* Letreiro de Fundo "MR. MACÁRIO" */
+/* Letreiro de Fundo Gigante "MR. M" e "ÁRIO" */
 .hero-bg-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  text-align: center;
+  max-width: min(98vw, 1440px);
   z-index: 1;
   pointer-events: none;
   user-select: none;
+  padding: 0 clamp(0.5rem, 2vw, 2rem);
 }
 
-.hero-bg-text span {
+.hero-bg-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-txt-left, .hero-txt-right {
   font-family: var(--font-display);
-  font-size: clamp(4.5rem, 17.5vw, 15.5rem);
-  line-height: 0.85;
-  letter-spacing: 0.02em;
+  font-size: clamp(5.2rem, 16.5vw, 14.5rem);
+  line-height: 0.82;
+  letter-spacing: 0.03em;
   color: var(--accent-gold-raw);
-  opacity: 0.95;
-  display: inline-block;
-  white-space: nowrap;
+  text-shadow: 0 4px 16px rgba(184, 151, 59, 0.22);
 }
 
-/* Palco Central do Hambúrguer */
+/* Palco Central do Hambúrguer Hero */
 .hero-center-stage {
   position: relative;
   z-index: 3;
@@ -192,28 +220,61 @@ section, footer {
   width: 100%;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 20px 30px rgba(44, 21, 15, 0.22));
+  filter: drop-shadow(0 20px 32px rgba(44, 21, 15, 0.24));
 }
 
 .hero-burger-shadow {
-  width: 75%;
+  width: 78%;
   height: 28px;
-  margin-top: -14px;
-  background: radial-gradient(ellipse at center, rgba(44, 21, 15, 0.35) 0%, rgba(44, 21, 15, 0.05) 55%, transparent 75%);
+  margin-top: -18px;
+  background: radial-gradient(ellipse at center, rgba(44, 21, 15, 0.42) 0%, rgba(44, 21, 15, 0.08) 55%, transparent 75%);
   border-radius: 50%;
+  filter: blur(2px);
 }
 
-/* Camada de Decorações Flutuantes */
+/* Selo Verde '11 / VILA SAÚDE' Colado no Pão */
+.hero-center-stage .stamp-mint {
+  position: absolute;
+  top: 24%;
+  right: 14%;
+  width: clamp(46px, 5.2vw, 62px);
+  height: clamp(46px, 5.2vw, 62px);
+  background-color: var(--accent-mint-bg);
+  border: 2px dashed var(--accent-mint-text);
+  border-radius: 50%;
+  color: var(--accent-mint-text);
+  transform: rotate(18deg);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  box-shadow: 0 4px 12px rgba(44, 21, 15, 0.16);
+}
+
+.stamp-mint-num {
+  font-size: clamp(0.68rem, 0.88vw, 0.85rem);
+}
+
+.stamp-mint-text {
+  font-size: clamp(0.44rem, 0.55vw, 0.52rem);
+  letter-spacing: 0.04em;
+}
+
+/* Camada de Decorações Flutuantes do Hero */
 .hero-decorations {
   position: absolute;
   inset: 0;
   z-index: 4;
   pointer-events: none;
-  max-width: min(96vw, 1340px);
+  max-width: min(98vw, 1400px);
   margin: 0 auto;
 }
 
-/* 1. Comandas / Recibos */
+/* Comandas / Recibos */
 .receipt {
   position: absolute;
   background: #fffdf9;
@@ -245,44 +306,44 @@ section, footer {
 
 .receipt-tl {
   top: clamp(10px, 3vh, 35px);
-  left: clamp(20px, 12vw, 140px);
-  transform: rotate(-12deg);
+  left: clamp(20px, 10vw, 130px);
+  transform: rotate(-14deg);
 }
 
 .receipt-bl {
-  bottom: clamp(15px, 6vh, 45px);
-  left: clamp(10px, 4vw, 40px);
-  transform: rotate(6deg);
+  bottom: clamp(12px, 3vh, 35px);
+  left: clamp(15px, 6vw, 85px);
+  transform: rotate(-8deg);
 }
 
 .receipt-br {
-  bottom: clamp(20px, 7vh, 50px);
-  right: clamp(10px, 5vw, 50px);
-  transform: rotate(-8deg);
+  bottom: clamp(12px, 3vh, 35px);
+  right: clamp(15px, 6vw, 85px);
+  transform: rotate(18deg);
 }
 
-/* 2. Dados 3D */
+/* Dados 3D */
 .dice-wrapper {
   position: absolute;
-  top: clamp(14%, 22%, 28%);
-  left: clamp(8%, 15vw, 22%);
-  transform: rotate(-8deg);
-  width: clamp(55px, 8.5vw, 95px);
+  top: 18%;
+  left: clamp(14%, 22vw, 27%);
+  width: clamp(75px, 9vw, 120px);
+  transform: rotate(-12deg);
 }
 
 .hero-dice-img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 8px 16px rgba(44, 21, 15, 0.18));
+  filter: drop-shadow(0 10px 20px rgba(44, 21, 15, 0.2));
 }
 
-/* 3. Neon Doodle */
+/* Neon Doodle Vermelho */
 .neon-doodle-wrapper {
   position: absolute;
-  top: clamp(45%, 52%, 58%);
-  left: clamp(12%, 18vw, 24%);
-  width: clamp(50px, 7.5vw, 85px);
-  transform: rotate(5deg);
+  bottom: 24%;
+  left: clamp(16%, 23vw, 28%);
+  width: clamp(65px, 7vw, 95px);
+  transform: rotate(-6deg);
 }
 
 .hero-neon-img {
@@ -291,11 +352,11 @@ section, footer {
   filter: drop-shadow(0 0 10px rgba(255, 60, 60, 0.85));
 }
 
-/* 4. Badge 100% Carne Fresca */
+/* 100% Carne Fresca */
 .badge-fresh-meat {
   position: absolute;
-  bottom: clamp(18%, 23%, 28%);
-  left: clamp(6%, 12vw, 18%);
+  bottom: clamp(16%, 22%, 28%);
+  left: clamp(5%, 10vw, 15%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -304,20 +365,19 @@ section, footer {
 
 .fresh-perc {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+  letter-spacing: 0.04em;
   color: var(--text-espresso);
-  letter-spacing: 0.02em;
 }
 
 .fresh-text {
-  font-family: var(--font-ui);
-  font-size: clamp(0.7rem, 1.1vw, 0.95rem);
-  font-weight: 800;
-  color: var(--text-espresso);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
   letter-spacing: 0.04em;
+  color: var(--text-espresso);
 }
 
-/* 5. Selos Redondos */
+/* Selos Circulares */
 .stamp {
   position: absolute;
   border-radius: 50%;
@@ -326,18 +386,16 @@ section, footer {
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(44, 21, 15, 0.1);
+  box-shadow: 0 4px 12px rgba(44, 21, 15, 0.12);
 }
 
 .stamp-blue {
-  top: clamp(12px, 3vh, 30px);
-  right: clamp(28%, 34vw, 40%);
-  width: clamp(42px, 4.8vw, 56px);
-  height: clamp(42px, 4.8vw, 56px);
-  background: #a9d4ed;
-  border: 2px dashed #214b6d;
-  color: #1d405b;
-  transform: rotate(14deg);
+  top: clamp(12px, 3.5vh, 35px);
+  right: clamp(30%, 35vw, 40%);
+  width: clamp(48px, 5vw, 65px);
+  height: clamp(48px, 5vw, 65px);
+  background-color: var(--accent-blue-stamp);
+  border: 1.5px dashed #1d405b;
 }
 
 .stamp-svg {
@@ -353,8 +411,8 @@ section, footer {
 }
 
 .stamp-coral {
-  top: clamp(28px, 6vh, 50px);
-  right: clamp(8%, 15vw, 20%);
+  top: clamp(24px, 5vh, 48px);
+  right: clamp(8%, 14vw, 18%);
   width: clamp(52px, 5.8vw, 70px);
   height: clamp(52px, 5.8vw, 70px);
   background-color: var(--accent-coral-bg);
@@ -378,44 +436,22 @@ section, footer {
   opacity: 0.9;
 }
 
-.stamp-mint {
-  top: clamp(26%, 32%, 36%);
-  right: clamp(26%, 30vw, 34%);
-  width: clamp(44px, 4.8vw, 56px);
-  height: clamp(44px, 4.8vw, 56px);
-  background-color: var(--accent-mint-bg);
-  border: 2px dashed var(--accent-mint-text);
-  color: var(--accent-mint-text);
-  transform: rotate(18deg);
-  font-family: var(--font-ui);
-  font-weight: 800;
-  line-height: 1.1;
-}
-
-.stamp-mint-num {
-  font-size: clamp(0.65rem, 0.85vw, 0.8rem);
-}
-
-.stamp-mint-text {
-  font-size: clamp(0.45rem, 0.55vw, 0.52rem);
-  letter-spacing: 0.04em;
-}
-
-/* 6. Batatas Fritas Voando */
+/* Batatas Fritas Voando (Direita do Burger) */
 .fries-fly-wrapper {
   position: absolute;
-  top: clamp(18%, 24%, 30%);
-  right: clamp(14%, 20vw, 25%);
-  width: clamp(55px, 8vw, 95px);
-  filter: drop-shadow(0 6px 12px rgba(44, 21, 15, 0.15));
+  top: 18%;
+  right: clamp(14%, 21vw, 26%);
+  width: clamp(75px, 9.5vw, 125px);
+  filter: drop-shadow(0 8px 16px rgba(44, 21, 15, 0.18));
 }
 
-.fries-svg {
+.hero-flying-fries-img {
   width: 100%;
   height: auto;
+  display: block;
 }
 
-/* 7. Pílulas do Lado Direito */
+/* Pílulas Inferiores Direitas */
 .badge-pill {
   position: absolute;
   display: inline-flex;
@@ -431,8 +467,8 @@ section, footer {
 }
 
 .pill-saude {
-  bottom: clamp(34%, 38%, 42%);
-  right: clamp(6%, 12vw, 18%);
+  bottom: clamp(30%, 35%, 40%);
+  right: clamp(5%, 11vw, 16%);
   background-color: var(--accent-mint-bg);
   color: var(--accent-mint-text);
   font-size: clamp(0.75rem, 1.1vw, 0.95rem);
@@ -440,32 +476,28 @@ section, footer {
 }
 
 .pill-hours {
-  bottom: clamp(22%, 27%, 30%);
-  right: clamp(6%, 12vw, 18%);
+  bottom: clamp(20%, 25%, 30%);
+  right: clamp(5%, 11vw, 16%);
   background-color: #ffffff;
   color: var(--bg-diner-red);
   font-size: clamp(0.72rem, 1.05vw, 0.92rem);
   border: 1.5px solid rgba(189, 59, 43, 0.4);
-  gap: 6px;
 }
 
-.dot-open {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #22c55e;
-}
-
-/* Mobile Adjustments (390px) */
+/* Mobile Adjustments (Hero) */
 @media (max-width: 640px) {
   .section-hero {
-    min-height: 580px;
+    min-height: 560px;
     padding-top: 2rem;
     padding-bottom: 3rem;
   }
 
-  .hero-bg-text span {
-    font-size: clamp(3.8rem, 18vw, 5.5rem);
+  .hero-bg-inner {
+    justify-content: space-around;
+  }
+
+  .hero-txt-left, .hero-txt-right {
+    font-size: clamp(3.4rem, 16vw, 5.2rem);
   }
 
   .dice-wrapper {
@@ -475,8 +507,8 @@ section, footer {
   }
 
   .neon-doodle-wrapper {
-    top: 58%;
-    left: 6%;
+    bottom: 18%;
+    left: 5%;
     width: 50px;
   }
 
@@ -485,19 +517,19 @@ section, footer {
   }
 
   .badge-fresh-meat {
-    bottom: 5%;
+    bottom: 6%;
     left: 5%;
   }
 
   .pill-saude {
-    bottom: 22%;
+    bottom: 20%;
     right: 4%;
     font-size: 0.75rem;
     padding: 0.35rem 0.8rem;
   }
 
   .pill-hours {
-    bottom: 12%;
+    bottom: 10%;
     right: 4%;
     font-size: 0.72rem;
     padding: 0.35rem 0.8rem;
@@ -505,22 +537,38 @@ section, footer {
 }
 
 /* ==========================================================================
-
-/* ==========================================================================
-   02. SEÇÃO DESTAQUES DO CARDÁPIO (MENU HIGHLIGHTS)
+   02. SEÇÃO MENU HIGHLIGHTS (ZERO CARDS — INTEGRAÇÃO ORGÂNICA NO SOLO)
    ========================================================================== */
 .section-menu {
   background-color: var(--bg-cream);
-  padding: clamp(3rem, 6vw, 5.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(3.5rem, 7vw, 6rem);
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(4rem, 7vw, 6.5rem);
   position: relative;
   z-index: 2;
   scroll-margin-top: 4.5rem;
+  overflow: hidden;
+}
+
+/* Camada Ondulada / Corte Diagonal de Fundo Bege Escuro */
+.menu-sand-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sand-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .menu-header {
   text-align: center;
-  max-width: var(--max-content-width);
-  margin: 0 auto clamp(2rem, 4vw, 3.5rem);
+  position: relative;
+  z-index: 3;
+  margin-bottom: clamp(1.5rem, 3.5vw, 3rem);
 }
 
 .menu-title {
@@ -529,133 +577,122 @@ section, footer {
   letter-spacing: 0.04em;
   color: var(--text-espresso);
   line-height: 0.95;
-  margin-bottom: 0.4rem;
 }
 
-.menu-subtitle {
-  font-family: var(--font-ui);
-  font-size: var(--fs-badge);
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-}
-
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.2rem, 3vw, 2.8rem);
-  max-width: min(94vw, 1340px);
+/* Vitrine Fluida dos 3 Produtos Livres no Solo */
+.menu-showcase {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  max-width: min(96vw, 1380px);
   margin: 0 auto;
-  align-items: start;
+  position: relative;
+  z-index: 3;
 }
 
-.menu-card {
+.menu-display-item {
+  flex: 1;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(44, 21, 15, 0.06);
-  border-radius: var(--radius-lg);
-  padding: clamp(1rem, 2vw, 1.8rem) clamp(0.8rem, 1.5vw, 1.4rem);
-  box-shadow: 0 4px 18px rgba(44, 21, 15, 0.04);
 }
 
-.menu-img-wrap {
+.menu-food-visual {
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
 }
 
 .menu-food-img {
   width: 100%;
-  max-width: 380px;
+  max-width: 440px;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 14px 22px rgba(44, 21, 15, 0.2));
+  filter: drop-shadow(0 16px 26px rgba(44, 21, 15, 0.22));
 }
 
-.menu-food-shadow {
-  width: 75%;
-  height: 20px;
-  margin-top: -10px;
-  background: radial-gradient(ellipse at center, rgba(44, 21, 15, 0.28) 0%, rgba(44, 21, 15, 0.04) 60%, transparent 80%);
+.menu-ground-shadow {
+  width: 82%;
+  height: 24px;
+  margin-top: -14px;
+  background: radial-gradient(ellipse at center, rgba(44, 21, 15, 0.42) 0%, rgba(44, 21, 15, 0.08) 55%, transparent 75%);
   border-radius: 50%;
+  filter: blur(2px);
 }
 
-/* Decorações do Primeiro Card (Smash) */
-.menu-card-decorations {
+/* Decorações do Item 1 (Smash Duplo) */
+.menu-item-decorations {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 4;
 }
 
-.menu-dice {
+.menu-dice-float {
   position: absolute;
   top: -8%;
   left: -4%;
-  width: clamp(45px, 5.5vw, 68px);
+  width: clamp(55px, 6.2vw, 85px);
   transform: rotate(-14deg);
 }
 
-.menu-dice img {
+.menu-dice-float img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 6px 12px rgba(44, 21, 15, 0.15));
+  filter: drop-shadow(0 8px 16px rgba(44, 21, 15, 0.18));
 }
 
-.menu-neon {
+.menu-neon-float {
   position: absolute;
-  bottom: 22%;
-  left: -6%;
-  width: clamp(40px, 4.8vw, 58px);
+  bottom: 18%;
+  left: -8%;
+  width: clamp(50px, 5.5vw, 75px);
 }
 
-.menu-neon img {
+.menu-neon-float img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 0 8px rgba(255, 60, 60, 0.8));
+  filter: drop-shadow(0 0 10px rgba(255, 60, 60, 0.8));
 }
 
-/* Tag Pílula "MR BURGUINHO" no Segundo Card */
+/* Tag Pílula Dourada "MR BURGUINHO" no Pão */
 .pill-burguinho-tag {
   position: absolute;
-  top: 10%;
+  top: 12%;
   right: 8%;
   background: var(--accent-gold-ui);
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(1rem, 1.4vw, 1.35rem);
-  letter-spacing: 0.04em;
-  padding: 0.25rem 0.85rem;
+  font-size: clamp(1.1rem, 1.6vw, 1.55rem);
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.9rem;
   border-radius: var(--radius-sm);
   z-index: 5;
-  box-shadow: 0 4px 10px rgba(44, 21, 15, 0.2);
+  box-shadow: 0 4px 12px rgba(44, 21, 15, 0.25);
   transform: rotate(-2deg);
 }
 
-/* Selo "PREÇO JUSTO" no Terceiro Card */
+/* Selo "PREÇO JUSTO" Estampado sobre as Batatas */
 .stamp-preco-justo {
   position: absolute;
-  top: -6%;
-  right: 0%;
-  width: clamp(80px, 8.5vw, 110px);
-  height: clamp(80px, 8.5vw, 110px);
+  top: -8%;
+  right: 4%;
+  width: clamp(96px, 10.5vw, 136px);
+  height: clamp(96px, 10.5vw, 136px);
   background: var(--accent-mint-bg);
-  border: 2px dashed var(--accent-mint-text);
+  border: 2.5px dashed var(--accent-mint-text);
   border-radius: 50%;
   color: var(--accent-mint-text);
   transform: rotate(10deg);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px rgba(44, 21, 15, 0.12);
+  box-shadow: 0 8px 20px rgba(44, 21, 15, 0.16);
   z-index: 5;
 }
 
@@ -670,80 +707,47 @@ section, footer {
 
 .pj-curved {
   font-family: var(--font-ui);
-  font-size: clamp(0.48rem, 0.65vw, 0.62rem);
+  font-size: clamp(0.5rem, 0.7vw, 0.68rem);
   font-weight: 800;
   letter-spacing: 0.05em;
 }
 
 .pj-value {
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.35vw, 1.45rem);
+  font-size: clamp(1rem, 1.45vw, 1.55rem);
   letter-spacing: 0.02em;
 }
 
 .pj-bottom {
   font-family: var(--font-ui);
-  font-size: clamp(0.42rem, 0.55vw, 0.52rem);
+  font-size: clamp(0.44rem, 0.58vw, 0.56rem);
   font-weight: 800;
   letter-spacing: 0.06em;
 }
 
-/* Informações do Card */
-.menu-card-info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-
-.menu-card-badge-pill {
-  display: inline-block;
-  background-color: var(--text-espresso);
-  color: var(--bg-cream);
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
-  letter-spacing: 0.05em;
-  padding: 0.3rem 1.1rem;
-  border-radius: var(--radius-full);
-  margin-bottom: 0.6rem;
-}
-
-.menu-card-desc {
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  color: var(--text-muted);
-  line-height: 1.45;
-  max-width: 32ch;
-  margin-bottom: 0.6rem;
-}
-
-.menu-card-price {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
-  color: var(--accent-gold-text);
-  letter-spacing: 0.02em;
-}
-
-/* Responsividade Mobile (<= 768px) */
+/* Responsividade Mobile (Menu) */
 @media (max-width: 768px) {
   .section-menu {
     padding-top: 3.5rem;
+    padding-bottom: 4.5rem;
   }
 
-  .menu-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    max-width: 420px;
+  .menu-showcase {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
   }
 
-  .menu-card {
-    padding: 1.5rem 1rem;
+  .menu-display-item {
+    width: 100%;
+    max-width: 380px;
   }
 
   .stamp-preco-justo {
-    top: -4%;
+    top: -6%;
     right: 4%;
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -758,23 +762,24 @@ section, footer {
   z-index: 3;
 }
 
-/* Bordas de Papel Rasgado em SVG Puro */
+/* Bordas de Papel Rasgado Contínuo em SVG (Zero Seams) */
 .torn-paper {
   position: absolute;
   left: 0;
   right: 0;
   width: 100%;
-  height: clamp(26px, 3.8vw, 42px);
+  height: clamp(30px, 4.2vw, 46px);
   z-index: 10;
   pointer-events: none;
+  line-height: 0;
 }
 
 .torn-paper-top {
-  top: 0;
+  top: -1px;
 }
 
 .torn-paper-bottom {
-  bottom: 0;
+  bottom: -1px;
 }
 
 .torn-svg {
@@ -783,11 +788,11 @@ section, footer {
   display: block;
 }
 
-/* Cenário de Fundo */
+/* Cenário de Fundo da Chapa */
 .griddle-backdrop {
   position: relative;
   width: 100%;
-  min-height: clamp(340px, 42vw, 540px);
+  min-height: clamp(320px, 38vw, 500px);
   display: flex;
   align-items: center;
 }
@@ -811,19 +816,19 @@ section, footer {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(11, 14, 19, 0.92) 0%,
-    rgba(11, 14, 19, 0.55) 45%,
-    rgba(11, 14, 19, 0.82) 100%
+    rgba(11, 14, 19, 0.88) 0%,
+    rgba(11, 14, 19, 0.35) 45%,
+    rgba(11, 14, 19, 0.15) 100%
   );
   z-index: 2;
 }
 
-/* Conteúdo */
+/* Conteúdo Sobreposto */
 .griddle-content-wrapper {
   position: relative;
   z-index: 5;
   width: 100%;
-  max-width: min(94vw, 1340px);
+  max-width: min(94vw, 1380px);
   margin: 0 auto;
   padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1rem, 3.5vw, 2.5rem);
   display: flex;
@@ -838,21 +843,11 @@ section, footer {
 
 .griddle-title {
   font-family: var(--font-display);
-  font-size: var(--fs-h2);
+  font-size: clamp(2.6rem, 5.8vw, 4.9rem);
   letter-spacing: 0.05em;
   color: var(--text-white);
   line-height: 0.95;
-  margin-bottom: 0.8rem;
-  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
-}
-
-.griddle-desc {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  color: var(--text-cream-light);
-  line-height: 1.6;
-  max-width: 48ch;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
 }
 
 /* Selo Coral Crosta Maillard */
@@ -864,8 +859,8 @@ section, footer {
 }
 
 .stamp-maillard {
-  width: clamp(86px, 9vw, 115px);
-  height: clamp(86px, 9vw, 115px);
+  width: clamp(88px, 9.2vw, 120px);
+  height: clamp(88px, 9.2vw, 120px);
   border-radius: 50%;
   background-color: var(--accent-coral-bg);
   border: 2.5px solid rgba(44, 21, 15, 0.35);
@@ -911,7 +906,7 @@ section, footer {
   height: auto;
 }
 
-/* Responsividade Mobile (<= 768px) */
+/* Responsividade Mobile (Griddle) */
 @media (max-width: 768px) {
   .griddle-content-wrapper {
     flex-direction: column;
@@ -928,9 +923,7 @@ section, footer {
 }
 
 /* ==========================================================================
-
-/* ==========================================================================
-   04. SEÇÃO SALÃO, GAMES & AVALIAÇÕES (LOUNGE & SOCIAL PROOF)
+   04. SEÇÃO SALÃO, GAMES & AVALIAÇÕES (THE BOARD GAME LOUNGE)
    ========================================================================== */
 .section-lounge {
   background-color: var(--bg-cream);
@@ -967,43 +960,45 @@ section, footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(1rem, 3vw, 2.8rem);
-  max-width: min(94vw, 1340px);
+  max-width: min(96vw, 1360px);
   margin: 0 auto;
   position: relative;
 }
 
-/* Polaroids */
-.polaroid-card {
+/* Fotos da Mesa de Jogos Inclinadas */
+.lounge-photo {
   flex: 1;
-  max-width: 390px;
+  max-width: 420px;
+  z-index: 2;
 }
 
-.polaroid-frame {
-  background: #ffffff;
-  padding: 10px 10px 24px 10px;
-  border-radius: 4px;
-  box-shadow: 0 10px 26px rgba(44, 21, 15, 0.12);
-  border: 1px solid rgba(44, 21, 15, 0.06);
+.photo-frame {
+  border: 6px solid #3d2417;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+  background: #2c150f;
   transition: transform 0.25s ease;
 }
 
-.polaroid-left .polaroid-frame {
-  transform: rotate(-3.5deg);
+.lounge-photo-left {
+  transform: rotate(5.5deg);
+  margin-right: -40px;
 }
 
-.polaroid-right .polaroid-frame {
-  transform: rotate(3.5deg);
+.lounge-photo-right {
+  transform: rotate(-5.5deg);
+  margin-left: -40px;
 }
 
-.polaroid-img {
+.lounge-img {
   width: 100%;
-  height: auto;
-  border-radius: 2px;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 
-/* Troféu Central & Selo Google */
+/* Troféu Central Dominante & Selo Google Reviews */
 .lounge-centerpiece {
   flex: 1.1;
   max-width: 440px;
@@ -1011,7 +1006,7 @@ section, footer {
   flex-direction: column;
   align-items: center;
   position: relative;
-  z-index: 5;
+  z-index: 8;
 }
 
 .trophy-wrapper {
@@ -1023,26 +1018,26 @@ section, footer {
 }
 
 .trophy-img {
-  width: clamp(210px, 24vw, 320px);
+  width: clamp(240px, 28vw, 390px);
   height: auto;
-  filter: drop-shadow(0 14px 28px rgba(44, 21, 15, 0.22));
+  filter: drop-shadow(0 16px 32px rgba(44, 21, 15, 0.3));
 }
 
 .badge-google-reviews {
   position: absolute;
-  right: clamp(-8px, 1.5vw, 22px);
-  top: 42%;
-  background: #fffdf9;
-  border: 2px dashed rgba(44, 21, 15, 0.35);
+  right: clamp(-6px, 1.5vw, 18px);
+  top: 44%;
+  background: #eae1d2;
+  border: 2px dashed rgba(44, 21, 15, 0.4);
   border-radius: 50%;
-  width: clamp(76px, 8.2vw, 98px);
-  height: clamp(76px, 8.2vw, 98px);
+  width: clamp(78px, 8.5vw, 102px);
+  height: clamp(78px, 8.5vw, 102px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 6px 16px rgba(44, 21, 15, 0.12);
+  box-shadow: 0 6px 18px rgba(44, 21, 15, 0.16);
   padding: 4px;
   transform: rotate(6deg);
 }
@@ -1064,37 +1059,37 @@ section, footer {
   margin-top: 2px;
 }
 
-/* Fita Crepe com Depoimento */
+/* Fita Crepe Adesiva com Depoimento */
 .tape-testimonial-wrapper {
   position: relative;
-  margin-top: -24px;
-  z-index: 6;
+  margin-top: -20px;
+  z-index: 9;
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   display: flex;
   justify-content: center;
 }
 
 .tape-strip {
-  background-color: var(--bg-tape-paper);
-  transform: rotate(-1.5deg);
-  padding: 0.65rem clamp(1rem, 2.2vw, 1.8rem);
-  box-shadow: 0 6px 16px rgba(44, 21, 15, 0.12);
-  clip-path: polygon(1% 0%, 99% 2%, 100% 98%, 0% 100%);
-  border-left: 3px dashed rgba(44, 21, 15, 0.2);
-  border-right: 3px dashed rgba(44, 21, 15, 0.2);
+  background-color: #ede5d2;
+  transform: rotate(-2deg);
+  padding: 0.75rem clamp(1rem, 2.5vw, 2.2rem);
+  box-shadow: 0 8px 20px rgba(44, 21, 15, 0.18);
+  clip-path: polygon(1% 0%, 99% 1%, 100% 98%, 0% 100%);
+  border-left: 4px dashed rgba(44, 21, 15, 0.2);
+  border-right: 4px dashed rgba(44, 21, 15, 0.2);
 }
 
 .tape-quote {
   font-family: var(--font-hand);
   font-size: clamp(1.15rem, 1.6vw, 1.55rem);
   font-weight: 700;
-  color: var(--text-espresso);
+  color: #160d08;
   text-align: center;
   line-height: 1.25;
 }
 
-/* Responsividade Mobile (<= 768px) */
+/* Responsividade Mobile (Lounge) */
 @media (max-width: 768px) {
   .section-lounge {
     padding-top: 4.5rem;
@@ -1102,26 +1097,21 @@ section, footer {
 
   .lounge-stage {
     flex-direction: column;
-    gap: 2.2rem;
+    gap: 2.5rem;
   }
 
-  .lounge-centerpiece {
-    order: 1;
-    width: 100%;
-  }
-
-  .polaroid-left {
-    order: 2;
+  .lounge-photo-left {
+    margin-right: 0;
     max-width: 320px;
   }
 
-  .polaroid-right {
-    order: 3;
+  .lounge-photo-right {
+    margin-left: 0;
     max-width: 320px;
   }
 
   .badge-google-reviews {
-    right: 12%;
+    right: 8%;
   }
 }
 
@@ -1136,7 +1126,7 @@ section, footer {
   z-index: 3;
 }
 
-/* Divisória Rolo de Filme 35mm */
+/* Divisória Rolo de Filme 35mm / Película Vintage */
 .film-strip-divider {
   width: 100%;
   height: 22px;
@@ -1161,18 +1151,18 @@ section, footer {
   background-repeat: repeat-x;
 }
 
-/* Palco Interno */
+/* Palco Interno do Rodapé */
 .footer-inner-stage {
   position: relative;
   width: 100%;
-  min-height: clamp(380px, 45vw, 540px);
+  min-height: clamp(420px, 48vw, 560px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(2.5rem, 5vw, 4rem) 1rem clamp(3rem, 5vw, 4.5rem);
 }
 
-/* Cenário Retro de Fundo */
+/* Cenário Retro do Diner com Mesas Visíveis nas Extremidades */
 .footer-bg-diner {
   position: absolute;
   inset: 0;
@@ -1190,14 +1180,7 @@ section, footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-}
-
-.footer-diner-tint {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(189, 59, 43, 0.42);
-  mix-blend-mode: multiply;
+  object-position: center bottom;
 }
 
 /* Conteúdo de Conversão */
@@ -1231,13 +1214,13 @@ section, footer {
   width: 100%;
 }
 
-/* Botões Neon Pulsantes */
+/* Botões Neon com Brilho Pulsante */
 .neon-pill-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: rgba(10, 24, 13, 0.88);
+  background: rgba(10, 24, 13, 0.92);
   border: 2.5px solid var(--accent-neon-green);
   border-radius: var(--radius-full);
   padding: clamp(0.6rem, 1vw, 0.85rem) clamp(1.2rem, 2.5vw, 2.4rem);
@@ -1247,7 +1230,7 @@ section, footer {
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  box-shadow: 0 0 12px rgba(37, 211, 102, 0.7), 0 0 28px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 0 14px rgba(37, 211, 102, 0.8), 0 0 32px rgba(37, 211, 102, 0.45);
   text-shadow: 0 0 8px rgba(37, 211, 102, 0.9);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
@@ -1255,7 +1238,7 @@ section, footer {
 .neon-pill-btn:hover {
   transform: translateY(-2px) scale(1.02);
   background: rgba(14, 38, 19, 0.95);
-  box-shadow: 0 0 18px rgba(37, 211, 102, 0.95), 0 0 40px rgba(37, 211, 102, 0.6);
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.95), 0 0 44px rgba(37, 211, 102, 0.6);
 }
 
 .bracket {
@@ -1278,7 +1261,7 @@ section, footer {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-/* Endereço & Rodapé Legal */
+/* Endereço Oficial */
 .footer-address {
   display: flex;
   flex-direction: column;
@@ -1295,14 +1278,7 @@ section, footer {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-.copyright-text {
-  color: rgba(255, 255, 255, 0.8);
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
-}
-
-/* Mobile Adjustments (<= 768px) */
+/* Mobile Adjustments (Footer) */
 @media (max-width: 768px) {
   .neon-pill-btn {
     font-size: 0.78rem;

@@ -1,10 +1,10 @@
-/* tokens.css — Design Tokens baseados no DESIGN.md */
+/* tokens.css — Design Tokens Mr. Macário Burger */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
   /* Cores de Fundo (Full-bleed por seção) */
-  --bg-cream: #f2e9e2;
-  --bg-cream-card: #f9f4ef;
+  --bg-cream: #f4ede3;
+  --bg-sand-layer: #e0d2c3;
   --bg-griddle-black: #0b0e13;
   --bg-diner-red: #bd3b2b;
   --bg-tape-paper: #eae2d3;
@@ -16,13 +16,14 @@
   --text-muted: #6b5852;
 
   /* Acentos, Selos & Efeitos */
-  --accent-gold-raw: #be9032;
+  --accent-gold-raw: #b8973b;
   --accent-gold-ui: #987328;
   --accent-gold-text: #856423;
   --accent-mint-bg: #82c399;
-  --accent-mint-text: #21432f;
+  --accent-mint-text: #1d432e;
   --accent-coral-bg: #ef7367;
   --accent-coral-text: #2c150f;
+  --accent-blue-stamp: #93c7dc;
   --accent-neon-green: #25d366;
   --accent-neon-glow: #91ed96;
   --accent-trophy-gold: #dfa422;
@@ -34,8 +35,8 @@
   --font-hand: 'Caveat', cursive;
 
   /* Escala Fluida (clamp) */
-  --fs-hero-title: clamp(3.2rem, 11vw, 10.5rem);
-  --fs-h2: clamp(2.2rem, 5.5vw, 4.8rem);
+  --fs-hero-title: clamp(4.5rem, 15vw, 13rem);
+  --fs-h2: clamp(2.4rem, 5.8vw, 4.8rem);
   --fs-h3: clamp(1.4rem, 2.8vw, 2.4rem);
   --fs-body: clamp(0.95rem, 1.2vw, 1.15rem);
   --fs-small: clamp(0.75rem, 0.9vw, 0.9rem);
@@ -49,16 +50,16 @@
   --space-xl: clamp(2.5rem, 5vw, 5rem);
   --space-section: clamp(3rem, 7vw, 6.5rem);
 
-  /* Largura Máxima de Conforto de Leitura (apenas para texto, nunca para o site) */
+  /* Largura Máxima */
   --max-reading-width: 68ch;
-  --max-content-width: min(94vw, 1380px);
+  --max-content-width: min(96vw, 1440px);
 
   /* Bordas & Sombras */
   --radius-sm: 6px;
   --radius-md: 12px;
-  --radius-lg: 24px;
+  --radius-lg: 20px;
   --radius-full: 9999px;
   --shadow-soft: 0 8px 24px rgba(44, 21, 15, 0.08);
-  --shadow-float: 0 16px 36px rgba(44, 21, 15, 0.16);
-  --shadow-neon: 0 0 14px rgba(37, 211, 102, 0.7), 0 0 30px rgba(37, 211, 102, 0.4);
+  --shadow-float: 0 16px 36px rgba(44, 21, 15, 0.18);
+  --shadow-neon: 0 0 14px rgba(37, 211, 102, 0.75), 0 0 32px rgba(37, 211, 102, 0.45);
 }

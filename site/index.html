@@ -30,20 +30,31 @@
   <main id="main-content">
     <!-- 01. Hero -->
     <section class="section-hero" id="hero" aria-label="Apresentação Mr. Macário Burger">
-      <!-- Letreiro Topo Central do Hero -->
+      <!-- Gota de Queijo / Molho no Canto Superior Esquerdo -->
+      <div class="cheese-drip-top-left" aria-hidden="true">
+        <svg viewBox="0 0 100 120" class="cheese-drip-svg">
+          <path d="M 0 0 L 48 42 C 54 48 56 60 52 68 C 47 74 38 72 34 64 C 30 56 22 36 0 20 Z" fill="#f0a92b" />
+          <ellipse cx="44" cy="94" rx="10" ry="14" fill="#f0a92b" />
+        </svg>
+      </div>
+
+      <!-- Letreiro Topo Central -->
       <div class="hero-top-brand" aria-hidden="true">
         <span class="hero-brand-line1">MR. MACÁRIO</span>
         <span class="hero-brand-line2">BURGER</span>
       </div>
 
-      <!-- Fundo Tipográfico Gigante -->
+      <!-- Letreiro de Fundo Gigante "MR. M" e "ÁRIO" Cobrindo a Extensão Total -->
       <div class="hero-bg-text" aria-hidden="true">
-        <span>MR. MACÁRIO</span>
+        <div class="hero-bg-inner">
+          <span class="hero-txt-left">MR. M</span>
+          <span class="hero-txt-right">ÁRIO</span>
+        </div>
       </div>
 
-      <!-- Elementos Decorativos Flutuantes do Hero -->
+      <!-- Camada de Elementos Decorativos Integrados -->
       <div class="hero-decorations" aria-hidden="true">
-        <!-- Comanda Superior Esquerda -->
+        <!-- Comanda Superior Esquerda (#0429) -->
         <div class="receipt receipt-tl">
           <div class="receipt-inner">
             <span class="rc-num">#0429</span>
@@ -55,18 +66,18 @@
 
         <!-- Dados 3D Esquerda -->
         <div class="floating-asset dice-wrapper">
-          <img src="./assets/dice-800.webp" alt="" class="hero-dice-img" width="130" height="86" loading="eager">
+          <img src="./assets/dice-800.webp" alt="" class="hero-dice-img" width="160" height="106" loading="eager">
         </div>
 
         <!-- Neon Doodle Vermelho -->
         <div class="floating-asset neon-doodle-wrapper">
-          <img src="./assets/neon-doodle-800.webp" alt="" class="hero-neon-img" width="120" height="145" loading="eager">
+          <img src="./assets/neon-doodle-800.webp" alt="" class="hero-neon-img" width="110" height="133" loading="eager">
         </div>
 
-        <!-- Badge 100% Carne Fresca -->
+        <!-- 100% Carne Fresca -->
         <div class="badge-fresh-meat">
-          <span class="fresh-perc">100%</span>
-          <span class="fresh-text">CARNE<br>FRESCA</span>
+          <span class="fresh-perc">100% CARNE</span>
+          <span class="fresh-text">FRESCA</span>
         </div>
 
         <!-- Comanda Inferior Esquerda -->
@@ -77,7 +88,7 @@
           </div>
         </div>
 
-        <!-- Selo Redondo Azul Topo -->
+        <!-- Selo Azul Topo -->
         <div class="stamp stamp-blue">
           <svg viewBox="0 0 100 100" class="stamp-svg">
             <path id="blue-curve" d="M 15 50 A 35 35 0 1 1 85 50 A 35 35 0 1 1 15 50" fill="none"/>
@@ -95,22 +106,9 @@
           <span class="stamp-badge-sub">ARTESANAL</span>
         </div>
 
-        <!-- Selo Verde '11 / MACARIO' -->
-        <div class="stamp stamp-mint">
-          <span class="stamp-mint-num">// 11</span>
-          <span class="stamp-mint-text">VILA SAÚDE</span>
-        </div>
-
-        <!-- Batatas Fritas Voando (Direita) -->
+        <!-- Batatas Fritas Voando (Direita do Burger) -->
         <div class="floating-asset fries-fly-wrapper">
-          <svg viewBox="0 0 120 120" class="fries-svg">
-            <!-- Fritas estilizadas douradas crocantes -->
-            <rect x="20" y="30" width="12" height="55" rx="3" fill="#e8ad36" transform="rotate(-25 20 30)" />
-            <rect x="50" y="10" width="11" height="60" rx="3" fill="#f5be42" transform="rotate(15 50 10)" />
-            <rect x="75" y="40" width="10" height="50" rx="3" fill="#d9992b" transform="rotate(40 75 40)" />
-            <circle cx="40" cy="85" r="2.5" fill="#fbe6a2"/>
-            <circle cx="85" cy="25" r="3" fill="#fbe6a2"/>
-          </svg>
+          <img src="./assets/flying-fries.webp" alt="" class="hero-flying-fries-img" width="130" height="140" loading="eager">
         </div>
 
         <!-- Pílula Vila da Saúde -->
@@ -120,7 +118,6 @@
 
         <!-- Pílula Abre 18:45 -->
         <div class="badge-pill pill-hours">
-          <span class="dot-open"></span>
           <span>ABRE 18:45</span>
         </div>
 
@@ -136,6 +133,12 @@
 
       <!-- Hambúrguer Hero Central em Destaque -->
       <div class="hero-center-stage">
+        <!-- Selo Verde '11 / VILA SAÚDE' Colado no Pão -->
+        <div class="stamp stamp-mint" aria-hidden="true">
+          <span class="stamp-mint-num">// 11</span>
+          <span class="stamp-mint-text">VILA SAÚDE</span>
+        </div>
+
         <picture class="hero-burger-picture">
           <source srcset="./assets/hero-burger-1600.webp" media="(min-width: 768px)">
           <img src="./assets/hero-burger-800.webp" 
@@ -149,103 +152,93 @@
       </div>
     </section>
 
-    <!-- 02. Menu Highlights -->
+    <!-- 02. Menu Highlights (Zero Cards - Integração Orgânica) -->
     <section class="section-menu" id="menu-highlights" aria-label="Destaques do Cardápio">
-      <div class="menu-header">
-        <h2 class="menu-title">DESTAQUES DO CARDÁPIO</h2>
-        <p class="menu-subtitle">BURGUERS ARTESANAIS // FEITO COM A QUALIDADE QUE VOCÊ MERECE</p>
+      <!-- Mancha Ondulada / Corte Diagonal de Fundo Bege Escuro -->
+      <div class="menu-sand-shape" aria-hidden="true">
+        <svg viewBox="0 0 1440 600" preserveAspectRatio="none" class="sand-svg">
+          <path d="M 450,0 C 580,60 720,25 860,65 C 1040,110 1240,50 1440,75 L 1440,600 L 400,600 C 500,430 420,180 450,0 Z" fill="#e0d2c3"/>
+        </svg>
       </div>
 
-      <div class="menu-grid">
-        <!-- Item 1: Mr Smash Duplo -->
-        <article class="menu-card menu-card-smash">
-          <!-- Decorativo: Dados e Neon flutuantes -->
-          <div class="menu-card-decorations" aria-hidden="true">
-            <div class="menu-dice">
-              <img src="./assets/dice-800.webp" alt="" width="75" height="50" loading="lazy">
+      <div class="menu-header">
+        <h2 class="menu-title">MENU HIGHLIGHTS</h2>
+      </div>
+
+      <!-- Vitrine dos 3 Produtos Livres no Solo -->
+      <div class="menu-showcase">
+        <!-- Item 1: Mr Smash Duplo (Esquerda) -->
+        <div class="menu-display-item item-smash">
+          <!-- Decorativos ao lado: Dados e Neon -->
+          <div class="menu-item-decorations" aria-hidden="true">
+            <div class="menu-dice-float">
+              <img src="./assets/dice-800.webp" alt="" width="85" height="57" loading="lazy">
             </div>
-            <div class="menu-neon">
+            <div class="menu-neon-float">
               <img src="./assets/neon-doodle-800.webp" alt="" width="65" height="78" loading="lazy">
             </div>
           </div>
 
-          <div class="menu-img-wrap">
+          <div class="menu-food-visual">
             <img src="./assets/hero-burger-800.webp" 
-                 alt="Mr Smash Duplo — Carne fresca prensada na chapa com queijo cheddar cremoso e bacon crocante" 
+                 alt="Mr Smash Duplo artesanal com crosta crocante e queijo cheddar derretido" 
                  class="menu-food-img" 
-                 width="480" 
-                 height="320" 
+                 width="520" 
+                 height="346" 
                  loading="lazy">
-            <div class="menu-food-shadow" aria-hidden="true"></div>
+            <div class="menu-ground-shadow" aria-hidden="true"></div>
           </div>
+        </div>
 
-          <div class="menu-card-info">
-            <div class="menu-card-badge-pill">MR SMASH DUPLO</div>
-            <p class="menu-card-desc">Blend artesanal duplo esmagado na chapa com crosta ultra crocante, cheddar duplo derretido e bacon artesanal.</p>
-            <div class="menu-card-price">R$ 29,90</div>
-          </div>
-        </article>
-
-        <!-- Item 2: Mr Burguinho -->
-        <article class="menu-card menu-card-burguinho">
-          <div class="menu-img-wrap">
+        <!-- Item 2: Mr Burguinho (Centro) -->
+        <div class="menu-display-item item-burguinho">
+          <div class="menu-food-visual">
+            <!-- Tag Dourada Colada no Pão -->
             <div class="pill-burguinho-tag" aria-hidden="true">MR BURGUINHO</div>
             <img src="./assets/menu-burguinho-800.webp" 
-                 alt="Mr Burguinho — Hambúrguer artesanal clássico com queijo prato, bacon, salada fresca e molho especial" 
+                 alt="Mr Burguinho clássico com salada fresca e blend suculento" 
                  class="menu-food-img" 
-                 width="480" 
-                 height="320" 
+                 width="520" 
+                 height="346" 
                  loading="lazy">
-            <div class="menu-food-shadow" aria-hidden="true"></div>
+            <div class="menu-ground-shadow" aria-hidden="true"></div>
           </div>
+        </div>
 
-          <div class="menu-card-info">
-            <div class="menu-card-badge-pill">MR BURGUINHO</div>
-            <p class="menu-card-desc">O clássico que nunca erra: blend suculento no ponto perfeito, queijo derretido, fatias de bacon, alface e molho da casa.</p>
-            <div class="menu-card-price">R$ 24,90</div>
-          </div>
-        </article>
-
-        <!-- Item 3: Batatas Fritas Especiais -->
-        <article class="menu-card menu-card-fries">
-          <!-- Selo Preço Justo -->
-          <div class="stamp-preco-justo" aria-hidden="true">
-            <div class="stamp-pj-inner">
-              <span class="pj-curved">PREÇO JUSTO</span>
-              <span class="pj-value">R$ 20-40 //</span>
-              <span class="pj-bottom">BEM SERVIDO</span>
+        <!-- Item 3: Batatas Fritas Especiais (Direita) -->
+        <div class="menu-display-item item-fries">
+          <div class="menu-food-visual">
+            <!-- Selo Preço Justo Circular Estampado -->
+            <div class="stamp-preco-justo" aria-hidden="true">
+              <div class="stamp-pj-inner">
+                <span class="pj-curved">PREÇO JUSTO</span>
+                <span class="pj-value">R$ 20-40 //</span>
+                <span class="pj-bottom">BEM SERVIDO</span>
+              </div>
             </div>
-          </div>
 
-          <div class="menu-img-wrap">
             <img src="./assets/menu-fries-800.webp" 
-                 alt="Batatas fritas rústicas e crocantes cobertas com creme de cheddar e cubos de bacon frito" 
+                 alt="Batatas fritas rústicas e crocantes cobertas com creme de cheddar e cubos de bacon" 
                  class="menu-food-img" 
-                 width="480" 
-                 height="320" 
+                 width="520" 
+                 height="346" 
                  loading="lazy">
-            <div class="menu-food-shadow" aria-hidden="true"></div>
+            <div class="menu-ground-shadow" aria-hidden="true"></div>
           </div>
-
-          <div class="menu-card-info">
-            <div class="menu-card-badge-pill">BATATA CHEDDAR & BACON</div>
-            <p class="menu-card-desc">Porção generosa de batatas sequinhas e douradas, cobertas com calda cremosa de cheddar e chuva de bacon crocante.</p>
-            <div class="menu-card-price">R$ 22,00</div>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
-    <!-- 03. The Griddle Craft -->
+    <!-- 03. The Griddle Craft (Rasgo Orgânico Contínuo de Papel) -->
     <section class="section-griddle" id="griddle-craft" aria-label="A Técnica da Chapa e Crosta Maillard">
-      <!-- Borda Superior de Papel Rasgado (SVG) -->
+      <!-- Borda Superior de Papel Rasgado Contínuo (SVG Fiel ao Mockup) -->
       <div class="torn-paper torn-paper-top" aria-hidden="true">
-        <svg viewBox="0 0 1440 36" preserveAspectRatio="none" class="torn-svg">
-          <path d="M0,0 L0,17.1 L0,17.1 L12,12.2 L24,14.3 L36,13.9 L48,18.1 L60,17.6 L72,19.4 L84,13.0 L96,15.7 L108,12.6 L120,14.2 L132,16.5 L144,12.7 L156,14.1 L168,17.8 L180,17.0 L192,14.4 L204,17.4 L216,19.2 L228,12.8 L240,19.3 L252,18.5 L264,15.6 L276,14.2 L288,20.7 L300,15.7 L312,13.8 L324,13.9 L336,19.9 L348,18.0 L360,19.7 L372,19.1 L384,17.6 L396,21.2 L408,16.4 L420,17.9 L432,20.1 L444,18.5 L456,20.5 L468,18.2 L480,19.3 L492,14.1 L504,15.6 L516,16.1 L528,14.5 L540,15.7 L552,14.7 L564,16.2 L576,19.1 L588,17.0 L600,17.0 L612,15.8 L624,16.3 L636,21.7 L648,19.4 L660,19.2 L672,15.7 L684,20.2 L696,15.7 L708,17.5 L720,22.4 L732,19.7 L744,19.0 L756,20.1 L768,21.4 L780,20.9 L792,16.6 L804,15.0 L816,17.4 L828,17.0 L840,16.6 L852,22.5 L864,22.0 L876,17.6 L888,20.3 L900,18.3 L912,22.5 L924,18.9 L936,17.4 L948,17.3 L960,19.8 L972,17.5 L984,20.1 L996,22.6 L1008,18.7 L1020,17.3 L1032,23.6 L1044,19.7 L1056,16.4 L1068,16.1 L1080,16.6 L1092,20.8 L1104,22.2 L1116,19.3 L1128,16.4 L1140,19.0 L1152,24.0 L1164,20.3 L1176,23.9 L1188,23.0 L1200,16.3 L1212,22.0 L1224,21.7 L1236,20.6 L1248,18.5 L1260,21.5 L1272,17.3 L1284,19.9 L1296,20.1 L1308,24.2 L1320,23.6 L1332,18.7 L1344,20.7 L1356,18.1 L1368,24.1 L1380,23.8 L1392,19.2 L1404,22.0 L1416,21.8 L1428,18.2 L1440,23.1 L1440,0 Z" fill="#f2e9e2" />
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" class="torn-svg">
+          <path d="M 0 0 L 1440 0 L 1440 0.0 L 1438.1 0.0 L 1425.0 0.0 L 1413.8 0.0 L 1400.6 0.0 L 1389.4 0.0 L 1376.2 0.0 L 1365.0 0.0 L 1351.9 0.0 L 1340.6 0.0 L 1327.5 0.0 L 1316.2 0.0 L 1305.0 0.0 L 1291.9 0.0 L 1280.6 0.0 L 1267.5 0.0 L 1256.2 0.0 L 1243.1 0.0 L 1231.9 0.0 L 1218.8 0.0 L 1207.5 0.0 L 1196.2 0.0 L 1183.1 0.0 L 1171.9 0.0 L 1158.8 0.0 L 1147.5 0.0 L 1134.4 0.0 L 1123.1 0.0 L 1110.0 2.9 L 1098.8 4.9 L 1087.5 4.9 L 1074.4 4.9 L 1063.1 5.8 L 1050.0 6.8 L 1038.8 8.8 L 1025.6 9.7 L 1014.4 9.7 L 1001.2 10.7 L 990.0 12.7 L 978.8 13.6 L 965.6 11.7 L 954.4 10.7 L 941.2 9.7 L 930.0 8.8 L 916.9 8.8 L 905.6 8.8 L 892.5 6.8 L 881.2 4.9 L 870.0 4.9 L 856.9 4.9 L 845.6 3.9 L 832.5 2.9 L 821.2 2.9 L 808.1 3.9 L 796.9 4.9 L 783.8 5.8 L 772.5 6.8 L 761.2 7.8 L 748.1 9.7 L 736.9 10.7 L 723.8 12.7 L 712.5 12.7 L 699.4 13.6 L 688.1 13.6 L 675.0 12.7 L 663.8 12.7 L 652.5 15.6 L 639.4 18.5 L 628.1 19.5 L 615.0 20.5 L 603.8 21.4 L 590.6 23.4 L 579.4 25.3 L 566.2 27.3 L 555.0 28.3 L 543.8 29.2 L 530.6 30.2 L 519.4 29.2 L 506.2 27.3 L 495.0 27.3 L 481.9 26.3 L 470.6 24.4 L 457.5 23.4 L 446.2 22.4 L 435.0 23.4 L 421.9 24.4 L 410.6 24.4 L 397.5 0.0 L 386.2 0.0 L 373.1 0.0 L 361.9 0.0 L 348.8 0.0 L 337.5 0.0 L 326.2 0.0 L 313.1 0.0 L 301.9 0.0 L 288.8 0.0 L 277.5 0.0 L 264.4 0.0 L 253.1 0.0 L 240.0 0.0 L 228.8 0.0 L 217.5 0.0 L 204.4 0.0 L 193.1 0.0 L 180.0 0.0 L 168.8 0.0 L 155.6 0.0 L 144.4 0.0 L 131.2 0.0 L 120.0 0.0 L 108.8 0.0 L 95.6 36.1 L 84.4 36.1 L 71.2 35.1 L 60.0 35.1 L 46.9 34.1 L 35.6 35.1 L 22.5 36.1 L 11.2 37.0 L 0.0 38.0 Z" fill="#f4ede3" />
         </svg>
       </div>
 
-      <!-- Container do Conteúdo da Chapa -->
+      <!-- Conteúdo da Chapa com Foto Panorâmica Nítida -->
       <div class="griddle-backdrop">
         <picture class="griddle-picture">
           <source srcset="./assets/griddle-craft-1600.webp" media="(min-width: 768px)">
@@ -261,8 +254,7 @@
         <!-- Conteúdo Sobreposto -->
         <div class="griddle-content-wrapper">
           <div class="griddle-headline">
-            <h2 class="griddle-title">A TÉCNICA DA CHAPA</h2>
-            <p class="griddle-desc">A verdadeira crosta Maillard: carne fresca 100% prensada no ferro fundido superaquecido para selar todos os sucos e garantir crocância máxima a cada mordida.</p>
+            <h2 class="griddle-title">THE GRIDDLE CRAFT</h2>
           </div>
 
           <!-- Selo Coral Crosta Maillard com Seta Apontando -->
@@ -270,31 +262,28 @@
             <div class="stamp-maillard">
               <span class="maillard-top">CROSTA</span>
               <svg viewBox="0 0 40 24" class="maillard-burger-icon">
-                <!-- Pão superior -->
                 <path d="M4,12 C4,5 12,2 20,2 C28,2 36,5 36,12 Z" fill="none" stroke="#2c150f" stroke-width="2" />
-                <!-- Queijo / blend -->
                 <line x1="2" y1="15" x2="38" y2="15" stroke="#2c150f" stroke-width="2.5" stroke-dasharray="4 2" />
-                <!-- Pão inferior -->
                 <path d="M4,18 C4,21 10,22 20,22 C30,22 36,21 36,18 Z" fill="none" stroke="#2c150f" stroke-width="2" />
               </svg>
               <span class="maillard-bottom">MAILLARD</span>
             </div>
 
-            <!-- Seta Desenhada em Giz Curvada -->
+            <!-- Seta Desenhada em Giz Curvada Apontando para o Smash -->
             <div class="chalk-arrow">
               <svg viewBox="0 0 70 60" class="arrow-svg">
-                <path d="M55,10 Q25,25 20,45" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="40" />
-                <path d="M14,38 L20,46 L27,39" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M55,10 Q25,25 20,45" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                <path d="M14,38 L20,46 L27,39" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Borda Inferior de Papel Rasgado (SVG) -->
+      <!-- Borda Inferior de Papel Rasgado Contínuo (SVG Fiel ao Mockup) -->
       <div class="torn-paper torn-paper-bottom" aria-hidden="true">
-        <svg viewBox="0 0 1440 36" preserveAspectRatio="none" class="torn-svg">
-          <path d="M0,40 L0,24.3 L0,24.3 L12,26.2 L24,24.2 L36,19.9 L48,22.5 L60,20.0 L72,27.2 L84,26.8 L96,26.4 L108,22.2 L120,20.1 L132,26.7 L144,27.2 L156,20.3 L168,23.4 L180,20.1 L192,25.6 L204,25.6 L216,20.4 L228,23.2 L240,23.7 L252,21.4 L264,26.2 L276,22.6 L288,20.9 L300,23.5 L312,25.0 L324,20.7 L336,21.6 L348,27.0 L360,24.2 L372,22.5 L384,23.1 L396,19.9 L408,20.7 L420,21.5 L432,23.5 L444,20.6 L456,20.5 L468,19.3 L480,23.7 L492,20.5 L504,25.8 L516,25.4 L528,19.1 L540,20.4 L552,23.8 L564,20.1 L576,19.5 L588,25.9 L600,22.9 L612,22.1 L624,24.5 L636,24.7 L648,19.7 L660,18.9 L672,21.6 L684,21.5 L696,21.8 L708,23.9 L720,23.4 L732,25.8 L744,18.7 L756,21.1 L768,20.6 L780,24.7 L792,19.8 L804,19.3 L816,21.3 L828,21.1 L840,19.9 L852,19.6 L864,25.0 L876,21.1 L888,24.4 L900,21.9 L912,17.9 L924,25.4 L936,24.1 L948,25.1 L960,24.7 L972,24.1 L984,18.6 L996,21.1 L1008,18.9 L1020,20.4 L1032,17.6 L1044,20.1 L1056,24.9 L1068,19.2 L1080,23.3 L1092,20.6 L1104,20.3 L1116,24.6 L1128,24.8 L1140,21.3 L1152,22.5 L1164,18.0 L1176,19.1 L1188,24.4 L1200,21.3 L1212,21.0 L1224,22.6 L1236,17.0 L1248,21.2 L1260,20.5 L1272,23.3 L1284,17.7 L1296,24.1 L1308,17.0 L1320,17.8 L1332,21.1 L1344,21.7 L1356,18.1 L1368,17.2 L1380,23.3 L1392,18.1 L1404,20.9 L1416,21.0 L1428,19.4 L1440,20.7 L1440,40 Z" fill="#f2e9e2" />
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" class="torn-svg">
+          <path d="M 0 40 L 1440 40 L 1440 2.0 L 1438.1 2.0 L 1425.0 2.0 L 1413.8 2.0 L 1400.6 3.0 L 1389.4 3.0 L 1376.2 3.0 L 1365.0 3.0 L 1351.9 3.0 L 1340.6 3.0 L 1327.5 2.0 L 1316.2 2.0 L 1305.0 2.0 L 1291.9 2.0 L 1280.6 2.0 L 1267.5 3.0 L 1256.2 7.0 L 1243.1 10.0 L 1231.9 12.0 L 1218.8 14.0 L 1207.5 16.0 L 1196.2 17.0 L 1183.1 21.0 L 1171.9 23.0 L 1158.8 23.0 L 1147.5 22.0 L 1134.4 22.0 L 1123.1 21.0 L 1110.0 21.0 L 1098.8 20.0 L 1087.5 21.0 L 1074.4 20.0 L 1063.1 19.0 L 1050.0 17.0 L 1038.8 16.0 L 1025.6 15.0 L 1014.4 14.0 L 1001.2 13.0 L 990.0 13.0 L 978.8 14.0 L 965.6 17.0 L 954.4 19.0 L 941.2 21.0 L 930.0 23.0 L 916.9 24.0 L 905.6 25.0 L 892.5 26.0 L 881.2 29.0 L 870.0 30.0 L 856.9 31.0 L 845.6 31.0 L 832.5 32.0 L 821.2 33.0 L 808.1 34.0 L 796.9 33.0 L 783.8 32.0 L 772.5 31.0 L 761.2 30.0 L 748.1 29.0 L 736.9 28.0 L 723.8 28.0 L 712.5 27.0 L 699.4 28.0 L 688.1 27.0 L 675.0 26.0 L 663.8 27.0 L 652.5 28.0 L 639.4 28.0 L 628.1 29.0 L 615.0 27.0 L 603.8 25.0 L 590.6 22.0 L 579.4 20.0 L 566.2 20.0 L 555.0 21.0 L 543.8 22.0 L 530.6 23.0 L 519.4 25.0 L 506.2 26.0 L 495.0 27.0 L 481.9 29.0 L 470.6 31.0 L 457.5 31.0 L 446.2 31.0 L 435.0 31.0 L 421.9 33.0 L 410.6 35.0 L 397.5 38.0 L 386.2 39.0 L 373.1 39.0 L 361.9 38.0 L 348.8 36.0 L 337.5 34.0 L 326.2 33.0 L 313.1 32.0 L 301.9 33.0 L 288.8 34.0 L 277.5 33.0 L 264.4 31.0 L 253.1 30.0 L 240.0 29.0 L 228.8 29.0 L 217.5 28.0 L 204.4 30.0 L 193.1 33.0 L 180.0 36.0 L 168.8 37.0 L 155.6 38.0 L 144.4 39.0 L 131.2 40.0 L 120.0 40.0 L 108.8 40.0 L 95.6 40.0 L 84.4 40.0 L 71.2 40.0 L 60.0 40.0 L 46.9 40.0 L 35.6 40.0 L 22.5 40.0 L 11.2 40.0 L 0.0 40.0 Z" fill="#f4ede3" />
         </svg>
       </div>
     </section>
@@ -302,54 +291,54 @@
     <!-- 04. Lounge, Games & Social Proof -->
     <section class="section-lounge" id="lounge-social" aria-label="Salão, Games e Avaliações">
       <div class="lounge-header">
-        <h2 class="lounge-title">SALÃO & FLIPERAMAS RETRÔ</h2>
+        <h2 class="lounge-title">THE BOARD GAME LOUNGE</h2>
         <p class="lounge-subtitle">JOGOS NO SALÃO // AMBIENTE DESCONTRAÍDO</p>
       </div>
 
       <div class="lounge-stage">
-        <!-- Polaroid Esquerdo -->
-        <div class="polaroid-card polaroid-left">
-          <div class="polaroid-frame">
+        <!-- Foto Esquerda (Mesa de Jogos Inclinada) -->
+        <div class="lounge-photo lounge-photo-left">
+          <div class="photo-frame">
             <img src="./assets/lounge-left-800.webp" 
                  alt="Amigos se divertindo no salão do Mr. Macário Burger com jogos e clima descontraído" 
-                 class="polaroid-img" 
+                 class="lounge-img" 
                  width="480" 
                  height="360" 
                  loading="lazy">
           </div>
         </div>
 
-        <!-- Centro: Troféu 5.0 e Avaliações Google -->
+        <!-- Centro: Troféu 5.0 Maciço e Selo Google Reviews -->
         <div class="lounge-centerpiece">
           <div class="trophy-wrapper">
             <img src="./assets/trophy-5-800.webp" 
                  alt="Troféu dourado nota máxima 5.0 com cinco estrelas no Google" 
                  class="trophy-img" 
-                 width="400" 
-                 height="418" 
+                 width="430" 
+                 height="450" 
                  loading="lazy">
 
-            <!-- Selo 63 Avaliações Google -->
+            <!-- Selo 63 Avaliações Google Colado no Ombro -->
             <div class="badge-google-reviews">
               <span class="gr-number">63</span>
               <span class="gr-label">AVALIAÇÕES<br>GOOGLE</span>
             </div>
           </div>
 
-          <!-- Fita Crepe com Depoimento Real -->
+          <!-- Fita Crepe Adesiva na Base do Troféu -->
           <div class="tape-testimonial-wrapper">
-            <div class="tape-strip" aria-label="Depoimento de cliente Maria Do Carmo">
+            <div class="tape-strip" aria-label="Depoimento">
               <p class="tape-quote">"Uma delícia, lanche maravilhoso e atendimento impecável!"</p>
             </div>
           </div>
         </div>
 
-        <!-- Polaroid Direito -->
-        <div class="polaroid-card polaroid-right">
-          <div class="polaroid-frame">
+        <!-- Foto Direita (Mesa de Jogos Inclinada) -->
+        <div class="lounge-photo lounge-photo-right">
+          <div class="photo-frame">
             <img src="./assets/lounge-right-800.webp" 
                  alt="Clientes comemorando e jogando cartas e games no salão da hamburgueria" 
-                 class="polaroid-img" 
+                 class="lounge-img" 
                  width="480" 
                  height="360" 
                  loading="lazy">
@@ -358,15 +347,15 @@
       </div>
     </section>
 
-    <!-- 05. Footer & Conversion -->
+    <!-- 05. Footer & Conversion (Mesas de Diner nas Laterais e Botões Neon) -->
     <footer class="section-footer" id="footer-conversion" aria-label="Rodapé e Pedidos">
-      <!-- Faixa de Rolo de Filme 35mm / Divisor Superior -->
+      <!-- Divisória Rolo de Filme 35mm / Película Vintage -->
       <div class="film-strip-divider" aria-hidden="true">
         <div class="film-sprockets"></div>
       </div>
 
       <div class="footer-inner-stage">
-        <!-- Imagem de Fundo / Cenário do Diner Retro -->
+        <!-- Imagem de Fundo / Cenário do Diner com Mesas Visíveis nas Extremidades -->
         <div class="footer-bg-diner" aria-hidden="true">
           <picture class="footer-diner-picture">
             <source srcset="./assets/footer-diner-1600.webp" media="(min-width: 768px)">
@@ -377,13 +366,12 @@
                  height="533" 
                  loading="lazy">
           </picture>
-          <div class="footer-diner-tint"></div>
         </div>
 
         <!-- Conteúdo de Conversão -->
         <div class="footer-content-container">
           <div class="footer-header-tag">
-            <h2 class="footer-title">PEÇA AGORA // MR. MACÁRIO</h2>
+            <h2 class="footer-title">FOOTER & CONVERSION</h2>
           </div>
 
           <div class="footer-cta-group">
@@ -415,8 +403,7 @@
 
           <!-- Endereço Oficial -->
           <div class="footer-address">
-            <p class="address-text">Rua Dom Macário, 1063 - Vila da Saúde, São Paulo - SP</p>
-            <p class="copyright-text">© 2026 Mr. Macário Burger — Hamburgueria Artesanal • Since 2023</p>
+            <p class="address-text">Rua Dom Macário, 1063 - Saúde</p>
           </div>
         </div>
       </div>
