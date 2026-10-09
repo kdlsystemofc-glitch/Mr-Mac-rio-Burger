@@ -412,6 +412,90 @@
           });
         }
       }
+    },
+
+    initGriddle: function () {
+      var M = window.MrMacarioMotion;
+      if (!M || !window.gsap || !window.ScrollTrigger) return;
+
+      var griddleSec = document.getElementById('griddle-craft');
+      if (!griddleSec) return;
+
+      if (M.mode === 'reduced') return;
+
+      var isHighQuality = M.quality === 'high';
+
+      // 1. Elementos Selecionados (camadas-folha internas apenas)
+      var griddleTitle = griddleSec.querySelector('.griddle-title');
+      var maillardStamp = griddleSec.querySelector('.stamp-maillard');
+      var chalkArrow = griddleSec.querySelector('.chalk-arrow');
+      var griddleImg = griddleSec.querySelector('.griddle-bg-img');
+
+      // 2. Timeline de Entrada Disparada a ~35% de Visibilidade
+      var tl = window.gsap.timeline({
+        scrollTrigger: {
+          trigger: griddleSec,
+          start: 'top 65%',
+          once: true
+        },
+        defaults: { ease: 'power3.out' }
+      });
+
+      if (griddleTitle) {
+        tl.fromTo(
+          griddleTitle,
+          { y: 28, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.75 },
+          0
+        );
+      }
+
+      if (maillardStamp) {
+        tl.fromTo(
+          maillardStamp,
+          { scale: 1.25, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.65, ease: 'back.out(1.8)' },
+          0.2
+        );
+      }
+
+      if (chalkArrow) {
+        tl.fromTo(
+          chalkArrow,
+          { opacity: 0, x: 12, y: -10 },
+          { opacity: 1, x: 0, y: 0, duration: 0.65, ease: 'power2.out' },
+          0.4
+        );
+      }
+
+      // 3. Efeitos em High Quality (Parallax sutil na imagem da chapa e pulso no selo)
+      if (isHighQuality) {
+        if (maillardStamp) {
+          var stampPulse = window.gsap.to(maillardStamp, {
+            scale: 1.04,
+            duration: 3.0,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1
+          });
+          M.registerLoop(maillardStamp, stampPulse);
+        }
+
+        // Parallax leve na chapa (0.05, max 16px, contido sob a moldura de papel)
+        if (griddleImg) {
+          window.ScrollTrigger.create({
+            trigger: griddleSec,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.6,
+            onUpdate: function (self) {
+              if (M.mode === 'paused') return;
+              var offset = (self.progress - 0.5) * -18;
+              window.gsap.set(griddleImg, { y: offset });
+            }
+          });
+        }
+      }
     }
   };
 
