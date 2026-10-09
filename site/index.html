@@ -456,9 +456,14 @@
           loadScript('./js/vendor/ScrollTrigger.min.js', function () {
             loadScript('./js/vendor/lenis.min.js', function () {
               loadScript('./js/motion-core.js', function () {
-                if (window.MrMacarioMotion && window.MrMacarioMotion.init) {
-                  window.MrMacarioMotion.init();
-                }
+                loadScript('./js/motion-sections.js', function () {
+                  if (window.MrMacarioMotion && window.MrMacarioMotion.init) {
+                    window.MrMacarioMotion.init();
+                  }
+                  if (window.MrMacarioSections && window.MrMacarioSections.initHero) {
+                    window.MrMacarioSections.initHero();
+                  }
+                });
               });
             });
           });

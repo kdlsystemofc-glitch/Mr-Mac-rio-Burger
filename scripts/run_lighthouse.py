@@ -32,7 +32,7 @@ def run():
         '--throttling.throughputKbps=1638.4',
         '--output=json',
         f'--output-path={out_file}',
-        '--chrome-flags=--headless --no-sandbox',
+        '--chrome-flags=--headless=new --no-sandbox --disable-gpu',
         '--only-categories=performance,accessibility,best-practices,seo',
         '--quiet'
     ]
