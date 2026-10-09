@@ -496,6 +496,143 @@
           });
         }
       }
+    },
+
+    initLounge: function () {
+      var M = window.MrMacarioMotion;
+      if (!M || !window.gsap || !window.ScrollTrigger) return;
+
+      var loungeSec = document.getElementById('lounge-social');
+      if (!loungeSec) return;
+
+      if (M.mode === 'reduced') return;
+
+      var isHighQuality = M.quality === 'high';
+
+      // 1. Elementos Selecionados (camadas-folha)
+      var title = loungeSec.querySelector('.lounge-title');
+      var subtitle = loungeSec.querySelector('.lounge-subtitle');
+      var photoLeft = loungeSec.querySelector('.lounge-photo-left .photo-frame');
+      var photoRight = loungeSec.querySelector('.lounge-photo-right .photo-frame');
+      var trophy = loungeSec.querySelector('.trophy-wrapper .trophy-img');
+      var googleBadge = loungeSec.querySelector('.badge-google-reviews');
+      var tapeStrip = loungeSec.querySelector('.tape-strip');
+
+      // 2. Timeline de Entrada Disparada a ~35% de Visibilidade
+      var tl = window.gsap.timeline({
+        scrollTrigger: {
+          trigger: loungeSec,
+          start: 'top 65%',
+          once: true
+        },
+        defaults: { ease: 'power3.out' }
+      });
+
+      if (title) {
+        tl.fromTo(
+          title,
+          { y: 22, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.65 },
+          0
+        );
+      }
+      if (subtitle) {
+        tl.fromTo(
+          subtitle,
+          { y: 15, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          0.1
+        );
+      }
+
+      // Fotos das Mesas de Jogos (Abertura em leque sutil)
+      if (photoLeft) {
+        tl.fromTo(
+          photoLeft,
+          { y: 35, rotation: -9, opacity: 0 },
+          { y: 0, rotation: -5.5, opacity: 1, duration: 0.8, ease: 'back.out(1.4)' },
+          0.2
+        );
+      }
+      if (photoRight) {
+        tl.fromTo(
+          photoRight,
+          { y: 35, rotation: 9, opacity: 0 },
+          { y: 0, rotation: 5.5, opacity: 1, duration: 0.8, ease: 'back.out(1.4)' },
+          0.2
+        );
+      }
+
+      // Pouso Dominante do Troféu Dourado
+      if (trophy) {
+        tl.fromTo(
+          trophy,
+          { y: -30, scale: 1.08, opacity: 0 },
+          { y: 0, scale: 1, opacity: 1, duration: 0.85, ease: 'back.out(1.5)' },
+          0.3
+        );
+      }
+
+      // Selo do Google Reviews (Carimbo no ombro)
+      if (googleBadge) {
+        tl.fromTo(
+          googleBadge,
+          { scale: 1.3, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.8)' },
+          0.5
+        );
+      }
+
+      // Fita Crepe Adesiva (Colagem elástica na base)
+      if (tapeStrip) {
+        tl.fromTo(
+          tapeStrip,
+          { scaleX: 0.88, opacity: 0 },
+          { scaleX: 1, opacity: 1, duration: 0.65, ease: 'power2.out' },
+          0.55
+        );
+      }
+
+      // 3. Loops e Parallax em High Quality
+      if (isHighQuality) {
+        if (trophy) {
+          var trophyLoop = window.gsap.to(trophy, {
+            y: -3,
+            duration: 3.8,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1
+          });
+          M.registerLoop(trophy, trophyLoop);
+        }
+
+        if (googleBadge) {
+          var badgeLoop = window.gsap.to(googleBadge, {
+            scale: 1.03,
+            duration: 2.8,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1
+          });
+          M.registerLoop(googleBadge, badgeLoop);
+        }
+
+        // Parallax sutil no troféu em relação às fotos
+        var trophyWrapper = loungeSec.querySelector('.trophy-wrapper');
+        if (trophyWrapper) {
+          window.ScrollTrigger.create({
+            trigger: loungeSec,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.8,
+            onUpdate: function (self) {
+              if (M.mode === 'paused') return;
+              var offset = (self.progress - 0.5) * -16;
+              window.gsap.set(trophyWrapper, { y: offset });
+            }
+          });
+        }
+      }
     }
   };
 
