@@ -1,0 +1,240 @@
+/* ==========================================================================
+   02. SEÇÃO DESTAQUES DO CARDÁPIO (MENU HIGHLIGHTS)
+   ========================================================================== */
+.section-menu {
+  background-color: var(--bg-cream);
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(3.5rem, 7vw, 6rem);
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 4.5rem;
+}
+
+.menu-header {
+  text-align: center;
+  max-width: var(--max-content-width);
+  margin: 0 auto clamp(2rem, 4vw, 3.5rem);
+}
+
+.menu-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  letter-spacing: 0.04em;
+  color: var(--text-espresso);
+  line-height: 0.95;
+  margin-bottom: 0.4rem;
+}
+
+.menu-subtitle {
+  font-family: var(--font-ui);
+  font-size: var(--fs-badge);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.2rem, 3vw, 2.8rem);
+  max-width: min(94vw, 1340px);
+  margin: 0 auto;
+  align-items: start;
+}
+
+.menu-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(44, 21, 15, 0.06);
+  border-radius: var(--radius-lg);
+  padding: clamp(1rem, 2vw, 1.8rem) clamp(0.8rem, 1.5vw, 1.4rem);
+  box-shadow: 0 4px 18px rgba(44, 21, 15, 0.04);
+}
+
+.menu-img-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.menu-food-img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px rgba(44, 21, 15, 0.2));
+}
+
+.menu-food-shadow {
+  width: 75%;
+  height: 20px;
+  margin-top: -10px;
+  background: radial-gradient(ellipse at center, rgba(44, 21, 15, 0.28) 0%, rgba(44, 21, 15, 0.04) 60%, transparent 80%);
+  border-radius: 50%;
+}
+
+/* Decorações do Primeiro Card (Smash) */
+.menu-card-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.menu-dice {
+  position: absolute;
+  top: -8%;
+  left: -4%;
+  width: clamp(45px, 5.5vw, 68px);
+  transform: rotate(-14deg);
+}
+
+.menu-dice img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(44, 21, 15, 0.15));
+}
+
+.menu-neon {
+  position: absolute;
+  bottom: 22%;
+  left: -6%;
+  width: clamp(40px, 4.8vw, 58px);
+}
+
+.menu-neon img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(255, 60, 60, 0.8));
+}
+
+/* Tag Pílula "MR BURGUINHO" no Segundo Card */
+.pill-burguinho-tag {
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  background: var(--accent-gold-ui);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.35rem);
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-sm);
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(44, 21, 15, 0.2);
+  transform: rotate(-2deg);
+}
+
+/* Selo "PREÇO JUSTO" no Terceiro Card */
+.stamp-preco-justo {
+  position: absolute;
+  top: -6%;
+  right: 0%;
+  width: clamp(80px, 8.5vw, 110px);
+  height: clamp(80px, 8.5vw, 110px);
+  background: var(--accent-mint-bg);
+  border: 2px dashed var(--accent-mint-text);
+  border-radius: 50%;
+  color: var(--accent-mint-text);
+  transform: rotate(10deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(44, 21, 15, 0.12);
+  z-index: 5;
+}
+
+.stamp-pj-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.05;
+  padding: 4px;
+}
+
+.pj-curved {
+  font-family: var(--font-ui);
+  font-size: clamp(0.48rem, 0.65vw, 0.62rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.pj-value {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.35vw, 1.45rem);
+  letter-spacing: 0.02em;
+}
+
+.pj-bottom {
+  font-family: var(--font-ui);
+  font-size: clamp(0.42rem, 0.55vw, 0.52rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+/* Informações do Card */
+.menu-card-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.menu-card-badge-pill {
+  display: inline-block;
+  background-color: var(--text-espresso);
+  color: var(--bg-cream);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  letter-spacing: 0.05em;
+  padding: 0.3rem 1.1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.6rem;
+}
+
+.menu-card-desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  line-height: 1.45;
+  max-width: 32ch;
+  margin-bottom: 0.6rem;
+}
+
+.menu-card-price {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  color: var(--accent-gold-text);
+  letter-spacing: 0.02em;
+}
+
+/* Responsividade Mobile (<= 768px) */
+@media (max-width: 768px) {
+  .section-menu {
+    padding-top: 3.5rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 420px;
+  }
+
+  .menu-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .stamp-preco-justo {
+    top: -4%;
+    right: 4%;
+  }
+}
