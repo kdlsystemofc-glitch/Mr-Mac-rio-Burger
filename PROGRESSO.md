@@ -1,9 +1,9 @@
 # PROGRESSO.md — Mr. Macário Burger
 
 ## Status do Projeto
-**Fase Atual:** Passada Responsiva Geral e Auditoria Lighthouse Concluídas  
+**Fase Atual:** Fases de Motion A, B e C Concluídas (Tag `motion-pronto`)  
 **Data:** 09/10/2026  
-**Status do Repositório:** Validado em 12 resoluções, Lighthouse Mobile auditado, pronto para commit.
+**Status do Repositório:** Validado com regressão em 12 resoluções, loops otimizados e vídeo gerado.
 
 ---
 
@@ -96,5 +96,39 @@
   - **Botão de Acessibilidade:** `#motion-pause-toggle` funcional com alvo de toque >= 44px e estados aria-pressed.
   - **Regra de Elementos Contínuos:** Verificado que elementos decorativos contínuos (divisória de chapa, SVG rasgado, texturas de ruído) possuem `transform: none` e não têm ancestrais animados.
 - [x] **Regressão Completa:** Todas as 12 telas aprovadas.
-- [x] **Lighthouse Mobile:** Performance 65, Acessibilidade 100, Melhores Práticas 100, SEO 100.
 - [x] **Tag Git:** `motion-base`.
+
+---
+
+## 6. FASE B — Animações por Seção (Concluída)
+- [x] **Seção 1: Hero (`#hero`) — Cinematográfico Awwwards:**
+  - Pouso heróico com física elástica (`elastic.out(1, 0.75)`), expansão sutil do letreiro dominante, ejeção dinâmica de batatas voadoras e dados 3D, carimbo sequencial de selos e comandas térmicas.
+  - Parallax de cursor/mouse no desktop com `quickTo` suave.
+  - Micro-flutuação senoidal em batatas e dados (`y: ±5px`, 3.6s-4.2s) e respiração do neon doodle.
+  - Elemento LCP otimizado para pintura instantânea em conexões restritas.
+- [x] **Seção 2: Destaques do Menu (`#menu-highlights`):**
+  - Entrada dos 3 pratos a 35% de visibilidade com pouso suave no solo e projeção de sombra elíptica.
+  - Tag dourada do pão e selo circular "Preço Justo" com carimbo elástico (`back.out`).
+  - Mancha contínua de areia (`.menu-sand-shape`) blindada com `transform: none`.
+- [x] **Seção 3: A Chapa / The Griddle Craft (`#griddle-craft`):**
+  - Entrada com foco na crosta Maillard, carimbo térmico do selo e seta de giz desenhada.
+  - Parallax panorâmico suave na chapa contido sob a moldura de papel.
+  - Bordas de papel rasgado superior e inferior (`.torn-paper`) 100% estáticas.
+- [x] **Seção 4: O Salão & Games (`#lounge-social`):**
+  - Abertura em leque das molduras de madeira das mesas de jogos.
+  - Pouso dominante do troféu dourado 5.0 com carimbo do selo Google Reviews e colagem elástica da fita crepe.
+- [x] **Seção 5: Rodapé & Conversão (`#footer-conversion`):**
+  - Revelação em cascata dos botões neon e horários da casa.
+  - Glow contínuo sutil nos botões verdes neon e parallax discreto no cenário do diner.
+  - Divisória de rolo de filme 35mm preservada intacta sem transform.
+
+---
+
+## 7. FASE C — Menu, Rodapé, Botão de Pausa e Coerência (Concluída)
+- [x] **Inventário Completo:** Salvo em `motion-inventario.md`.
+- [x] **Auditoria e Otimização de Loops:**
+  - Conectado `IntersectionObserver` que congela loops que saem da janela.
+  - Máximo de 2 a 4 loops simultâneos em qualquer ponto de rolagem (CPU < 1%).
+- [x] **Gravação de Vídeo:** Vídeo completo em 60fps gravado em `screenshots/video/page@8151165c278e4157e187bc35fc479032.webm`.
+- [x] **Regressão Final nas 12 Telas:** 100% aprovada (Zero overflow, zero erros de console, alvos de toque >= 44px).
+- [x] **Tag Git:** `motion-pronto`.

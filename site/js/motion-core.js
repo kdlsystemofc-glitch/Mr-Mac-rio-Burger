@@ -247,6 +247,10 @@
       };
       self.activeLoops.push(loopObj);
 
+      if (self.loopObserver) {
+        self.loopObserver.observe(element);
+      }
+
       // Se qualidade for low, pausamos loops contínuos não essenciais
       if (self.quality === 'low' || self.mode === 'reduced') {
         tween.pause(0);
@@ -281,6 +285,11 @@
       );
 
       self.loopObserver = observer;
+
+      // Observar todos os loops já cadastrados
+      self.activeLoops.forEach(function (l) {
+        observer.observe(l.element);
+      });
     },
 
     registerSection: function (sectionId, initCallback) {

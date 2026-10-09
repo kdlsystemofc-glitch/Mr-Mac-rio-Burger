@@ -1,0 +1,8 @@
+{
+  "hero_loops": 3,
+  "menu_loops": 3,
+  "griddle_loops": 3,
+  "lounge_loops": 2,
+  "footer_loops": 4,
+  "max_simultaneous": 4
+}
