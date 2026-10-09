@@ -359,7 +359,68 @@
     </section>
 
     <!-- 05. Footer & Conversion -->
-    <footer class="section-footer" id="footer-conversion" aria-label="Rodapé e Pedidos"></footer>
+    <footer class="section-footer" id="footer-conversion" aria-label="Rodapé e Pedidos">
+      <!-- Faixa de Rolo de Filme 35mm / Divisor Superior -->
+      <div class="film-strip-divider" aria-hidden="true">
+        <div class="film-sprockets"></div>
+      </div>
+
+      <div class="footer-inner-stage">
+        <!-- Imagem de Fundo / Cenário do Diner Retro -->
+        <div class="footer-bg-diner" aria-hidden="true">
+          <picture class="footer-diner-picture">
+            <source srcset="./assets/footer-diner-1600.webp" media="(min-width: 768px)">
+            <img src="./assets/footer-diner-800.webp" 
+                 alt="" 
+                 class="footer-diner-img" 
+                 width="1600" 
+                 height="533" 
+                 loading="lazy">
+          </picture>
+          <div class="footer-diner-tint"></div>
+        </div>
+
+        <!-- Conteúdo de Conversão -->
+        <div class="footer-content-container">
+          <div class="footer-header-tag">
+            <h2 class="footer-title">PEÇA AGORA // MR. MACÁRIO</h2>
+          </div>
+
+          <div class="footer-cta-group">
+            <!-- Botão 1: Pedir no Delivery / Telefone -->
+            <a href="tel:11965142258" class="neon-pill-btn btn-call" aria-label="Ligar para o delivery no número (11) 96514-2258">
+              <span class="bracket">[</span>
+              <span class="neon-btn-text">PEDIR NO DELIVERY // (11) 96514-2258</span>
+              <span class="bracket">]</span>
+            </a>
+
+            <!-- Pílula Horários -->
+            <div class="footer-hours-pill">
+              <span class="bracket">[</span>
+              <span class="hours-text">QUA A DOM // 18:45 - 23:30</span>
+              <span class="bracket">]</span>
+            </div>
+
+            <!-- Botão 2: WhatsApp Oficial -->
+            <a href="https://wa.me/5511965142258?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20no%20Mr.%20Mac%C3%A1rio%20Burger." 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="neon-pill-btn btn-whatsapp" 
+               aria-label="Abrir WhatsApp oficial para pedidos no número (11) 96514-2258">
+              <span class="bracket">[</span>
+              <span class="neon-btn-text">PEDIR NO DELIVERY // WHATSAPP (11) 96514-2258</span>
+              <span class="bracket">]</span>
+            </a>
+          </div>
+
+          <!-- Endereço Oficial -->
+          <div class="footer-address">
+            <p class="address-text">Rua Dom Macário, 1063 - Vila da Saúde, São Paulo - SP</p>
+            <p class="copyright-text">© 2026 Mr. Macário Burger — Hamburgueria Artesanal • Since 2023</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </main>
 </body>
 </html>
