@@ -80,3 +80,21 @@
   1. *Eliminar recursos que bloqueiam a renderização (Render-blocking):* Economia estimada de ~2.450 ms (Webfonts Google no `@import` CSS).
   2. *Otimizar entrega e carregamento de imagens:* Economia estimada de ~648 KiB (Hero burger central em conexões lentas mobile).
   3. *Minificar CSS:* Economia estimada de ~8 KiB (`style.css`, `tokens.css`, `reset.css`).
+
+---
+
+## 5. FASE A — Base Global de Motion (Concluída)
+- [x] **Auditoria e Linha de Base:** Salva como `motion-baseline.md`.
+- [x] **Auto-Hospedagem de Vendors:** GSAP, ScrollTrigger e Lenis em `site/js/vendor/` (scripts clássicos UMD para funcionamento em `file://` e HTTP sem dependência de CDN).
+- [x] **Núcleo Global (`site/js/motion-core.js`):**
+  - **3 Modos:** `full`, `reduced` (respeita `prefers-reduced-motion: reduce`, desativa loops/parallax), `paused` (congela/retoma timelines e scroll).
+  - **2 Qualidades:** `high`, `low` (detecta memória <= 4GB, CPU <= 4 cores, rede lenta ou telas estreitas para economizar bateria e GPU).
+  - **Lenis Smooth Scroll:** Ativo em desktop (>= 1024px) no modo full, integrado ao GSAP ticker.
+  - **Segurança de Carga:** Nada acima da dobra depende de JS para aparecer. Scripts carregam de forma diferida em idle ou primeira interação.
+  - **Pausa em Aba Oculta:** Integração com `visibilitychange` (pausa tudo quando aba perde foco).
+  - **Pausa Fora da Tela:** `IntersectionObserver` para loops contínuos.
+  - **Botão de Acessibilidade:** `#motion-pause-toggle` funcional com alvo de toque >= 44px e estados aria-pressed.
+  - **Regra de Elementos Contínuos:** Verificado que elementos decorativos contínuos (divisória de chapa, SVG rasgado, texturas de ruído) possuem `transform: none` e não têm ancestrais animados.
+- [x] **Regressão Completa:** Todas as 12 telas aprovadas.
+- [x] **Lighthouse Mobile:** Performance 65, Acessibilidade 100, Melhores Práticas 100, SEO 100.
+- [x] **Tag Git:** `motion-base`.

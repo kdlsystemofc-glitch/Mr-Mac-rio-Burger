@@ -6,6 +6,7 @@
   <title>Mr. Macário Burger — Hamburgueria Artesanal na Vila da Saúde</title>
   <meta name="description" content="O hambúrguer artesanal mais suculento da Vila da Saúde. Blends frescos, queijo derretido, crosta Maillard perfeita e ambiente descontraído. Peça no delivery!">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍔</text></svg>">
+  <link rel="preload" as="image" href="./assets/hero-burger-800.webp" fetchpriority="high">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
@@ -408,6 +409,87 @@
         </div>
       </div>
     </footer>
+
+    <!-- Botão de Acessibilidade: Pausar / Retomar Animações -->
+    <button type="button" 
+            id="motion-pause-toggle" 
+            class="motion-pause-btn" 
+            aria-label="Pausar animações" 
+            aria-pressed="false">
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="6" y="4" width="4" height="16" rx="1" />
+        <rect x="14" y="4" width="4" height="16" rx="1" />
+      </svg>
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true">
+        <polygon points="5 3 19 12 5 21 5 3" />
+      </svg>
+      <span class="motion-toggle-label">PAUSAR</span>
+    </button>
   </main>
+
+  <!-- Carregamento Diferido dos Scripts Clássicos de Motion (Auto-Hospedados) -->
+  <script>
+    (function () {
+      var loaded = false;
+      function loadMotionScripts() {
+        if (loaded) return;
+        loaded = true;
+
+        window.removeEventListener('load', loadMotionScripts);
+        window.removeEventListener('pointerdown', loadMotionScripts);
+        window.removeEventListener('touchstart', loadMotionScripts);
+        window.removeEventListener('scroll', loadMotionScripts);
+        window.removeEventListener('keydown', loadMotionScripts);
+
+        function loadScript(src, cb) {
+          var s = document.createElement('script');
+          s.src = src;
+          s.onload = cb;
+          s.onerror = function () {
+            console.warn('[MotionLoader] Falha ao carregar ' + src);
+            if (cb) cb();
+          };
+          document.body.appendChild(s);
+        }
+
+        loadScript('./js/vendor/gsap.min.js', function () {
+          loadScript('./js/vendor/ScrollTrigger.min.js', function () {
+            loadScript('./js/vendor/lenis.min.js', function () {
+              loadScript('./js/motion-core.js', function () {
+                if (window.MrMacarioMotion && window.MrMacarioMotion.init) {
+                  window.MrMacarioMotion.init();
+                }
+              });
+            });
+          });
+        });
+      }
+
+      if (document.readyState === 'complete') {
+        scheduleIdle();
+      } else {
+        window.addEventListener('load', scheduleIdle);
+      }
+
+      function scheduleIdle() {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadMotionScripts, { timeout: 2500 });
+        } else {
+          setTimeout(loadMotionScripts, 1800);
+        }
+      }
+
+      var userEvents = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+      function onFirstUserAction() {
+        for (var i = 0; i < userEvents.length; i++) {
+          window.removeEventListener(userEvents[i], onFirstUserAction);
+        }
+        loadMotionScripts();
+      }
+      for (var i = 0; i < userEvents.length; i++) {
+        window.addEventListener(userEvents[i], onFirstUserAction, { once: true, passive: true });
+      }
+    })();
+  </script>
 </body>
 </html>
