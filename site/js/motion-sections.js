@@ -266,6 +266,152 @@
           }
         });
       }
+    },
+
+    initMenu: function () {
+      var M = window.MrMacarioMotion;
+      if (!M || !window.gsap || !window.ScrollTrigger) return;
+
+      var menuSec = document.getElementById('menu-highlights');
+      if (!menuSec) return;
+
+      if (M.mode === 'reduced') return;
+
+      var isHighQuality = M.quality === 'high';
+
+      // 1. Elementos Selecionados (camadas-folha)
+      var menuTitle = menuSec.querySelector('.menu-title');
+      var items = menuSec.querySelectorAll('.menu-display-item');
+      var burguinhoTag = menuSec.querySelector('.pill-burguinho-tag');
+      var precoJustoStamp = menuSec.querySelector('.stamp-preco-justo');
+      var menuDice = menuSec.querySelector('.menu-dice-float img');
+      var menuNeon = menuSec.querySelector('.menu-neon-float img');
+
+      // 2. Timeline de Entrada Disparada a ~35% de Visibilidade
+      var tl = window.gsap.timeline({
+        scrollTrigger: {
+          trigger: menuSec,
+          start: 'top 65%', // Disparo quando ~35% da seção está no viewport
+          once: true
+        },
+        defaults: { ease: 'power3.out' }
+      });
+
+      // Título da Seção
+      if (menuTitle) {
+        tl.fromTo(
+          menuTitle,
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.65 },
+          0
+        );
+      }
+
+      // Os 3 Pratos com Leve Pouso Defasado (Stagger)
+      if (items.length) {
+        var visuals = [];
+        var shadows = [];
+        items.forEach(function (it) {
+          var vis = it.querySelector('.menu-food-visual');
+          var shd = it.querySelector('.menu-ground-shadow');
+          if (vis) visuals.push(vis);
+          if (shd) shadows.push(shd);
+        });
+
+        tl.fromTo(
+          visuals,
+          { y: 35, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.75, stagger: 0.15 },
+          0.15
+        );
+
+        if (shadows.length) {
+          tl.fromTo(
+            shadows,
+            { scale: 0.8, opacity: 0.1 },
+            { scale: 1, opacity: 0.7, duration: 0.75, stagger: 0.15 },
+            0.15
+          );
+        }
+      }
+
+      // Selos e Tags nos Lanches (Carimbo Elástico)
+      if (burguinhoTag) {
+        tl.fromTo(
+          burguinhoTag,
+          { scale: 1.25, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.55, ease: 'back.out(1.8)' },
+          0.45
+        );
+      }
+      if (precoJustoStamp) {
+        tl.fromTo(
+          precoJustoStamp,
+          { scale: 1.2, rotation: -12, opacity: 0 },
+          { scale: 1, rotation: -5, opacity: 1, duration: 0.6, ease: 'back.out(1.6)' },
+          0.55
+        );
+      }
+
+      // Elementos Satélites do Smash (Dados e Neon)
+      if (menuDice) {
+        tl.fromTo(
+          menuDice,
+          { y: -16, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.65, ease: 'back.out(1.4)' },
+          0.35
+        );
+      }
+      if (menuNeon) {
+        tl.fromTo(
+          menuNeon,
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 0.6 },
+          0.4
+        );
+      }
+
+      // 3. Flutuação Contínua Sutil (apenas em High Quality e na Viewport)
+      if (isHighQuality) {
+        if (menuDice) {
+          var diceLoop = window.gsap.to(menuDice, {
+            y: -4,
+            rotation: 2,
+            duration: 3.4,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1
+          });
+          M.registerLoop(menuDice, diceLoop);
+        }
+
+        if (menuNeon) {
+          var neonLoop = window.gsap.to(menuNeon, {
+            opacity: 0.8,
+            duration: 2.5,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1
+          });
+          M.registerLoop(menuNeon, neonLoop);
+        }
+
+        // 4. Parallax Leve nos Pratos (0.06, máx ~18px, sem cobrir texto)
+        var burguinhoVisual = menuSec.querySelector('.item-burguinho .menu-food-visual');
+        if (burguinhoVisual) {
+          window.ScrollTrigger.create({
+            trigger: menuSec,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.8,
+            onUpdate: function (self) {
+              if (M.mode === 'paused') return;
+              var offset = (self.progress - 0.5) * -20;
+              window.gsap.set(burguinhoVisual, { y: offset });
+            }
+          });
+        }
+      }
     }
   };
 
