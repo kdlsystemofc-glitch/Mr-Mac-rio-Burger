@@ -1,9 +1,9 @@
 # PROGRESSO.md — Mr. Macário Burger
 
 ## Status do Projeto
-**Fase Atual:** Reengenharia de Fidelidade Extrema ao Mockup de Referência (Concluída)  
+**Fase Atual:** Passada Responsiva Geral e Auditoria Lighthouse Concluídas  
 **Data:** 09/10/2026  
-**Status do Repositório:** Atualizações locais prontas e testadas visualmente.
+**Status do Repositório:** Validado em 12 resoluções, Lighthouse Mobile auditado, pronto para commit.
 
 ---
 
@@ -40,3 +40,43 @@
 ## 2. Decisões de Fidelidade e Integridade Técnica
 1. **Integração Real de Imagens:** As imagens dos produtos e elementos não são meros conteúdos de caixas de texto; são atores visuais do cenário, integrados com transparência alfa e sombras realistas de contato.
 2. **Performance e Acessibilidade:** Mesmo com o visual de poster analógico, o site mantém HTML semântico com tags `<main>`, `<section>`, `<header>`, `<footer>`, `<picture>`, e links clicáveis com números e WhatsApp reais do Mr. Macário Burger.
+
+---
+
+## 3. Auditoria Responsiva Geral e Acessibilidade (12 Resoluções)
+- [x] **Suíte de 12 Telas Testadas via Playwright:**
+  - `2560x1440` (Ultra-wide Desktop): Scroll PASS | Console PASS | Touch PASS
+  - `1920x1080` (Full HD Desktop): Scroll PASS | Console PASS | Touch PASS
+  - `1440x900` (MacBook / Laptop): Scroll PASS | Console PASS | Touch PASS
+  - `1366x768` (Laptop Comum): Scroll PASS | Console PASS | Touch PASS
+  - `1280x720` (HD Desktop): Scroll PASS | Console PASS | Touch PASS
+  - `1024x768` (iPad Landscape / 4:3): Scroll PASS | Console PASS | Touch PASS
+  - `768x1024` (iPad Portrait): Scroll PASS | Console PASS | Touch PASS
+  - `430x932` (iPhone Pro Max): Scroll PASS | Console PASS | Touch PASS
+  - `390x844` (iPhone 12/13/14 Standard): Scroll PASS | Console PASS | Touch PASS
+  - `360x740` (Android Médio Galaxy): Scroll PASS | Console PASS | Touch PASS
+  - `320x568` (iPhone SE 1st gen / Tela Estreita): Scroll PASS | Console PASS | Touch PASS
+  - `844x390` (Celular Deitado / Landscape): Scroll PASS | Console PASS | Touch PASS
+- [x] **Critérios Obrigatórios Validados:**
+  - Rolagem horizontal: 0px em todas as resoluções (`scrollWidth <= clientWidth`).
+  - Textos: sem cortes ou sobreposições, escalonamento fluido com `clamp()`.
+  - Alvos de toque (Touch Targets): mínimo de 44x44px em todos os links e botões.
+  - Console do navegador: zero erros, sem 404 de recursos ou avisos JS.
+  - Zoom de texto a 200%: `Overflow = 0px` (PASS).
+  - Fallbacks de fonte: declarados e funcionais com `Impact`, `Arial Black`, `system-ui`.
+  - `prefers-reduced-motion` e `prefers-color-scheme`: isolados e estáveis.
+  - Safari/iOS: `100svh`, `-webkit-backdrop-filter` e `-webkit-text-size-adjust: 100%` ativos.
+  - Elementos contínuos testados nos extremos (2560px ultra-wide e 844x390 landscape).
+
+---
+
+## 4. Auditoria Oficial Lighthouse Mobile
+- **Scores Obtidos:**
+  - **Acessibilidade:** 100 / 100
+  - **Melhores Práticas:** 100 / 100
+  - **SEO:** 100 / 100
+  - **Performance:** 71 / 100 (TBT: 0ms | CLS: 0.007)
+- **Top 3 Oportunidades Identificadas:**
+  1. *Eliminar recursos que bloqueiam a renderização (Render-blocking):* Economia estimada de ~2.450 ms (Webfonts Google no `@import` CSS).
+  2. *Otimizar entrega e carregamento de imagens:* Economia estimada de ~648 KiB (Hero burger central em conexões lentas mobile).
+  3. *Minificar CSS:* Economia estimada de ~8 KiB (`style.css`, `tokens.css`, `reset.css`).

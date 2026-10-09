@@ -1,4 +1,4 @@
-/* reset.css — Reset moderno com suporte a movimento reduzido e acessibilidade */
+/* reset.css — Reset moderno com acessibilidade, Safari/iOS e movimento reduzido */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -9,17 +9,25 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color-scheme: light;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100svh;
   font-family: var(--font-body);
   color: var(--text-espresso);
   background-color: var(--bg-cream);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 img, picture, svg, video {

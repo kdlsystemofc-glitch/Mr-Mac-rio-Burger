@@ -1,4 +1,4 @@
-/* style.css — Estilos Mr. Macário Burger (Fidelidade Extrema ao Mockup de Referência) */
+/* style.css — Estilos Mr. Macário Burger (Fidelidade Extrema & Responsividade Completa) */
 
 /* Textura Analógica Fixa em Toda a Landing Page */
 body::before {
@@ -11,6 +11,7 @@ body::before {
   background-repeat: repeat;
   opacity: 0.085;
   mix-blend-mode: multiply;
+  -webkit-print-color-adjust: exact;
 }
 
 /* Header de Navegação */
@@ -20,9 +21,10 @@ body::before {
   z-index: 100;
   width: 100%;
   background: rgba(244, 237, 227, 0.94);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(44, 21, 15, 0.08);
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.5rem;
 }
 
 .header-inner {
@@ -31,11 +33,14 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 44px;
 }
 
 .brand {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 44px;
   line-height: 0.9;
 }
 
@@ -51,13 +56,13 @@ body::before {
   font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.25em;
-  color: var(--accent-gold-ui);
+  color: #785614;
 }
 
 .header-nav {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.8rem);
+  gap: clamp(0.5rem, 1.8vw, 1.6rem);
 }
 
 .nav-link {
@@ -67,6 +72,11 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-espresso);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
   transition: color 0.2s ease;
 }
 
@@ -77,7 +87,10 @@ body::before {
 .btn-header-cta {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1.1rem;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.55rem 1.25rem;
   background-color: var(--accent-neon-green);
   color: #0b1a0e;
   font-family: var(--font-ui);
@@ -95,7 +108,7 @@ body::before {
   box-shadow: 0 0 16px rgba(37, 211, 102, 0.7);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 680px) {
   .nav-link {
     display: none;
   }
@@ -114,6 +127,7 @@ section, footer {
 .section-hero {
   background-color: var(--bg-cream);
   min-height: clamp(540px, 88vh, 880px);
+  min-height: clamp(540px, 88svh, 880px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,11 +190,11 @@ section, footer {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: min(98vw, 1440px);
+  max-width: min(98vw, 1560px);
   z-index: 1;
   pointer-events: none;
   user-select: none;
-  padding: 0 clamp(0.5rem, 2vw, 2rem);
+  padding: 0 clamp(0.5rem, 2vw, 2.5rem);
 }
 
 .hero-bg-inner {
@@ -192,7 +206,7 @@ section, footer {
 
 .hero-txt-left, .hero-txt-right {
   font-family: var(--font-display);
-  font-size: clamp(5.2rem, 16.5vw, 14.5rem);
+  font-size: clamp(4.6rem, 16vw, 14.5rem);
   line-height: 0.82;
   letter-spacing: 0.03em;
   color: var(--accent-gold-raw);
@@ -417,7 +431,7 @@ section, footer {
   height: clamp(52px, 5.8vw, 70px);
   background-color: var(--accent-coral-bg);
   border: 2px dashed rgba(44, 21, 15, 0.35);
-  color: #ffffff;
+  color: var(--accent-coral-text);
   transform: rotate(-10deg);
   padding: 4px;
 }
@@ -436,7 +450,7 @@ section, footer {
   opacity: 0.9;
 }
 
-/* Batatas Fritas Voando (Direita do Burger) */
+/* Batatas Fritas Voando */
 .fries-fly-wrapper {
   position: absolute;
   top: 18%;
@@ -487,7 +501,7 @@ section, footer {
 /* Mobile Adjustments (Hero) */
 @media (max-width: 640px) {
   .section-hero {
-    min-height: 560px;
+    min-height: 540px;
     padding-top: 2rem;
     padding-bottom: 3rem;
   }
@@ -497,19 +511,19 @@ section, footer {
   }
 
   .hero-txt-left, .hero-txt-right {
-    font-size: clamp(3.4rem, 16vw, 5.2rem);
+    font-size: clamp(3rem, 15vw, 4.8rem);
   }
 
   .dice-wrapper {
     top: 14%;
     left: 4%;
-    width: 60px;
+    width: 58px;
   }
 
   .neon-doodle-wrapper {
     bottom: 18%;
     left: 5%;
-    width: 50px;
+    width: 48px;
   }
 
   .receipt-tl, .receipt-br, .receipt-bl {
@@ -522,17 +536,65 @@ section, footer {
   }
 
   .pill-saude {
-    bottom: 20%;
+    bottom: 19%;
     right: 4%;
     font-size: 0.75rem;
     padding: 0.35rem 0.8rem;
   }
 
   .pill-hours {
-    bottom: 10%;
+    bottom: 9%;
     right: 4%;
     font-size: 0.72rem;
     padding: 0.35rem 0.8rem;
+  }
+}
+
+/* Ajustes Específicos para Telas Ultra-Estreitas (320px a 360px) */
+@media (max-width: 360px) {
+  .hero-txt-left, .hero-txt-right {
+    font-size: 2.7rem;
+  }
+  .pill-saude, .pill-hours {
+    font-size: 0.68rem;
+    padding: 0.3rem 0.65rem;
+  }
+  .fresh-perc, .fresh-text {
+    font-size: 1.25rem;
+  }
+}
+
+/* Ajustes para Celular Deitado (Landscape com altura <= 500px) */
+@media (orientation: landscape) and (max-height: 500px) {
+  .site-header {
+    padding: 0.35rem 1rem;
+  }
+  .section-hero {
+    min-height: 480px;
+    padding: 1.5rem 1rem;
+  }
+  .hero-top-brand {
+    top: 8px;
+  }
+  .hero-center-stage {
+    max-width: 340px;
+  }
+  .hero-burger-shadow {
+    height: 18px;
+    margin-top: -10px;
+  }
+  .hero-txt-left, .hero-txt-right {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+  }
+  .dice-wrapper {
+    top: 12%;
+    left: 8%;
+    width: 60px;
+  }
+  .neon-doodle-wrapper {
+    bottom: 15%;
+    left: 10%;
+    width: 50px;
   }
 }
 
@@ -665,7 +727,7 @@ section, footer {
   position: absolute;
   top: 12%;
   right: 8%;
-  background: var(--accent-gold-ui);
+  background: #845f1b;
   color: #ffffff;
   font-family: var(--font-display);
   font-size: clamp(1.1rem, 1.6vw, 1.55rem);
@@ -735,7 +797,7 @@ section, footer {
   .menu-showcase {
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 3.2rem;
   }
 
   .menu-display-item {
@@ -748,6 +810,20 @@ section, footer {
     right: 4%;
     width: 100px;
     height: 100px;
+  }
+}
+
+/* Landscape Celular para Menu */
+@media (orientation: landscape) and (max-height: 500px) {
+  .section-menu {
+    padding: 2.5rem 1rem 3.5rem;
+  }
+  .menu-showcase {
+    flex-direction: row;
+    gap: 1.2rem;
+  }
+  .menu-food-img {
+    max-width: 240px;
   }
 }
 
@@ -843,7 +919,7 @@ section, footer {
 
 .griddle-title {
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 5.8vw, 4.9rem);
+  font-size: clamp(2.4rem, 5.8vw, 4.9rem);
   letter-spacing: 0.05em;
   color: var(--text-white);
   line-height: 0.95;
@@ -919,6 +995,19 @@ section, footer {
     align-self: flex-end;
     margin-right: 0;
     margin-top: -1rem;
+  }
+}
+
+/* Landscape Celular para Griddle */
+@media (orientation: landscape) and (max-height: 500px) {
+  .griddle-backdrop {
+    min-height: 300px;
+  }
+  .griddle-content-wrapper {
+    padding: 2.5rem 1.5rem;
+  }
+  .griddle-title {
+    font-size: 2.5rem;
   }
 }
 
@@ -1097,21 +1186,34 @@ section, footer {
 
   .lounge-stage {
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2.8rem;
   }
 
   .lounge-photo-left {
     margin-right: 0;
-    max-width: 320px;
+    max-width: 340px;
   }
 
   .lounge-photo-right {
     margin-left: 0;
-    max-width: 320px;
+    max-width: 340px;
   }
 
   .badge-google-reviews {
     right: 8%;
+  }
+}
+
+/* Landscape Celular para Lounge */
+@media (orientation: landscape) and (max-height: 500px) {
+  .section-lounge {
+    padding: 2.5rem 1rem 3.5rem;
+  }
+  .lounge-photo {
+    max-width: 250px;
+  }
+  .trophy-img {
+    width: 210px;
   }
 }
 
@@ -1214,25 +1316,29 @@ section, footer {
   width: 100%;
 }
 
-/* Botões Neon com Brilho Pulsante */
+/* Botões Neon com Brilho Pulsante e Alvo de Toque Mínimo Acessível */
 .neon-pill-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 48px;
+  min-width: 48px;
   gap: 6px;
   background: rgba(10, 24, 13, 0.92);
   border: 2.5px solid var(--accent-neon-green);
   border-radius: var(--radius-full);
-  padding: clamp(0.6rem, 1vw, 0.85rem) clamp(1.2rem, 2.5vw, 2.4rem);
+  padding: clamp(0.65rem, 1.1vw, 0.9rem) clamp(1rem, 2.5vw, 2.4rem);
   color: var(--accent-neon-glow);
   font-family: var(--font-ui);
-  font-size: clamp(0.85rem, 1.2vw, 1.15rem);
+  font-size: clamp(0.82rem, 1.2vw, 1.15rem);
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   box-shadow: 0 0 14px rgba(37, 211, 102, 0.8), 0 0 32px rgba(37, 211, 102, 0.45);
   text-shadow: 0 0 8px rgba(37, 211, 102, 0.9);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  max-width: 100%;
+  word-break: break-word;
 }
 
 .neon-pill-btn:hover {
@@ -1281,9 +1387,9 @@ section, footer {
 /* Mobile Adjustments (Footer) */
 @media (max-width: 768px) {
   .neon-pill-btn {
-    font-size: 0.78rem;
-    padding: 0.65rem 0.9rem;
-    width: 96%;
+    font-size: 0.76rem;
+    padding: 0.65rem 0.85rem;
+    width: 98%;
     max-width: 360px;
     letter-spacing: 0.02em;
   }
@@ -1295,5 +1401,22 @@ section, footer {
   .address-text {
     font-size: 0.85rem;
     padding: 0 1rem;
+  }
+}
+
+/* Ajustes Específicos para 320px */
+@media (max-width: 340px) {
+  .neon-pill-btn {
+    font-size: 0.68rem;
+    padding: 0.6rem 0.5rem;
+    letter-spacing: 0;
+  }
+}
+
+/* Landscape Celular para Footer */
+@media (orientation: landscape) and (max-height: 500px) {
+  .footer-inner-stage {
+    min-height: 380px;
+    padding: 2rem 1rem;
   }
 }
