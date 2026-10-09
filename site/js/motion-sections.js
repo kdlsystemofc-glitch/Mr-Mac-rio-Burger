@@ -633,6 +633,97 @@
           });
         }
       }
+    },
+
+    initFooter: function () {
+      var M = window.MrMacarioMotion;
+      if (!M || !window.gsap || !window.ScrollTrigger) return;
+
+      var footerSec = document.getElementById('footer-conversion');
+      if (!footerSec) return;
+
+      if (M.mode === 'reduced') return;
+
+      var isHighQuality = M.quality === 'high';
+
+      // 1. Elementos Selecionados (camadas-folha internas)
+      var title = footerSec.querySelector('.footer-title');
+      var ctaButtons = footerSec.querySelectorAll('.neon-pill-btn');
+      var hoursPill = footerSec.querySelector('.footer-hours-pill');
+      var address = footerSec.querySelector('.address-text');
+      var dinerImg = footerSec.querySelector('.footer-diner-img');
+
+      // 2. Timeline de Entrada Disparada a ~35% de Visibilidade
+      var tl = window.gsap.timeline({
+        scrollTrigger: {
+          trigger: footerSec,
+          start: 'top 70%',
+          once: true
+        },
+        defaults: { ease: 'power3.out' }
+      });
+
+      if (title) {
+        tl.fromTo(
+          title,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.65 },
+          0
+        );
+      }
+
+      // Botões e Pílula em Stagger
+      var actionItems = [];
+      if (ctaButtons.length > 0) actionItems.push(ctaButtons[0]);
+      if (hoursPill) actionItems.push(hoursPill);
+      if (ctaButtons.length > 1) actionItems.push(ctaButtons[1]);
+
+      if (actionItems.length) {
+        tl.fromTo(
+          actionItems,
+          { y: 26, scale: 0.95, opacity: 0 },
+          { y: 0, scale: 1, opacity: 1, duration: 0.65, stagger: 0.12, ease: 'back.out(1.4)' },
+          0.15
+        );
+      }
+
+      if (address) {
+        tl.fromTo(
+          address,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.6 },
+          0.45
+        );
+      }
+
+      // 3. Efeitos em High Quality (Parallax no cenário diner e respiração nos botões neon)
+      if (isHighQuality) {
+        ctaButtons.forEach(function (btn) {
+          var glowLoop = window.gsap.to(btn, {
+            boxShadow: '0 0 24px rgba(37, 211, 102, 0.7)',
+            duration: 2.4,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1
+          });
+          M.registerLoop(btn, glowLoop);
+        });
+
+        // Parallax suave no cenário de fundo do diner
+        if (dinerImg) {
+          window.ScrollTrigger.create({
+            trigger: footerSec,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.6,
+            onUpdate: function (self) {
+              if (M.mode === 'paused') return;
+              var offset = (self.progress - 0.5) * -16;
+              window.gsap.set(dinerImg, { y: offset });
+            }
+          });
+        }
+      }
     }
   };
 
