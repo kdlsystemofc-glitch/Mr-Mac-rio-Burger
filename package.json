@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "lighthouse": "^12.8.2",
+    "terser": "^5.51.2"
+  },
+  "name": "mr-macario-burger",
+  "private": true,
+  "scripts": {
+    "build": "python scripts/build.py",
+    "lighthouse": "python scripts/lighthouse_runs.py lighthouse-run 3"
+  }
+}

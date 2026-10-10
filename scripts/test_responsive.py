@@ -2,7 +2,8 @@ import os
 import sys
 import time
 import threading
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+# ThreadingHTTPServer: o HTTPServer de thread única recusava conexões (fila de 5) quando o Chrome abria 6 em paralelo
+from http.server import ThreadingHTTPServer as HTTPServer, SimpleHTTPRequestHandler
 from playwright.sync_api import sync_playwright
 
 PORT = 8788

@@ -1,9 +1,13 @@
 # PROGRESSO.md — Mr. Macário Burger
 
 ## Status do Projeto
-**Fase Atual:** Fases de Motion A, B e C Concluídas (Tag `motion-pronto`)  
-**Data:** 09/10/2026  
-**Status do Repositório:** Validado com regressão em 12 resoluções, loops otimizados e vídeo gerado.
+**Fase Atual:** Otimização concluída (commit "otimizacao pronta"), sobre a tag `motion-pronto`  
+**Data:** 10/10/2026  
+**Status do Repositório:** Lighthouse mobile 92 (modo produção) / 89 (servidor puro), contra 68 na baseline. Regressão nas 12 resoluções.
+
+> **Atenção, mudou o fluxo de edição:** HTML/CSS/JS editáveis agora ficam em `src/`. Depois de editar,
+> rode `npm run build` (= `python scripts/build.py`) para gerar `site/`. Não edite `site/index.html`,
+> `site/styles.min.css` nem `site/js/*.min.js` à mão. Detalhes em DESIGN.md §11 e DEPLOY.md.
 
 ---
 
@@ -132,3 +136,30 @@
 - [x] **Gravação de Vídeo:** Vídeo completo em 60fps gravado em `screenshots/video/page@8151165c278e4157e187bc35fc479032.webm`.
 - [x] **Regressão Final nas 12 Telas:** 100% aprovada (Zero overflow, zero erros de console, alvos de toque >= 44px).
 - [x] **Tag Git:** `motion-pronto`.
+
+
+---
+
+## 8. Etapa de Otimização (Concluída)
+- [x] **Baseline:** `otimizacao-baseline.md` (Performance 68, LCP 6,5 s; 3 execuções, mediana).
+- [x] **Fontes locais:** WOFF2 subset latin em `site/fonts/`, só os pesos usados, `font-display: swap`,
+  preload só de Bebas Neue + Montserrat (acima da dobra, injetado só em http(s)), sem CDN externo.
+- [x] **CSS:** um arquivo só (`styles.min.css`, clean-css nível 1, fallbacks preservados). CSS crítico
+  medido e verificado automaticamente, inline no `<head>`. O restante não bloqueia e é aplicado após
+  a primeira pintura; `<noscript>` como fallback.
+- [x] **Imagens:** `srcset`/`sizes` medidos por breakpoint, `fetchpriority="high"` só no hero (LCP),
+  `loading="lazy"` no resto, degraus 120–1200w gerados, `aspect-ratio` travado (geometria idêntica),
+  textura em WebP sem perdas.
+- [x] **Elemento pesado:** bordas rasgadas movidas para SVG externo cacheável.
+- [x] **JS:** `motion-core` 8,6 → 4,1 KB e `motion-sections` 21,9 → 8,6 KB (terser); tempos de motion intactos.
+- [x] **DEPLOY.md:** compressão e `Cache-Control` recomendados, sem escolher hospedagem.
+- [x] **Resultado:** `otimizacao-resultado.md`. Performance **92** em modo produção (gzip), **89** no
+  servidor puro da baseline; FCP 3,8 → 0,77 s; LCP 6,5 → 3,4 s; CLS 0.
+- [x] **Testes:** os 8 scripts existentes passam. Geometria idêntica em 176 elementos × 12 resoluções.
+- [ ] **Pendente/aceito:** regressão de pixels em 390×844 fica em 1,06% (limite 1%), só por
+  reamostragem dentro das fotos com o degrau 480w. Texto e layout são idênticos.
+- [ ] **Pendente/aceito:** Melhores Práticas 96 por texto < 12 px nos selos (decisão visual do mockup).
+
+### O que falta
+- Publicação: escolher hospedagem e aplicar os cabeçalhos do DEPLOY.md.
+- Pendências factuais do cliente (DESIGN.md §10) seguem abertas.

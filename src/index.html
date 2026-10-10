@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mr. Macário Burger — Hamburgueria Artesanal na Vila da Saúde</title>
+  <meta name="description" content="O hambúrguer artesanal mais suculento da Vila da Saúde. Blends frescos, queijo derretido, crosta Maillard perfeita e ambiente descontraído. Peça no delivery!">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍔</text></svg>">
+  <!-- Fontes acima da dobra (letreiro/títulos e navegação/selos). Caveat e Plus Jakarta Sans carregam sob demanda. -->
+  <!-- Injetado por script só em http(s): em file:// o preload de fonte (sempre CORS) gera erro de console.
+       Sem JS, as fontes carregam normalmente pelo @font-face — o preload só antecipa. -->
+  <script>
+    (function (d) {
+      if (location.protocol === 'file:') return;
+      ['bebas-neue-400-latin', 'montserrat-var-latin'].forEach(function (f) {
+        var l = d.createElement('link');
+        l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
+        l.href = './fonts/' + f + '.woff2';
+        d.head.appendChild(l);
+      });
+    })(document);
+  </script>
+  <!-- Candidato a LCP: mesmo srcset/sizes do <img> do hero (sem href: quem não entende imagesrcset não baixa em dobro) -->
+  <link rel="preload" as="image" imagesrcset="./assets/hero-burger-480.webp 480w, ./assets/hero-burger-640.webp 640w, ./assets/hero-burger-800.webp 800w, ./assets/hero-burger-1200.webp 1200w, ./assets/hero-burger-1600.webp 1600w" imagesizes="(min-width: 790px) 693px, 88vw" fetchpriority="high">
+  <!-- @build:critical-css (gerado por scripts/build.py a partir de src/css/) -->
+  <!-- @build:styles -->
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-title">MR. MACÁRIO</span>
+        <span class="brand-sub">BURGER</span>
+      </div>
+      <nav class="header-nav" aria-label="Navegação principal">
+        <a href="#menu-highlights" class="nav-link">Cardápio</a>
+        <a href="#griddle-craft" class="nav-link">Nossa Chapa</a>
+        <a href="#lounge-social" class="nav-link">O Salão</a>
+        <a href="#footer-conversion" class="btn-header-cta">Pedir Delivery</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Sections (Full-bleed) -->
+  <main id="main-content">
+    <!-- 01. Hero -->
+    <section class="section-hero" id="hero" aria-label="Apresentação Mr. Macário Burger">
+      <!-- Gota de Queijo / Molho no Canto Superior Esquerdo -->
+      <div class="cheese-drip-top-left" aria-hidden="true">
+        <svg viewBox="0 0 100 120" class="cheese-drip-svg">
+          <path d="M 0 0 L 48 42 C 54 48 56 60 52 68 C 47 74 38 72 34 64 C 30 56 22 36 0 20 Z" fill="#f0a92b" />
+          <ellipse cx="44" cy="94" rx="10" ry="14" fill="#f0a92b" />
+        </svg>
+      </div>
+
+      <!-- Letreiro Topo Central -->
+      <div class="hero-top-brand" aria-hidden="true">
+        <span class="hero-brand-line1">MR. MACÁRIO</span>
+        <span class="hero-brand-line2">BURGER</span>
+      </div>
+
+      <!-- Letreiro de Fundo Gigante "MR. M" e "ÁRIO" Cobrindo a Extensão Total -->
+      <div class="hero-bg-text" aria-hidden="true">
+        <div class="hero-bg-inner">
+          <span class="hero-txt-left">MR. M</span>
+          <span class="hero-txt-right">ÁRIO</span>
+        </div>
+      </div>
+
+      <!-- Camada de Elementos Decorativos Integrados -->
+      <div class="hero-decorations" aria-hidden="true">
+        <!-- Comanda Superior Esquerda (#0429) -->
+        <div class="receipt receipt-tl">
+          <div class="receipt-inner">
+            <span class="rc-num">#0429</span>
+            <span class="rc-line">SMASH DUPLO</span>
+            <span class="rc-line">CHEDDAR BACON</span>
+            <span class="rc-bar">||||||||||||||</span>
+          </div>
+        </div>
+
+        <!-- Dados 3D Esquerda -->
+        <div class="floating-asset dice-wrapper">
+          <img src="./assets/dice-160.webp" srcset="./assets/dice-160.webp 160w, ./assets/dice-320.webp 320w, ./assets/dice-800.webp 800w" sizes="(min-width: 1330px) 125px, (min-width: 768px) 10vw, 61px" alt="" class="hero-dice-img" width="160" height="106" loading="eager">
+        </div>
+
+        <!-- Neon Doodle Vermelho -->
+        <div class="floating-asset neon-doodle-wrapper">
+          <img src="./assets/neon-doodle-120.webp" srcset="./assets/neon-doodle-120.webp 120w, ./assets/neon-doodle-240.webp 240w, ./assets/neon-doodle-800.webp 800w" sizes="(min-width: 1440px) 96px, (min-width: 1024px) 7vw, (min-width: 768px) 66px, 48px" alt="" class="hero-neon-img" width="110" height="133" loading="eager">
+        </div>
+
+        <!-- 100% Carne Fresca -->
+        <div class="badge-fresh-meat">
+          <span class="fresh-perc">100% CARNE</span>
+          <span class="fresh-text">FRESCA</span>
+        </div>
+
+        <!-- Comanda Inferior Esquerda -->
+        <div class="receipt receipt-bl">
+          <div class="receipt-inner">
+            <span class="rc-line">TOTAL: R$ 34,90</span>
+            <span class="rc-bar">|||||||||||</span>
+          </div>
+        </div>
+
+        <!-- Selo Azul Topo -->
+        <div class="stamp stamp-blue">
+          <svg viewBox="0 0 100 100" class="stamp-svg">
+            <path id="blue-curve" d="M 15 50 A 35 35 0 1 1 85 50 A 35 35 0 1 1 15 50" fill="none"/>
+            <text class="stamp-text">
+              <textPath href="#blue-curve" startOffset="50%" text-anchor="middle">MR. MACÁRIO BURGER •</textPath>
+            </text>
+            <circle cx="50" cy="50" r="16" fill="rgba(255,255,255,0.3)"/>
+            <path d="M42,50 Q50,44 58,50" stroke="#1d405b" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Selo Coral 'BOM DEMAIS' -->
+        <div class="stamp stamp-coral">
+          <span class="stamp-badge-title">BOM DEMAIS</span>
+          <span class="stamp-badge-sub">ARTESANAL</span>
+        </div>
+
+        <!-- Batatas Fritas Voando (Direita do Burger) -->
+        <div class="floating-asset fries-fly-wrapper">
+          <img src="./assets/flying-fries.webp" alt="" class="hero-flying-fries-img" width="130" height="140" loading="eager">
+        </div>
+
+        <!-- Pílula Vila da Saúde -->
+        <div class="badge-pill pill-saude">
+          <span>VILA DA SAÚDE</span>
+        </div>
+
+        <!-- Pílula Abre 18:45 -->
+        <div class="badge-pill pill-hours">
+          <span>ABRE 18:45</span>
+        </div>
+
+        <!-- Comanda Inferior Direita -->
+        <div class="receipt receipt-br">
+          <div class="receipt-inner">
+            <span class="rc-num">MESA 04</span>
+            <span class="rc-line">PONTO DA CHAPA</span>
+            <span class="rc-bar">||||||||||</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hambúrguer Hero Central em Destaque -->
+      <div class="hero-center-stage">
+        <!-- Selo Verde '11 / VILA SAÚDE' Colado no Pão -->
+        <div class="stamp stamp-mint" aria-hidden="true">
+          <span class="stamp-mint-num">// 11</span>
+          <span class="stamp-mint-text">VILA SAÚDE</span>
+        </div>
+
+        <picture class="hero-burger-picture">
+          <img src="./assets/hero-burger-800.webp"
+               srcset="./assets/hero-burger-480.webp 480w, ./assets/hero-burger-640.webp 640w, ./assets/hero-burger-800.webp 800w, ./assets/hero-burger-1200.webp 1200w, ./assets/hero-burger-1600.webp 1600w"
+               sizes="(min-width: 790px) 693px, 88vw"
+               alt="Mr. Macário Smash Burger Duplo artesanal com queijo cheddar cremoso derretido e bacon crocante" 
+               class="hero-burger-img" 
+               width="800" 
+               height="533" 
+               fetchpriority="high">
+        </picture>
+        <div class="hero-burger-shadow" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- 02. Menu Highlights (Zero Cards - Integração Orgânica) -->
+    <section class="section-menu" id="menu-highlights" aria-label="Destaques do Cardápio">
+      <!-- Mancha Ondulada / Corte Diagonal de Fundo Bege Escuro -->
+      <div class="menu-sand-shape" aria-hidden="true">
+        <svg viewBox="0 0 1440 600" preserveAspectRatio="none" class="sand-svg">
+          <path d="M 450,0 C 580,60 720,25 860,65 C 1040,110 1240,50 1440,75 L 1440,600 L 400,600 C 500,430 420,180 450,0 Z" fill="#e0d2c3"/>
+        </svg>
+      </div>
+
+      <div class="menu-header">
+        <h2 class="menu-title">MENU HIGHLIGHTS</h2>
+      </div>
+
+      <!-- Vitrine dos 3 Produtos Livres no Solo -->
+      <div class="menu-showcase">
+        <!-- Item 1: Mr Smash Duplo (Esquerda) -->
+        <div class="menu-display-item item-smash">
+          <!-- Decorativos ao lado: Dados e Neon -->
+          <div class="menu-item-decorations" aria-hidden="true">
+            <div class="menu-dice-float">
+              <img src="./assets/dice-160.webp" srcset="./assets/dice-160.webp 160w, ./assets/dice-320.webp 320w, ./assets/dice-800.webp 800w" sizes="(min-width: 1440px) 96px, (min-width: 1024px) 7vw, 62px" alt="" width="85" height="57" loading="lazy">
+            </div>
+            <div class="menu-neon-float">
+              <img src="./assets/neon-doodle-120.webp" srcset="./assets/neon-doodle-120.webp 120w, ./assets/neon-doodle-240.webp 240w, ./assets/neon-doodle-800.webp 800w" sizes="(min-width: 1440px) 68px, (min-width: 1024px) 5vw, 45px" alt="" width="65" height="78" loading="lazy">
+            </div>
+          </div>
+
+          <div class="menu-food-visual">
+            <img src="./assets/hero-burger-800.webp"
+                 srcset="./assets/hero-burger-480.webp 480w, ./assets/hero-burger-640.webp 640w, ./assets/hero-burger-720.webp 720w, ./assets/hero-burger-800.webp 800w, ./assets/hero-burger-1200.webp 1200w"
+                 sizes="(min-width: 1440px) 433px, (min-width: 1024px) 30vw, (min-width: 423px) 380px, 90vw"
+                 alt="Mr Smash Duplo artesanal com crosta crocante e queijo cheddar derretido" 
+                 class="menu-food-img" 
+                 width="520" 
+                 height="346" 
+                 loading="lazy">
+            <div class="menu-ground-shadow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Item 2: Mr Burguinho (Centro) -->
+        <div class="menu-display-item item-burguinho">
+          <div class="menu-food-visual">
+            <!-- Tag Dourada Colada no Pão -->
+            <div class="pill-burguinho-tag" aria-hidden="true">MR BURGUINHO</div>
+            <img src="./assets/menu-burguinho-800.webp"
+                 srcset="./assets/menu-burguinho-480.webp 480w, ./assets/menu-burguinho-720.webp 720w, ./assets/menu-burguinho-800.webp 800w, ./assets/menu-burguinho-1200.webp 1200w"
+                 sizes="(min-width: 1440px) 433px, (min-width: 1024px) 30vw, (min-width: 423px) 380px, 90vw"
+                 alt="Mr Burguinho clássico com salada fresca e blend suculento" 
+                 class="menu-food-img" 
+                 width="520" 
+                 height="346" 
+                 loading="lazy">
+            <div class="menu-ground-shadow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Item 3: Batatas Fritas Especiais (Direita) -->
+        <div class="menu-display-item item-fries">
+          <div class="menu-food-visual">
+            <!-- Selo Preço Justo Circular Estampado -->
+            <div class="stamp-preco-justo" aria-hidden="true">
+              <div class="stamp-pj-inner">
+                <span class="pj-curved">PREÇO JUSTO</span>
+                <span class="pj-value">R$ 20-40 //</span>
+                <span class="pj-bottom">BEM SERVIDO</span>
+              </div>
+            </div>
+
+            <img src="./assets/menu-fries-800.webp"
+                 srcset="./assets/menu-fries-480.webp 480w, ./assets/menu-fries-720.webp 720w, ./assets/menu-fries-800.webp 800w, ./assets/menu-fries-1200.webp 1200w"
+                 sizes="(min-width: 1440px) 433px, (min-width: 1024px) 30vw, (min-width: 423px) 380px, 90vw"
+                 alt="Batatas fritas rústicas e crocantes cobertas com creme de cheddar e cubos de bacon" 
+                 class="menu-food-img" 
+                 width="520" 
+                 height="346" 
+                 loading="lazy">
+            <div class="menu-ground-shadow" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. The Griddle Craft (Rasgo Orgânico Contínuo de Papel) -->
+    <section class="section-griddle" id="griddle-craft" aria-label="A Técnica da Chapa e Crosta Maillard">
+      <!-- Borda Superior de Papel Rasgado Contínuo (SVG Fiel ao Mockup) -->
+      <div class="torn-paper torn-paper-top" aria-hidden="true">
+        <img src="./assets/torn-paper-top.svg" alt="" class="torn-svg" width="1440" height="40" loading="lazy" decoding="async">
+      </div>
+
+      <!-- Conteúdo da Chapa com Foto Panorâmica Nítida -->
+      <div class="griddle-backdrop">
+        <picture class="griddle-picture">
+          <img src="./assets/griddle-craft-800.webp"
+               srcset="./assets/griddle-craft-480.webp 480w, ./assets/griddle-craft-800.webp 800w, ./assets/griddle-craft-1200.webp 1200w, ./assets/griddle-craft-1600.webp 1600w"
+               sizes="100vw"
+               alt="Smash burger sendo prensado na chapa comercial quente com crosta Maillard perfeita e fumaça" 
+               class="griddle-bg-img" 
+               width="1600" 
+               height="533" 
+               loading="lazy">
+        </picture>
+        <div class="griddle-overlay" aria-hidden="true"></div>
+
+        <!-- Conteúdo Sobreposto -->
+        <div class="griddle-content-wrapper">
+          <div class="griddle-headline">
+            <h2 class="griddle-title">THE GRIDDLE CRAFT</h2>
+          </div>
+
+          <!-- Selo Coral Crosta Maillard com Seta Apontando -->
+          <div class="griddle-badge-cluster" aria-hidden="true">
+            <div class="stamp-maillard">
+              <span class="maillard-top">CROSTA</span>
+              <svg viewBox="0 0 40 24" class="maillard-burger-icon">
+                <path d="M4,12 C4,5 12,2 20,2 C28,2 36,5 36,12 Z" fill="none" stroke="#2c150f" stroke-width="2" />
+                <line x1="2" y1="15" x2="38" y2="15" stroke="#2c150f" stroke-width="2.5" stroke-dasharray="4 2" />
+                <path d="M4,18 C4,21 10,22 20,22 C30,22 36,21 36,18 Z" fill="none" stroke="#2c150f" stroke-width="2" />
+              </svg>
+              <span class="maillard-bottom">MAILLARD</span>
+            </div>
+
+            <!-- Seta Desenhada em Giz Curvada Apontando para o Smash -->
+            <div class="chalk-arrow">
+              <svg viewBox="0 0 70 60" class="arrow-svg">
+                <path d="M55,10 Q25,25 20,45" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                <path d="M14,38 L20,46 L27,39" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Borda Inferior de Papel Rasgado Contínuo (SVG Fiel ao Mockup) -->
+      <div class="torn-paper torn-paper-bottom" aria-hidden="true">
+        <img src="./assets/torn-paper-bottom.svg" alt="" class="torn-svg" width="1440" height="40" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <!-- 04. Lounge, Games & Social Proof -->
+    <section class="section-lounge" id="lounge-social" aria-label="Salão, Games e Avaliações">
+      <div class="lounge-header">
+        <h2 class="lounge-title">THE BOARD GAME LOUNGE</h2>
+        <p class="lounge-subtitle">JOGOS NO SALÃO // AMBIENTE DESCONTRAÍDO</p>
+      </div>
+
+      <div class="lounge-stage">
+        <!-- Foto Esquerda (Mesa de Jogos Inclinada) -->
+        <div class="lounge-photo lounge-photo-left">
+          <div class="photo-frame">
+            <img src="./assets/lounge-left-800.webp"
+                 srcset="./assets/lounge-left-480.webp 480w, ./assets/lounge-left-640.webp 640w, ./assets/lounge-left-800.webp 800w, ./assets/lounge-left-1200.webp 1200w"
+                 sizes="(min-width: 1280px) 435px, (min-width: 380px) 342px, 90vw"
+                 alt="Amigos se divertindo no salão do Mr. Macário Burger com jogos e clima descontraído" 
+                 class="lounge-img" 
+                 width="480" 
+                 height="360" 
+                 loading="lazy">
+          </div>
+        </div>
+
+        <!-- Centro: Troféu 5.0 Maciço e Selo Google Reviews -->
+        <div class="lounge-centerpiece">
+          <div class="trophy-wrapper">
+            <img src="./assets/trophy-5-800.webp"
+                 srcset="./assets/trophy-5-480.webp 480w, ./assets/trophy-5-800.webp 800w, ./assets/trophy-5-1200.webp 1200w"
+                 sizes="(min-width: 1440px) 421px, (min-width: 1024px) 30vw, 259px"
+                 alt="Troféu dourado nota máxima 5.0 com cinco estrelas no Google" 
+                 class="trophy-img" 
+                 width="430" 
+                 height="450" 
+                 loading="lazy">
+
+            <!-- Selo 63 Avaliações Google Colado no Ombro -->
+            <div class="badge-google-reviews">
+              <span class="gr-number">63</span>
+              <span class="gr-label">AVALIAÇÕES<br>GOOGLE</span>
+            </div>
+          </div>
+
+          <!-- Fita Crepe Adesiva na Base do Troféu -->
+          <div class="tape-testimonial-wrapper">
+            <div class="tape-strip" aria-label="Depoimento">
+              <p class="tape-quote">"Uma delícia, lanche maravilhoso e atendimento impecável!"</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto Direita (Mesa de Jogos Inclinada) -->
+        <div class="lounge-photo lounge-photo-right">
+          <div class="photo-frame">
+            <img src="./assets/lounge-right-800.webp"
+                 srcset="./assets/lounge-right-480.webp 480w, ./assets/lounge-right-640.webp 640w, ./assets/lounge-right-800.webp 800w, ./assets/lounge-right-1200.webp 1200w"
+                 sizes="(min-width: 1280px) 435px, (min-width: 380px) 342px, 90vw"
+                 alt="Clientes comemorando e jogando cartas e games no salão da hamburgueria" 
+                 class="lounge-img" 
+                 width="480" 
+                 height="360" 
+                 loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. Footer & Conversion (Mesas de Diner nas Laterais e Botões Neon) -->
+    <footer class="section-footer" id="footer-conversion" aria-label="Rodapé e Pedidos">
+      <!-- Divisória Rolo de Filme 35mm / Película Vintage -->
+      <div class="film-strip-divider" aria-hidden="true">
+        <div class="film-sprockets"></div>
+      </div>
+
+      <div class="footer-inner-stage">
+        <!-- Imagem de Fundo / Cenário do Diner com Mesas Visíveis nas Extremidades -->
+        <div class="footer-bg-diner" aria-hidden="true">
+          <picture class="footer-diner-picture">
+            <img src="./assets/footer-diner-800.webp"
+                 srcset="./assets/footer-diner-480.webp 480w, ./assets/footer-diner-800.webp 800w, ./assets/footer-diner-1200.webp 1200w, ./assets/footer-diner-1600.webp 1600w"
+                 sizes="100vw"
+                 alt="" 
+                 class="footer-diner-img" 
+                 width="1600" 
+                 height="533" 
+                 loading="lazy">
+          </picture>
+        </div>
+
+        <!-- Conteúdo de Conversão -->
+        <div class="footer-content-container">
+          <div class="footer-header-tag">
+            <h2 class="footer-title">FOOTER & CONVERSION</h2>
+          </div>
+
+          <div class="footer-cta-group">
+            <!-- Botão 1: Pedir no Delivery / Telefone -->
+            <a href="tel:11965142258" class="neon-pill-btn btn-call">
+              <span class="bracket">[</span>
+              <span class="neon-btn-text">PEDIR NO DELIVERY // (11) 96514-2258</span>
+              <span class="bracket">]</span>
+            </a>
+
+            <!-- Pílula Horários -->
+            <div class="footer-hours-pill">
+              <span class="bracket">[</span>
+              <span class="hours-text">QUA A DOM // 18:45 - 23:30</span>
+              <span class="bracket">]</span>
+            </div>
+
+            <!-- Botão 2: WhatsApp Oficial -->
+            <a href="https://wa.me/5511965142258?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20no%20Mr.%20Mac%C3%A1rio%20Burger." 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="neon-pill-btn btn-whatsapp">
+              <span class="bracket">[</span>
+              <span class="neon-btn-text">PEDIR NO DELIVERY // WHATSAPP (11) 96514-2258</span>
+              <span class="bracket">]</span>
+            </a>
+          </div>
+
+          <!-- Endereço Oficial -->
+          <div class="footer-address">
+            <p class="address-text">Rua Dom Macário, 1063 - Saúde</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botão de Acessibilidade: Pausar / Retomar Animações -->
+    <button type="button" 
+            id="motion-pause-toggle" 
+            class="motion-pause-btn" 
+            aria-label="Pausar animações" 
+            aria-pressed="false">
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="6" y="4" width="4" height="16" rx="1" />
+        <rect x="14" y="4" width="4" height="16" rx="1" />
+      </svg>
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true">
+        <polygon points="5 3 19 12 5 21 5 3" />
+      </svg>
+      <span class="motion-toggle-label">PAUSAR</span>
+    </button>
+  </main>
+
+  <!-- Carregamento Diferido dos Scripts Clássicos de Motion (Auto-Hospedados) -->
+  <script>
+    (function () {
+      var loaded = false;
+      function loadMotionScripts() {
+        if (loaded) return;
+        loaded = true;
+
+        window.removeEventListener('load', loadMotionScripts);
+        window.removeEventListener('pointerdown', loadMotionScripts);
+        window.removeEventListener('touchstart', loadMotionScripts);
+        window.removeEventListener('scroll', loadMotionScripts);
+        window.removeEventListener('keydown', loadMotionScripts);
+
+        function loadScript(src, cb) {
+          var s = document.createElement('script');
+          s.src = src;
+          s.onload = cb;
+          s.onerror = function () {
+            console.warn('[MotionLoader] Falha ao carregar ' + src);
+            if (cb) cb();
+          };
+          document.body.appendChild(s);
+        }
+
+        loadScript('./js/vendor/gsap.min.js', function () {
+          loadScript('./js/vendor/ScrollTrigger.min.js', function () {
+            loadScript('./js/vendor/lenis.min.js', function () {
+              loadScript('./js/motion-core.min.js', function () {
+                loadScript('./js/motion-sections.min.js', function () {
+                  if (window.MrMacarioMotion && window.MrMacarioMotion.init) {
+                    window.MrMacarioMotion.init();
+                  }
+                  if (window.MrMacarioSections) {
+                    if (window.MrMacarioSections.initHero) window.MrMacarioSections.initHero();
+                    if (window.MrMacarioSections.initMenu) window.MrMacarioSections.initMenu();
+                    if (window.MrMacarioSections.initGriddle) window.MrMacarioSections.initGriddle();
+                    if (window.MrMacarioSections.initLounge) window.MrMacarioSections.initLounge();
+                    if (window.MrMacarioSections.initFooter) window.MrMacarioSections.initFooter();
+                  }
+                });
+              });
+            });
+          });
+        });
+      }
+
+      if (document.readyState === 'complete') {
+        scheduleIdle();
+      } else {
+        window.addEventListener('load', scheduleIdle);
+      }
+
+      function scheduleIdle() {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadMotionScripts, { timeout: 2500 });
+        } else {
+          setTimeout(loadMotionScripts, 1800);
+        }
+      }
+
+      var userEvents = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+      function onFirstUserAction() {
+        for (var i = 0; i < userEvents.length; i++) {
+          window.removeEventListener(userEvents[i], onFirstUserAction);
+        }
+        loadMotionScripts();
+      }
+      for (var i = 0; i < userEvents.length; i++) {
+        window.addEventListener(userEvents[i], onFirstUserAction, { once: true, passive: true });
+      }
+    })();
+  </script>
+</body>
+</html>

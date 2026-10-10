@@ -377,3 +377,35 @@ Para deixarmos tudo 100% perfeito e fiel ao negócio de vocês antes do lançame
 
 Muito obrigado! O site está ficando incrível e com a cara autêntica da casa! 🚀
 ```
+
+---
+
+## 11. Decisões Técnicas da Etapa de Otimização (10/10/2026)
+
+Decididas sem consulta (sem impacto factual), conforme as regras do projeto:
+
+1. **Fonte × build.** HTML/CSS/JS editáveis ficam em `src/`; `python scripts/build.py` (ou
+   `npm run build`) gera `site/index.html`, `site/styles.min.css` e `site/js/*.min.js`. O build
+   é commitado, então `site/` continua abrindo direto em `file://` e publicável sem build no servidor.
+2. **CSS crítico por medição, não por lista manual.** O build abre a página em 13 resoluções e
+   guarda as regras que casam com algo visível na primeira tela (incluindo o que esconde filhos
+   desses elementos). Depois verifica que os estilos computados de toda a primeira tela são
+   idênticos com só o crítico e com o CSS completo. Se divergir, o build falha. O CSS completo
+   repete as regras críticas na ordem original, então a cascata final é a mesma de antes.
+3. **CSS completo aplicado depois da primeira pintura** (`media=print` + duplo
+   `requestAnimationFrame` no `onload`; `<noscript>` com link bloqueante para quem não tem JS).
+4. **Minificação de CSS no nível 1 do clean-css.** O nível 2 fundiria propriedades repetidas e
+   removeria fallbacks intencionais (`100vh` → `100svh`, PNG → `image-set()`, prefixos `-webkit-`).
+5. **`aspect-ratio` fixo nas imagens com `srcset`.** Cada degrau tem altura arredondada; sem isso a
+   caixa mudava frações de pixel conforme o arquivo escolhido e deslocava a página. Os valores são as
+   proporções dos arquivos usados antes, então a geometria fica idêntica (verificado em 176 elementos
+   × 12 resoluções).
+6. **Montserrat sem recorte de eixo.** Recortada para 600–800, o texto em peso 800 (pílulas,
+   botões neon) alargava até 6 px. Manter fidelidade custa 10 KB.
+7. **Preload de fontes só via script em http(s).** Em `file://` o preload de fonte (sempre CORS)
+   gerava erro de console; sem JS o `@font-face` carrega normalmente.
+8. **`@font-face` no crítico só das famílias visíveis na primeira tela** (Bebas Neue, Montserrat).
+   Caveat e Plus Jakarta Sans chegam com o CSS completo e saem da disputa de banda com o LCP.
+9. **Mantidos como estão:** os efeitos de pintura cara (blur do header, blend da textura,
+   drop-shadows), o texto < 12 px dos selos (auditoria `font-size`, Melhores Práticas 96) e o
+   `<script>` carregador de motion inline (pequeno; externo custaria uma requisição a mais).

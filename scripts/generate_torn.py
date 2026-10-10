@@ -20,10 +20,10 @@ for x in range(0, 1441, 12):
 bot_start_y = points_bot[0].split(",")[1]
 path_bot = f"M0,40 L0,{bot_start_y} " + " ".join(f"L{p}" for p in points_bot) + " L1440,40 Z"
 
-with open("site/torn_top.txt", "w") as f:
+with open("scripts/torn_top.txt", "w") as f:
     f.write(path_top)
 
-with open("site/torn_bot.txt", "w") as f:
+with open("scripts/torn_bot.txt", "w") as f:
     f.write(path_bot)
 
 print("Generated torn paths!")

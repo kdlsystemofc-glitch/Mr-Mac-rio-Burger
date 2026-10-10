@@ -1,6 +1,6 @@
-with open("site/torn_top.txt", "r") as f:
+with open("scripts/torn_top.txt", "r") as f:
     top_p = f.read().strip()
-with open("site/torn_bot.txt", "r") as f:
+with open("scripts/torn_bot.txt", "r") as f:
     bot_p = f.read().strip()
 
 with open("site/index.html", "r", encoding="utf-8") as f:

@@ -7,7 +7,9 @@ body::before {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
+  /* PNG = fallback; navegadores com image-set()+type() usam o WebP sem perdas (pixel-idêntico) */
   background-image: url('./assets/paper-noise.png');
+  background-image: image-set(url('./assets/paper-noise.webp') type('image/webp') 1x, url('./assets/paper-noise.png') type('image/png') 1x);
   background-repeat: repeat;
   opacity: 0.085;
   mix-blend-mode: multiply;
@@ -1494,4 +1496,41 @@ html[data-motion-mode="reduced"] * {
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;
   scroll-behavior: auto !important;
+}
+
+/* ==========================================================================
+   Otimização — proporção fixa das imagens com srcset
+   Os degraus menores (480w, 640w, 1200w...) têm altura arredondada e proporção
+   ligeiramente diferente do arquivo -800 original. Sem isto, a caixa da imagem
+   mudaria frações de pixel conforme o degrau escolhido e deslocaria tudo abaixo.
+   Valores = proporção natural dos arquivos que eram usados antes (geometria idêntica).
+   Navegador sem aspect-ratio usa a proporção natural (diferença subpixel).
+   ========================================================================== */
+.hero-burger-img,
+.menu-food-img,
+.hero-dice-img,
+.menu-dice-float img {
+  aspect-ratio: 800 / 533;
+}
+
+.hero-neon-img,
+.menu-neon-float img {
+  aspect-ratio: 800 / 968;
+}
+
+.trophy-img {
+  aspect-ratio: 800 / 837;
+}
+
+/* Fundos de largura total: antes, 800x266 abaixo de 768px e 1600x533 a partir dele */
+.griddle-bg-img,
+.footer-diner-img {
+  aspect-ratio: 800 / 266;
+}
+
+@media (min-width: 768px) {
+  .griddle-bg-img,
+  .footer-diner-img {
+    aspect-ratio: 1600 / 533;
+  }
 }

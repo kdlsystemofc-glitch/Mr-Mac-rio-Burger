@@ -24,3 +24,29 @@
 - **Nenhum slot ficou sem arquivo.** Todos os slots visuais do mockup foram atendidos por imagens de alta fidelidade geradas pelo usuário em `assets/` e convertidas para WebP em `site/assets/`.
 - As fotos reais de `imagens/` também foram convertidas para WebP (800 e 1600px) e estão prontas como fallbacks factuais autênticos.
 - *Nota de conformidade:* Os arquivos em `/design` e `/assets` brutos nunca são referenciados no HTML/CSS; o site consome exclusivamente os arquivos otimizados em `site/assets/*.webp` e `site/assets/*.png`.
+
+## Etapa de Otimização (10/10/2026)
+
+Nenhuma imagem nova foi gerada por IA nesta etapa — só redimensionamento (Lanczos, WebP q82,
+alfa q100) dos arquivos já aprovados, via `scripts/gen_image_steps.py`. Mesmo recorte, mesma cor.
+
+| Arquivo base | Degraus novos para `srcset` | Uso |
+| :--- | :--- | :--- |
+| `hero-burger-1600.webp` | `-480`, `-640`, `-720`, `-1200` | Hero (LCP) e Menu 1 |
+| `menu-burguinho-1600.webp`, `menu-fries-1600.webp` | `-480`, `-720`, `-1200` | Menu 2 e 3 |
+| `lounge-left-1600.webp`, `lounge-right-1600.webp` | `-480`, `-640`, `-1200` | Salão |
+| `trophy-5-1600.webp` | `-480`, `-1200` | Troféu |
+| `griddle-craft-1600.webp`, `footer-diner-1600.webp` | `-480`, `-1200` | Fundos de largura total |
+| `dice-1600.webp` | `-160`, `-320` | Dados decorativos (exibidos a 61–125 px) |
+| `neon-doodle-1600.webp` | `-120`, `-240` | Neon decorativo (exibido a 45–96 px) |
+
+Outros arquivos:
+- `paper-noise.webp` — conversão **sem perdas** de `paper-noise.png` (pixel-idêntica, 75 KB → 46 KB).
+  O PNG continua como fallback no CSS.
+- `torn-paper-top.svg`, `torn-paper-bottom.svg` — os mesmos paths que estavam inline no HTML,
+  agora em arquivo externo cacheável (decorativo/CSS-like, não é foto).
+- `site/fonts/*.woff2` — fontes auto-hospedadas (Google Fonts, licença SIL OFL 1.1, subset latin).
+  Caveat e Plus Jakarta Sans recortadas ao peso usado com fontTools; Montserrat é o arquivo original.
+
+Não usados pelo site (mantidos como reserva factual): `chef-real-*`, `facade-real-*`,
+`logo-macario-*`, `menu-sweet-*`, `salon-real-*`.
