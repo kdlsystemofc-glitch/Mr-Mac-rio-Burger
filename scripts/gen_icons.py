@@ -11,7 +11,7 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, 'site')
-SRC = os.path.join(SITE, 'assets', 'logo-macario-1600.webp')
+SRC = os.path.join(ROOT, 'reserva', 'logo-macario-1600.webp')  # fora do deploy; só fonte dos ícones
 
 
 def main():
@@ -22,16 +22,21 @@ def main():
     def sized(n):
         return logo.resize((n, n), Image.LANCZOS)
 
+    def save_png(im, path):
+        # paleta de 256 cores: ~60% menor, diferença média ~1,7/255 (medido) — imperceptível em ícone
+        pal = im.quantize(colors=256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.FLOYDSTEINBERG)
+        pal.save(path, optimize=True)
+
     sized(256).save(os.path.join(SITE, 'favicon.ico'), sizes=[(16, 16), (32, 32), (48, 48)])
-    sized(180).save(os.path.join(SITE, 'apple-touch-icon.png'), optimize=True)
-    sized(192).save(os.path.join(SITE, 'icons', 'icon-192.png'), optimize=True)
-    sized(512).save(os.path.join(SITE, 'icons', 'icon-512.png'), optimize=True)
+    save_png(sized(180), os.path.join(SITE, 'apple-touch-icon.png'))
+    save_png(sized(192), os.path.join(SITE, 'icons', 'icon-192.png'))
+    save_png(sized(512), os.path.join(SITE, 'icons', 'icon-512.png'))
 
     # maskable: o logo ocupa 80% (zona segura do Android), margem na cor de fundo do logo
     canvas = Image.new('RGB', (512, 512), bg)
     inner = sized(410)
     canvas.paste(inner, ((512 - 410) // 2, (512 - 410) // 2))
-    canvas.save(os.path.join(SITE, 'icons', 'icon-maskable-512.png'), optimize=True)
+    save_png(canvas, os.path.join(SITE, 'icons', 'icon-maskable-512.png'))
 
     for f in ('favicon.ico', 'apple-touch-icon.png', 'icons/icon-192.png', 'icons/icon-512.png',
               'icons/icon-maskable-512.png'):

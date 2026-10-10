@@ -11,6 +11,18 @@
 (function (window, document) {
   'use strict';
 
+  // Ponto de início das revelações por rolagem: "topo da seção a pct da altura da janela",
+  // limitado à rolagem máxima. Em telas muito altas (ex.: 3840x2160) o ponto natural do rodapé
+  // fica além do fim da página e a revelação nunca dispararia, deixando o conteúdo invisível.
+  // Função = recalculada a cada ScrollTrigger.refresh(). Em telas comuns o valor é o mesmo de antes.
+  function revealStart(section, pct) {
+    return function () {
+      var natural = section.getBoundingClientRect().top + window.pageYOffset - window.innerHeight * pct;
+      var max = window.ScrollTrigger.maxScroll(window) - 1;
+      return Math.max(0, Math.min(natural, max));
+    };
+  }
+
   var MrMacarioSections = {
     initHero: function () {
       var M = window.MrMacarioMotion;
@@ -291,7 +303,7 @@
       var tl = window.gsap.timeline({
         scrollTrigger: {
           trigger: menuSec,
-          start: 'top 65%', // Disparo quando ~35% da seção está no viewport
+          start: revealStart(menuSec, 0.65), // = 'top 65%', limitado à rolagem máxima
           once: true
         },
         defaults: { ease: 'power3.out' }
@@ -435,7 +447,7 @@
       var tl = window.gsap.timeline({
         scrollTrigger: {
           trigger: griddleSec,
-          start: 'top 65%',
+          start: revealStart(griddleSec, 0.65), // = 'top 65%', limitado à rolagem máxima
           once: true
         },
         defaults: { ease: 'power3.out' }
@@ -522,7 +534,7 @@
       var tl = window.gsap.timeline({
         scrollTrigger: {
           trigger: loungeSec,
-          start: 'top 65%',
+          start: revealStart(loungeSec, 0.65), // = 'top 65%', limitado à rolagem máxima
           once: true
         },
         defaults: { ease: 'power3.out' }
@@ -657,7 +669,7 @@
       var tl = window.gsap.timeline({
         scrollTrigger: {
           trigger: footerSec,
-          start: 'top 70%',
+          start: revealStart(footerSec, 0.70), // = 'top 70%', limitado à rolagem máxima
           once: true
         },
         defaults: { ease: 'power3.out' }

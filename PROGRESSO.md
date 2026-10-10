@@ -1,10 +1,12 @@
 # PROGRESSO.md — Mr. Macário Burger
 
 ## Status do Projeto
-**Fase Atual:** SEO local concluído (commit "seo pronto"), após "otimizacao pronta"  
+**Fase Atual:** Rodada final concluída (tag `v1.0-rc`) — tecnicamente pronto, **bloqueado para publicação** até a troca das imagens geradas por IA (PENDENCIAS-CLIENTE.md, item 1)  
 **Data:** 10/10/2026  
 **Status do Repositório:** Lighthouse mobile 92 (modo produção) / 89 (servidor puro), contra 68 na baseline. Regressão nas 12 resoluções.
 
+> **Dados do cliente:** arquivo único `cliente.config.json` (substituiu `seo.config.json`).
+>
 > **Atenção, mudou o fluxo de edição:** HTML/CSS/JS editáveis agora ficam em `src/`. Depois de editar,
 > rode `npm run build` (= `python scripts/build.py`) para gerar `site/`. Não edite `site/index.html`,
 > `site/styles.min.css` nem `site/js/*.min.js` à mão. Detalhes em DESIGN.md §11 e DEPLOY.md.
@@ -196,3 +198,41 @@ Textos que vieram do mockup ou não estão no CLIENTE.md, contrariando a regra "
 5. Fotos "mesa de jogos" (pessoas jogando cartas): não retratam o salão real (fliperamas/booths
    vermelhos, DESIGN.md §1), e pessoas devem ser fotos reais do cliente pela regra de ouro.
 6. Fazer o build com o domínio quando ele existir (`seo.config.json`).
+
+
+---
+
+## 10. Rodada Final (Concluída — 10/10/2026)
+- [x] **Auditoria completa** (`scripts/auditoria_final.py`): Chromium + WebKit × 15 telas (320 px a 5120 px,
+  incluindo 3440×1440, 3840×2160 e 5120×1440) × modos padrão, movimento reduzido, escuro, sem JS e
+  `file://` = **135/135 sem problema** (rolagem lateral, console, imagens, toque ≥ 44 px, um h1, alt,
+  seções de borda a borda, motion iniciado/modo reduzido respeitado, conteúdo visível).
+- [x] **Bug corrigido:** em 3840×2160 o título e os botões do rodapé nunca apareciam com motion (o
+  gatilho de revelação ficava além da rolagem máxima). `revealStart()` limita o início à rolagem
+  máxima; nas telas comuns os pontos são os mesmos. `clamp()` do ScrollTrigger foi testado e não
+  resolveu o limite superior.
+- [x] **Lighthouse mobile (mediana de 3):** modo produção **89** (86–89); servidor puro **86** (85–97,
+  alta variância nesta máquina). Acessibilidade 100 · Melhores práticas 96 · SEO 100 · CLS 0.
+  Na otimização a mediana de produção foi 92 (89–92): a diferença está dentro da faixa observada.
+- [x] **Regressão:** pixels idênticos (0,000%) à etapa de SEO nas 12 telas; 8 testes existentes passam.
+- [x] **Config único** `cliente.config.json` (domínio, horário, faixa de preço, cardápio, trava de imagens)
+  — testado ligando os 3 campos confirmados e voltando.
+- [x] **Achado:** as fotos de comida/chapa/salão são geradas por IA e não correspondem às fotos reais;
+  batatas voadoras recortadas do mockup. Classificação em `assets.md`; trava no build.
+- [x] **Polimento feito:** ícones -60% (paleta, diferença média 1,7/255); fotos não usadas → `reserva/`
+  (fora do deploy); scripts quebrados/únicos → `scripts/_historico/`; `site/fonts/LICENSE.txt`.
+- [x] **Documentos:** README.md, PENDENCIAS-CLIENTE.md, ROTEIRO-APARELHO-REAL.md.
+
+### Polimento que espera decisão (não feito)
+- Trocar imagens geradas por IA por fotos reais (exige rodada de design) — cliente.
+- Textos do mockup visíveis (títulos em inglês, "FOOTER & CONVERSION", "R$ 34,90", "100% carne fresca")
+  — cliente.
+- Telas com mais de 2560 px de CSS (ex.: 5120×1440): conteúdo fica limitado a ~1440 px no centro, com
+  laterais vazias. Funciona, mas pede decisão de design (escalar o conteúdo acima de 2560 px?).
+- Texto < 12 px nos selos (Melhores Práticas 96) — decisão visual.
+- Regressão de 1,06% em 390×844 (reamostragem de foto) — aceita na otimização.
+- Nomes de arquivo com hash para cache longo — depende da hospedagem.
+- Sensação real de motion, Safari iOS, barra de endereço, toque — `ROTEIRO-APARELHO-REAL.md`.
+
+### Push
+Sem remoto Git configurado e sem `GH_TOKEN` no ambiente: feitos só commit e tag locais.

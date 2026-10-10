@@ -437,3 +437,21 @@ Decididas sem consulta (sem impacto factual), conforme as regras do projeto:
 7. **`alt` corrigidos para descrever a imagem, sem afirmar o que não é verificável:** as fotos de
    "mesa de jogos" não são do salão real (§1 deste documento: o salão real tem fliperamas e booths
    vermelhos), então o `alt` deixou de dizer "no salão do Mr. Macário Burger".
+
+---
+
+## 13. Decisões da Rodada Final (10/10/2026)
+
+1. **Um único arquivo de dados do cliente:** `cliente.config.json` substitui o `seo.config.json`. Cada
+   dado incerto (horário, faixa de preço, link do cardápio) tem `"confirmado"` e só vai para o JSON-LD
+   com `true`; os não confirmados aparecem listados num comentário no `<head>` gerado. Itens que exigem
+   texto/layout (destino do pedido, pratos, títulos) estão no mesmo arquivo em `_sem_efeito_automatico`,
+   com o caminho de edição.
+2. **Trava de publicação:** `imagensAprovadasParaPublicar: false` faz o build avisar "NÃO PUBLICAR".
+   Motivo: a auditoria final confirmou, comparando lado a lado, que as fotos de comida, chapa e salão
+   são geradas por IA e não correspondem às fotos reais do cliente (`assets.md`).
+3. **Polimento feito agora (baixo risco, medido):** ícones PNG em paleta de 256 cores (-60%, diferença
+   média 1,7/255); fotos reais não usadas e o logo-fonte movidos de `site/assets/` para `reserva/`
+   (fora do deploy); scripts quebrados ou de uso único movidos para `scripts/_historico/`; avisos de
+   licença das fontes em `site/fonts/LICENSE.txt`.
+4. **Esperam cliente ou aparelho real:** ver `PENDENCIAS-CLIENTE.md` e `ROTEIRO-APARELHO-REAL.md`.

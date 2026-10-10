@@ -59,3 +59,29 @@ Não usados pelo site (mantidos como reserva factual): `chef-real-*`, `facade-re
 | `site/favicon.ico` (16/32/48), `site/apple-touch-icon.png` (180), `site/icons/icon-192.png`, `icon-512.png`, `icon-maskable-512.png` | `logo-macario-1600.webp` (selo real, `imagens/imgi_2`), via `scripts/gen_icons.py` | Só redimensionado; o maskable tem margem na cor de fundo do próprio logo (#e6e3db) |
 
 Nenhuma imagem nova gerada por IA nesta etapa.
+
+## Classificação de origem — auditoria final (10/10/2026)
+
+Comparação visual direta entre as fotos reais do cliente (`imagens/imgi_*`) e o que o site exibe.
+**Corrige a tabela do topo deste arquivo**, que tratava os plates como "alta fidelidade" sem a marcação
+exigida pelo CLAUDE.md.
+
+| Arquivo no site | Origem real | Classificação |
+| :--- | :--- | :--- |
+| `hero-burger-*` (hero e Menu 1) | `assets/Hambúrguer duplo...-1.png` (Gemini). **Não é o hambúrguer do `imgi_11`**: o real tem pão escuro com farinha e alface; o do site tem pão brioche brilhante e bacon | **gerada por IA — NÃO é foto do cliente. Viola a regra de ouro (comida). Substituir antes de publicar.** |
+| `menu-burguinho-*` | `assets/Cheesebúrguer...-3.png` (Gemini). Não corresponde ao `imgi_10` (lanche na panelinha de cobre) | **gerada por IA — NÃO é foto do cliente. Substituir.** |
+| `menu-fries-*` | `assets/Batatas fritas...-5.png` (Gemini). O real (`imgi_13`) é servido na panelinha de cobre; o do site, em bandeja de papel xadrez | **gerada por IA — NÃO é foto do cliente. Substituir.** |
+| `griddle-craft-*` | `assets/Smashburger a crepitar na chapa-4.png` (Gemini). Cena de cozinha com mão/espátula | **gerada por IA — retrata o preparo do cliente sem ser real. Substituir ou aprovar como ilustração.** |
+| `lounge-left-*`, `lounge-right-*` | `assets/Amigos a jogar cartas...-6/-7.png` (Gemini). Pessoas e salão inexistentes; o salão real tem fliperamas e booths vermelhos | **gerada por IA — pessoas e salão inventados. Viola a regra de ouro. Substituir.** |
+| `footer-diner-*` | `assets/Lanchonete vermelha retro...-9.png` (Gemini). Diner americano, não é o salão real | **gerada por IA — salão inventado. Substituir por foto real ou fundo CSS.** |
+| `flying-fries.webp` | Recorte de `design/secoes/01-hero.png` (o **mockup**) | **Viola a regra "/design é só referência". Substituir por recorte de foto real ou remover.** |
+| `logo-macario-*` (fonte dos favicons) | `imagens/imgi_2` (logo real) ampliado | **recriada por IA — confirmar com o cliente antes de publicar** (e pedir o arquivo original) |
+| `trophy-5-*`, `dice-*`, `neon-doodle-*` | Plates decorativos (Gemini) | Permitido (decorativo/abstrato). O troféu cita a nota 5,0 real do Google |
+| `paper-noise.*`, `torn-paper-*.svg` | Ruído sintético / SVG | Permitido (textura/forma) |
+| `og-image.jpg` | Render do hero | **Herda o hambúrguer gerado por IA.** Regerar (`scripts/gen_og_image.py`) depois da troca |
+| `chef-real-*`, `facade-real-*`, `salon-real-*`, `menu-sweet-*` | Fotos reais do cliente | Reais; não usadas no site (movidas para `reserva/` fora do deploy) |
+
+**Fotos reais disponíveis para a substituição:** `imgi_11` (burger duplo), `imgi_10` (burger na
+panelinha), `imgi_5` (sweet burger), `imgi_13` (mesa com batatas e lanches), `imgi_14` (chapeiro com
+burger), `imgi_3`/`imgi_18` (fachada/salão — com pessoas, exigem autorização). Resolução de Instagram
+(~1080 px): ampliar por IA a partir delas é permitido, com a marcação acima.

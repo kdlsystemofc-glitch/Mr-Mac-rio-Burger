@@ -1,0 +1,39 @@
+{
+  "_leia-me": "Dados do cliente ainda pendentes. Preencha o valor, troque 'confirmado' para true e rode: npm run build. Campos iniciados com '_' são só documentação. Efeito de cada item: PENDENCIAS-CLIENTE.md.",
+
+  "dominio": null,
+  "_dominio": "Ex.: \"https://www.mrmacarioburger.com.br\" (só https, sem barra no fim). Publica canonical, og:url, og:image, twitter:image, @id/url/image/logo no JSON-LD, Sitemap no robots.txt e a URL no sitemap.xml.",
+
+  "horario": {
+    "confirmado": false,
+    "dias": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "abre": "18:45",
+    "fecha": "23:30",
+    "_fonte": "Só a bio do Instagram (quarta a domingo, 18:45 às 23:30). O Google mostra apenas 'Abre às 18:45'.",
+    "_efeito": "Publica openingHoursSpecification no JSON-LD. Os textos visíveis 'ABRE 18:45' e 'QUA A DOM // 18:45 - 23:30' estão em src/index.html: se o horário confirmado for outro, edite-os lá também."
+  },
+
+  "faixaDePreco": {
+    "confirmado": false,
+    "valor": "R$ 20–40",
+    "_fonte": "Google Maps, 'informado por 9 pessoas' (estimativa de usuários).",
+    "_efeito": "Publica priceRange no JSON-LD."
+  },
+
+  "linkCardapio": {
+    "confirmado": false,
+    "url": null,
+    "_fonte": "O Google mostra só o domínio oia.99app.com.",
+    "_efeito": "Publica hasMenu no JSON-LD."
+  },
+
+  "imagensAprovadasParaPublicar": false,
+  "_imagensAprovadasParaPublicar": "Trava de publicação. Enquanto false, o build avisa que o site NÃO deve ir ao ar: as fotos de comida, salão e chapa são geradas por IA e não são do cliente (ver PENDENCIAS-CLIENTE.md, item 1). Só mude para true depois de trocar as imagens por fotos reais ou de ter o aceite por escrito do cliente.",
+
+  "_sem_efeito_automatico": {
+    "destinoDoPedido": "WhatsApp (atual) ou cardápio 99App/iFood? Muda os href e os rótulos dos botões em src/index.html.",
+    "pratosEmDestaque": "Nomes oficiais e preços dos 3 pratos. Hoje não há preço publicado; os nomes 'Mr Smash Duplo' e 'Mr Burguinho' vêm do Google. Edite os alt e, se houver, legendas em src/index.html.",
+    "titulosDeSecao": "Os títulos herdados do mockup (MENU HIGHLIGHTS, THE GRIDDLE CRAFT, THE BOARD GAME LOUNGE, FOOTER & CONVERSION) precisam de texto aprovado em português. Edite em src/index.html.",
+    "autorizacaoDeImagem": "Uso das fotos com o proprietário e o atendente (imgi_18, imgi_3) — hoje não usadas no site."
+  }
+}

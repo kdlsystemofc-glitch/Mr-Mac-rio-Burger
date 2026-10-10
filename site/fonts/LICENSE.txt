@@ -1,0 +1,20 @@
+Fontes auto-hospedadas — todas sob a SIL Open Font License, versão 1.1
+Texto da licença: https://openfontlicense.org (OFL-1.1)
+
+Avisos de copyright (copiados da tabela "name" de cada arquivo):
+
+bebas-neue-400-latin.woff2
+  Copyright 2019 The Bebas Neue Project Authors (https://github.com/dharmatype/Bebas-Neue)
+
+caveat-700-latin.woff2
+  Copyright 2014 The Caveat Project Authors (https://github.com/googlefonts/caveat)
+
+montserrat-var-latin.woff2
+  Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)
+
+plus-jakarta-sans-400-600-latin.woff2
+  Copyright 2020 The Plus Jakarta Sans Project Authors (https://github.com/tokotype/PlusJakartaSans)
+
+Modificações: arquivos obtidos do Google Fonts (subset "latin"). Caveat e Plus Jakarta Sans foram
+recortados ao intervalo de peso usado (fontTools instancer). Os nomes das famílias não foram
+alterados nem usados para outra fonte. A OFL permite uso comercial e incorporação em sites.

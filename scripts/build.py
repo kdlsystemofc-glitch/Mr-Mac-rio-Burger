@@ -220,7 +220,7 @@ STYLE_SNAPSHOT_JS = """() => {
 
 
 SEO_DOMAIN_MARK = ('<!-- @seo:domain (canonical, og:url, og:image, twitter:image — gerado por scripts/build.py '
-                   'a partir de seo.config.json) -->')
+                   'a partir de cliente.config.json) -->')
 SEO_JSONLD_MARK = ('<!-- @seo:jsonld (schema.org Restaurant — gerado por scripts/build.py a partir de '
                    'src/seo/restaurant.json) -->')
 OG_IMAGE = '/assets/og-image.jpg'
@@ -242,14 +242,34 @@ def domain_tags(base):
 
 
 def render_seo(template):
-    """Aplica seo.config.json: com domínio, publica as tags absolutas; sem domínio, deixa-as
-    comentadas com placeholder. Também gera robots.txt e sitemap.xml."""
-    cfg = json.load(open(os.path.join(ROOT, 'seo.config.json'), encoding='utf-8'))
-    domain = (cfg.get('domain') or '').strip().rstrip('/')
+    """Aplica cliente.config.json (arquivo único de dados pendentes do cliente).
+    Domínio: com ele, publica as tags absolutas; sem ele, deixa-as comentadas com placeholder.
+    Horário / faixa de preço / cardápio: entram no JSON-LD só com "confirmado": true; os demais
+    ficam listados num comentário no <head>. Também gera robots.txt e sitemap.xml."""
+    cfg = json.load(open(os.path.join(ROOT, 'cliente.config.json'), encoding='utf-8'))
+    domain = (cfg.get('dominio') or '').strip().rstrip('/')
     if domain and not re.match(r'^https://[a-z0-9.-]+\.[a-z]{2,}$', domain, re.I):
-        sys.exit(f'seo.config.json: "domain" deve ser como "https://www.exemplo.com.br" (recebido {domain!r})')
+        sys.exit(f'cliente.config.json: "dominio" deve ser como "https://www.exemplo.com.br" (recebido {domain!r})')
 
     data = json.load(open(os.path.join(SRC, 'seo', 'restaurant.json'), encoding='utf-8'))
+    pendentes = []
+    h = cfg['horario']
+    if h.get('confirmado'):
+        data['openingHoursSpecification'] = [{'@type': 'OpeningHoursSpecification', 'dayOfWeek': h['dias'],
+                                              'opens': h['abre'], 'closes': h['fecha']}]
+    else:
+        pendentes.append(f'horario ({", ".join(h["dias"])} {h["abre"]}-{h["fecha"]}): {h["_fonte"]}')
+    pr = cfg['faixaDePreco']
+    if pr.get('confirmado'):
+        data['priceRange'] = pr['valor']
+    else:
+        pendentes.append(f'faixaDePreco ({pr["valor"]}): {pr["_fonte"]}')
+    mn = cfg['linkCardapio']
+    if mn.get('confirmado') and mn.get('url'):
+        data['hasMenu'] = mn['url']
+    else:
+        pendentes.append(f'linkCardapio: {mn["_fonte"]}')
+
     if domain:
         block = domain_tags(domain)
         data = {**data, '@id': f'{domain}/#restaurante', 'url': f'{domain}/',
@@ -257,17 +277,21 @@ def render_seo(template):
         robots_sitemap = f'Sitemap: {domain}/sitemap.xml'
         sitemap_body = f'  <url>\n    <loc>{domain}/</loc>\n  </url>'
     else:
-        block = ('<!-- AGUARDANDO DOMÍNIO: preencha "domain" em seo.config.json e rode npm run build.\n'
+        block = ('<!-- AGUARDANDO DOMÍNIO: preencha "dominio" em cliente.config.json e rode npm run build.\n'
                  '       Estas tags exigem URL absoluta e serão publicadas assim:\n  '
                  + domain_tags('https://SEU-DOMINIO').replace('--', '- -') +
                  '\n       O JSON-LD também ganha "@id", "url", "image" e "logo". -->')
-        robots_sitemap = '# Sitemap: https://SEU-DOMINIO/sitemap.xml  (aguardando domínio em seo.config.json)'
-        sitemap_body = ('  <!-- AGUARDANDO DOMÍNIO (seo.config.json). Será:\n'
+        robots_sitemap = '# Sitemap: https://SEU-DOMINIO/sitemap.xml  (aguardando dominio em cliente.config.json)'
+        sitemap_body = ('  <!-- AGUARDANDO DOMÍNIO (cliente.config.json). Será:\n'
                         '  <url><loc>https://SEU-DOMINIO/</loc></url> -->')
 
     jsonld = ('<script type="application/ld+json">'
               + json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
               + '</script>')
+    if pendentes:
+        jsonld += ('\n  <!-- schema.org NÃO publicado até confirmação do cliente (cliente.config.json):\n'
+                   + '\n'.join('       - ' + x.replace('--', '- -') for x in pendentes) +
+                   '\n       "aggregateRating" nunca: as avaliações 5,0 (63) são do Google, de terceiros. -->')
     assert SEO_DOMAIN_MARK in template and SEO_JSONLD_MARK in template, 'marcadores de SEO ausentes'
     template = template.replace(SEO_DOMAIN_MARK, block).replace(SEO_JSONLD_MARK, jsonld)
 
@@ -277,7 +301,11 @@ def render_seo(template):
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<!-- Gerado por scripts/build.py -->\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemap_body + '\n</urlset>\n')
-    print('SEO:', f'domínio {domain}' if domain else 'sem domínio — tags absolutas comentadas')
+    print('SEO:', f'domínio {domain}' if domain else 'sem domínio — tags absolutas comentadas',
+          f'| JSON-LD pendente: {len(pendentes)} campo(s)')
+    if not cfg.get('imagensAprovadasParaPublicar'):
+        print('AVISO: imagensAprovadasParaPublicar = false -> NÃO PUBLICAR. Fotos de comida/salão/chapa são '
+              'geradas por IA, não do cliente (PENDENCIAS-CLIENTE.md, item 1).')
     return template
 
 

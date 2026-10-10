@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mr. Macário Burger — Hamburgueria artesanal na Vila da Saúde">
   <meta name="twitter:description" content="Hamburgueria artesanal na Vila da Saúde, São Paulo. Refeição no local, retirada e entrega. Pedidos: (11) 96514-2258.">
-  <!-- AGUARDANDO DOMÍNIO: preencha "domain" em seo.config.json e rode npm run build.
+  <!-- AGUARDANDO DOMÍNIO: preencha "dominio" em cliente.config.json e rode npm run build.
        Estas tags exigem URL absoluta e serão publicadas assim:
   <link rel="canonical" href="https://SEU-DOMINIO/">
   <meta property="og:url" content="https://SEU-DOMINIO/">
@@ -36,19 +36,11 @@
   <meta name="twitter:image:alt" content="Hambúrguer duplo com cheddar e bacon sob o letreiro Mr. Macário Burger">
        O JSON-LD também ganha "@id", "url", "image" e "logo". -->
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Mr. Macário Burger","servesCuisine":"Hambúrguer artesanal","telephone":"+55 11 96514-2258","address":{"@type":"PostalAddress","streetAddress":"R. Dom Macário, 1063 - Vila da Saúde","addressLocality":"São Paulo","addressRegion":"SP","postalCode":"04292-000","addressCountry":"BR"},"sameAs":["https://www.instagram.com/mrmacarioburger/"]}</script>
-  <!-- Campos schema.org NÃO publicados por falta de confirmação (CLIENTE.md / DESIGN.md §10).
-       Confirmados com o cliente, mova para src/seo/restaurant.json:
-       "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
-         "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-         "opens": "18:45", "closes": "23:30"}]
-         -> fonte: só a bio do Instagram; Google mostra apenas "Abre às 18:45"; seg/ter fechado não confirmado (pendência 4).
-       "priceRange": "R$ 20–40"
-         -> fonte: Google Maps, "informado por 9 pessoas" (estimativa de usuários, não preço oficial; pendência 2).
-       "hasMenu": "https://oia.99app.com/..."
-         -> o Google mostra só o domínio oia.99app.com, sem o link exato do cardápio (pendência 1).
-       Fora de propósito: "aggregateRating" (5,0 com 63 avaliações) — são avaliações do Google, de terceiros;
-       não podem ser marcadas como avaliação no próprio site. -->
-
+  <!-- schema.org NÃO publicado até confirmação do cliente (cliente.config.json):
+       - horario (Wednesday, Thursday, Friday, Saturday, Sunday 18:45-23:30): Só a bio do Instagram (quarta a domingo, 18:45 às 23:30). O Google mostra apenas 'Abre às 18:45'.
+       - faixaDePreco (R$ 20–40): Google Maps, 'informado por 9 pessoas' (estimativa de usuários).
+       - linkCardapio: O Google mostra só o domínio oia.99app.com.
+       "aggregateRating" nunca: as avaliações 5,0 (63) são do Google, de terceiros. -->
   <!-- Fontes acima da dobra (letreiro/títulos e navegação/selos). Caveat e Plus Jakarta Sans carregam sob demanda. -->
   <!-- Injetados por script só em http(s): em file:// o preload de fonte (sempre CORS) e o manifest geram erro
        de console. Sem JS, as fontes carregam normalmente pelo @font-face — o preload só antecipa. -->

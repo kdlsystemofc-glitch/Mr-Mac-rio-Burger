@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap: https://SEU-DOMINIO/sitemap.xml  (aguardando domínio em seo.config.json)
+# Sitemap: https://SEU-DOMINIO/sitemap.xml  (aguardando dominio em cliente.config.json)
