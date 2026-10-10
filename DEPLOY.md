@@ -14,7 +14,9 @@ site/
 ├── js/motion-*.min.js  ← gerados pelo build
 ├── js/vendor/          ← GSAP, ScrollTrigger, Lenis (minificados de origem)
 ├── fonts/*.woff2       ← fontes auto-hospedadas
-└── assets/             ← imagens WebP/PNG/SVG
+├── assets/             ← imagens WebP/PNG/SVG (+ og-image.jpg de compartilhamento)
+├── icons/, favicon.ico, apple-touch-icon.png, site.webmanifest
+└── robots.txt, sitemap.xml   ← gerados pelo build a partir de seo.config.json
 ```
 
 Não publique `src/`, `scripts/`, `design/`, `imagens/`, `assets/` (raiz), `node_modules/` nem os `.md`.
@@ -28,12 +30,33 @@ npm run build        # = python scripts/build.py (precisa de Python + Playwright
 
 O build falha se o CSS crítico não produzir estilos idênticos ao CSS completo na primeira tela.
 
+## Domínio (SEO) — um único campo
+
+Enquanto o domínio não existir, `seo.config.json` fica `{ "domain": null }`. Nesse estado o build
+deixa **comentadas** no HTML as tags que exigem URL absoluta (canonical, `og:url`, `og:image`,
+`twitter:image`), sem `@id`/`url`/`image`/`logo` no JSON-LD, com a linha `Sitemap:` comentada no
+`robots.txt` e sem nenhuma `<url>` no `sitemap.xml`.
+
+Quando o domínio for definido:
+
+```json
+{ "domain": "https://www.dominio-do-cliente.com.br" }
+```
+
+rode `npm run build`. Tudo acima é publicado com o domínio (só `https://`, sem barra no fim; o build
+recusa outro formato). Não há outro lugar para editar.
+
+Imagem de compartilhamento (`assets/og-image.jpg`) e ícones são gerados por
+`python scripts/gen_og_image.py` e `python scripts/gen_icons.py` e só precisam ser refeitos se o hero
+ou o logo mudarem.
+
 ## Cabeçalhos recomendados
 
 ### Compressão (o ganho mais importante)
 
 Ative **Brotli** (preferível) ou **gzip** para tipos de texto:
-`text/html`, `text/css`, `application/javascript` (ou `text/javascript`), `image/svg+xml`.
+`text/html`, `text/css`, `application/javascript` (ou `text/javascript`), `image/svg+xml`,
+`application/manifest+json`, `application/xml`.
 
 Não comprima `woff2`, `webp` e `png`, que já são comprimidos.
 
@@ -51,7 +74,9 @@ uma atualização demoraria a chegar. Recomendação para os nomes atuais:
 | `styles.min.css`, `js/*.min.js` | `public, max-age=86400, stale-while-revalidate=604800` | 1 dia + 7 dias servindo do cache enquanto revalida |
 | `js/vendor/*.js` | `public, max-age=2592000` | Bibliotecas de terceiros, mudam raramente (30 dias) |
 | `fonts/*.woff2` | `public, max-age=31536000, immutable` | Para trocar uma fonte, crie arquivo com nome novo |
-| `assets/*.webp`, `*.png`, `*.svg` | `public, max-age=2592000, stale-while-revalidate=86400` | 30 dias. Para trocar uma imagem, prefira um nome novo |
+| `assets/*.webp`, `*.png`, `*.svg`, `*.jpg` | `public, max-age=2592000, stale-while-revalidate=86400` | 30 dias. Para trocar uma imagem, prefira um nome novo |
+| `favicon.ico`, `apple-touch-icon.png`, `icons/*`, `site.webmanifest` | `public, max-age=604800` | 7 dias (nomes fixos, pedidos pelo navegador) |
+| `robots.txt`, `sitemap.xml` | `public, max-age=3600` | Lidos por buscadores; mudança deve valer rápido |
 
 **Se no futuro o build passar a gerar nomes com hash** (ex.: `styles.3f9a1c.min.css`), CSS, JS e
 imagens podem usar `public, max-age=31536000, immutable`.
@@ -62,6 +87,8 @@ imagens podem usar `public, max-age=31536000, immutable`.
 | :--- | :--- | :--- |
 | `Content-Type` das fontes | `font/woff2` | Alguns servidores não conhecem `.woff2` |
 | `Content-Type` do WebP | `image/webp` | Idem |
+| `Content-Type` do manifest | `application/manifest+json` | `.webmanifest` |
+| `Content-Type` do sitemap | `application/xml` | |
 | `Vary` | `Accept-Encoding` | Quando houver compressão |
 | `X-Content-Type-Options` | `nosniff` | Segurança básica |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` | Padrão moderno |

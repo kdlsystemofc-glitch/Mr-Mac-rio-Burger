@@ -1,7 +1,7 @@
 # PROGRESSO.md — Mr. Macário Burger
 
 ## Status do Projeto
-**Fase Atual:** Otimização concluída (commit "otimizacao pronta"), sobre a tag `motion-pronto`  
+**Fase Atual:** SEO local concluído (commit "seo pronto"), após "otimizacao pronta"  
 **Data:** 10/10/2026  
 **Status do Repositório:** Lighthouse mobile 92 (modo produção) / 89 (servidor puro), contra 68 na baseline. Regressão nas 12 resoluções.
 
@@ -163,3 +163,36 @@
 ### O que falta
 - Publicação: escolher hospedagem e aplicar os cabeçalhos do DEPLOY.md.
 - Pendências factuais do cliente (DESIGN.md §10) seguem abertas.
+
+
+---
+
+## 9. Etapa de SEO Local (Concluída)
+- [x] `<title>` (64 caracteres) e meta description (150) só com dados do CLIENTE.md; `lang="pt-BR"`,
+  `theme-color`, `robots`.
+- [x] Open Graph + Twitter Card (`summary_large_image`); imagem `assets/og-image.jpg` 1200x630 = hero
+  aprovado sem texto miúdo e sem pessoas.
+- [x] JSON-LD `Restaurant` só com dados confirmados. Horário, faixa de preço e link do cardápio ficam
+  comentados; sem `aggregateRating` (avaliações do Google, de terceiros).
+- [x] `seo.config.json` com um único campo (`domain`, hoje `null`): canonical, og:url, og:image,
+  twitter:image, `@id`/url/image/logo do JSON-LD, `Sitemap:` e `<loc>` ficam comentados até ele existir
+  (testado também com um domínio de exemplo).
+- [x] `robots.txt`, `sitemap.xml` (gerados pelo build), favicons (.ico 16/32/48, apple-touch 180,
+  192, 512, maskable) a partir do logo real, `site.webmanifest`.
+- [x] Semântica: um `<h1>` (letreiro do hero) + 4 `<h2>` em ordem; `alt` em todas as imagens
+  informativas, `alt=""` nas decorativas; `alt` das fotos de jogos sem afirmar que são do salão real.
+- [x] Regressão: **0,000% de pixels diferentes** nas 12 resoluções; 8 testes passam; Lighthouse SEO 100,
+  Acessibilidade 100. Performance 87–89 nesta máquina (o commit anterior medido junto: 89–92), dentro do ruído.
+
+### Pendências de conteúdo VISÍVEL (não alteradas: etapa sem mudança visual) — decidir com o cliente
+Textos que vieram do mockup ou não estão no CLIENTE.md, contrariando a regra "nenhum texto do mockup vira final":
+1. Títulos `<h2>` em inglês, herdados do mockup: "MENU HIGHLIGHTS", "THE GRIDDLE CRAFT",
+   "THE BOARD GAME LOUNGE" e **"FOOTER & CONVERSION"** (rótulo de wireframe, péssimo como título
+   para SEO e para o usuário).
+2. Comanda do hero "TOTAL: R$ 34,90": preço inventado (não há preço confirmado; pendência 2).
+3. Selo "100% CARNE FRESCA": afirmação não confirmada pelo cliente.
+4. Depoimento da fita crepe: é uma junção editada da avaliação de Maria Do Carmo no Google, não uma
+   citação literal.
+5. Fotos "mesa de jogos" (pessoas jogando cartas): não retratam o salão real (fliperamas/booths
+   vermelhos, DESIGN.md §1), e pessoas devem ser fotos reais do cliente pela regra de ouro.
+6. Fazer o build com o domínio quando ele existir (`seo.config.json`).

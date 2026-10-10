@@ -182,7 +182,8 @@ FAMILIES_JS = """() => {
     const el = n.parentElement;
     if (!n.nodeValue.trim() || el.closest('script, noscript, style')) continue;
     const r = el.getBoundingClientRect();
-    if (r.top < innerHeight && r.bottom > 0 && r.width > 0)
+    // > 1px: ignora texto só para leitores de tela (.visually-hidden), que não precisa da fonte antes da pintura
+    if (r.top < innerHeight && r.bottom > 0 && r.width > 1)
       out.add(getComputedStyle(el).fontFamily.split(',')[0].replace(/["']/g, '').trim());
   }
   return [...out];
@@ -218,10 +219,73 @@ STYLE_SNAPSHOT_JS = """() => {
 }"""
 
 
+SEO_DOMAIN_MARK = ('<!-- @seo:domain (canonical, og:url, og:image, twitter:image — gerado por scripts/build.py '
+                   'a partir de seo.config.json) -->')
+SEO_JSONLD_MARK = ('<!-- @seo:jsonld (schema.org Restaurant — gerado por scripts/build.py a partir de '
+                   'src/seo/restaurant.json) -->')
+OG_IMAGE = '/assets/og-image.jpg'
+OG_ALT = 'Hambúrguer duplo com cheddar e bacon sob o letreiro Mr. Macário Burger'
+
+
+def domain_tags(base):
+    return '\n'.join([
+        f'<link rel="canonical" href="{base}/">',
+        f'  <meta property="og:url" content="{base}/">',
+        f'  <meta property="og:image" content="{base}{OG_IMAGE}">',
+        '  <meta property="og:image:type" content="image/jpeg">',
+        '  <meta property="og:image:width" content="1200">',
+        '  <meta property="og:image:height" content="630">',
+        f'  <meta property="og:image:alt" content="{OG_ALT}">',
+        f'  <meta name="twitter:image" content="{base}{OG_IMAGE}">',
+        f'  <meta name="twitter:image:alt" content="{OG_ALT}">',
+    ])
+
+
+def render_seo(template):
+    """Aplica seo.config.json: com domínio, publica as tags absolutas; sem domínio, deixa-as
+    comentadas com placeholder. Também gera robots.txt e sitemap.xml."""
+    cfg = json.load(open(os.path.join(ROOT, 'seo.config.json'), encoding='utf-8'))
+    domain = (cfg.get('domain') or '').strip().rstrip('/')
+    if domain and not re.match(r'^https://[a-z0-9.-]+\.[a-z]{2,}$', domain, re.I):
+        sys.exit(f'seo.config.json: "domain" deve ser como "https://www.exemplo.com.br" (recebido {domain!r})')
+
+    data = json.load(open(os.path.join(SRC, 'seo', 'restaurant.json'), encoding='utf-8'))
+    if domain:
+        block = domain_tags(domain)
+        data = {**data, '@id': f'{domain}/#restaurante', 'url': f'{domain}/',
+                'image': f'{domain}{OG_IMAGE}', 'logo': f'{domain}/icons/icon-512.png'}
+        robots_sitemap = f'Sitemap: {domain}/sitemap.xml'
+        sitemap_body = f'  <url>\n    <loc>{domain}/</loc>\n  </url>'
+    else:
+        block = ('<!-- AGUARDANDO DOMÍNIO: preencha "domain" em seo.config.json e rode npm run build.\n'
+                 '       Estas tags exigem URL absoluta e serão publicadas assim:\n  '
+                 + domain_tags('https://SEU-DOMINIO').replace('--', '- -') +
+                 '\n       O JSON-LD também ganha "@id", "url", "image" e "logo". -->')
+        robots_sitemap = '# Sitemap: https://SEU-DOMINIO/sitemap.xml  (aguardando domínio em seo.config.json)'
+        sitemap_body = ('  <!-- AGUARDANDO DOMÍNIO (seo.config.json). Será:\n'
+                        '  <url><loc>https://SEU-DOMINIO/</loc></url> -->')
+
+    jsonld = ('<script type="application/ld+json">'
+              + json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+              + '</script>')
+    assert SEO_DOMAIN_MARK in template and SEO_JSONLD_MARK in template, 'marcadores de SEO ausentes'
+    template = template.replace(SEO_DOMAIN_MARK, block).replace(SEO_JSONLD_MARK, jsonld)
+
+    open(os.path.join(SITE, 'robots.txt'), 'w', encoding='utf-8', newline='\n').write(
+        '# Gerado por scripts/build.py\nUser-agent: *\nAllow: /\n\n' + robots_sitemap + '\n')
+    open(os.path.join(SITE, 'sitemap.xml'), 'w', encoding='utf-8', newline='\n').write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<!-- Gerado por scripts/build.py -->\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemap_body + '\n</urlset>\n')
+    print('SEO:', f'domínio {domain}' if domain else 'sem domínio — tags absolutas comentadas')
+    return template
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     template = open(os.path.join(SRC, 'index.html'), encoding='utf-8').read()
     assert CRIT_MARK in template and STYLES_MARK in template, 'marcadores de build ausentes em src/index.html'
+    template = render_seo(template)
 
     # 1. CSS completo
     full_src = '\n'.join(open(os.path.join(SRC, 'css', f), encoding='utf-8').read() for f in CSS_ORDER)
@@ -333,7 +397,8 @@ def main():
                   'requestAnimationFrame(function(){requestAnimationFrame(function(){l.media=\'all\'})})">\n'
                   '  <noscript><link rel="stylesheet" href="./styles.min.css"></noscript>')
     html = html.replace(CRIT_MARK, '<style>' + critical + '</style>').replace(STYLES_MARK, styles_tag)
-    html = ('<!-- GERADO por scripts/build.py — não editar. Fonte: src/index.html -->\n' + html)
+    html = html.replace('<!DOCTYPE html>',
+                        '<!DOCTYPE html>\n<!-- GERADO por scripts/build.py — não editar. Fonte: src/index.html -->', 1)
     open(os.path.join(SITE, 'index.html'), 'w', encoding='utf-8').write(html)
 
     # Relatório de pesos

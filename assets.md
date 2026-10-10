@@ -50,3 +50,12 @@ Outros arquivos:
 
 Não usados pelo site (mantidos como reserva factual): `chef-real-*`, `facade-real-*`,
 `logo-macario-*`, `menu-sweet-*`, `salon-real-*`.
+
+## Etapa de SEO (10/10/2026)
+
+| Arquivo | Origem | Observação |
+| :--- | :--- | :--- |
+| `site/assets/og-image.jpg` (1200x630) | Render do hero do próprio site (`scripts/gen_og_image.py`) | Sem texto pequeno, sem pessoas. Contém o hambúrguer do hero (mesmo arquivo já aprovado) |
+| `site/favicon.ico` (16/32/48), `site/apple-touch-icon.png` (180), `site/icons/icon-192.png`, `icon-512.png`, `icon-maskable-512.png` | `logo-macario-1600.webp` (selo real, `imagens/imgi_2`), via `scripts/gen_icons.py` | Só redimensionado; o maskable tem margem na cor de fundo do próprio logo (#e6e3db) |
+
+Nenhuma imagem nova gerada por IA nesta etapa.

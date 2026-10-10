@@ -1,0 +1,5 @@
+# Gerado por scripts/build.py
+User-agent: *
+Allow: /
+
+# Sitemap: https://SEU-DOMINIO/sitemap.xml  (aguardando domínio em seo.config.json)

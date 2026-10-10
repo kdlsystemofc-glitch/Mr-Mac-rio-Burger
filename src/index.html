@@ -3,15 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mr. Macário Burger — Hamburgueria Artesanal na Vila da Saúde</title>
-  <meta name="description" content="O hambúrguer artesanal mais suculento da Vila da Saúde. Blends frescos, queijo derretido, crosta Maillard perfeita e ambiente descontraído. Peça no delivery!">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍔</text></svg>">
+  <title>Mr. Macário Burger | Hamburgueria artesanal na Vila da Saúde, SP</title>
+  <meta name="description" content="Mr. Macário Burger, hamburgueria artesanal na Vila da Saúde, São Paulo. Refeição no local, retirada e entrega. R. Dom Macário, 1063 · (11) 96514-2258.">
+  <meta name="theme-color" content="#f4ede3">
+  <meta name="robots" content="index, follow">
+
+  <!-- Ícones (gerados do logo real por scripts/gen_icons.py). O manifest é ligado pelo script abaixo, só em http(s). -->
+  <link rel="icon" href="./favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+  <!-- Open Graph / Twitter Card (campos que não dependem do domínio) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Mr. Macário Burger">
+  <meta property="og:title" content="Mr. Macário Burger — Hamburgueria artesanal na Vila da Saúde">
+  <meta property="og:description" content="Hamburgueria artesanal na R. Dom Macário, 1063 · Vila da Saúde, São Paulo. Refeição no local, retirada e entrega. Pedidos: (11) 96514-2258.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mr. Macário Burger — Hamburgueria artesanal na Vila da Saúde">
+  <meta name="twitter:description" content="Hamburgueria artesanal na Vila da Saúde, São Paulo. Refeição no local, retirada e entrega. Pedidos: (11) 96514-2258.">
+  <!-- @seo:domain (canonical, og:url, og:image, twitter:image — gerado por scripts/build.py a partir de seo.config.json) -->
+  <!-- @seo:jsonld (schema.org Restaurant — gerado por scripts/build.py a partir de src/seo/restaurant.json) -->
+  <!-- Campos schema.org NÃO publicados por falta de confirmação (CLIENTE.md / DESIGN.md §10).
+       Confirmados com o cliente, mova para src/seo/restaurant.json:
+       "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
+         "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+         "opens": "18:45", "closes": "23:30"}]
+         -> fonte: só a bio do Instagram; Google mostra apenas "Abre às 18:45"; seg/ter fechado não confirmado (pendência 4).
+       "priceRange": "R$ 20–40"
+         -> fonte: Google Maps, "informado por 9 pessoas" (estimativa de usuários, não preço oficial; pendência 2).
+       "hasMenu": "https://oia.99app.com/..."
+         -> o Google mostra só o domínio oia.99app.com, sem o link exato do cardápio (pendência 1).
+       Fora de propósito: "aggregateRating" (5,0 com 63 avaliações) — são avaliações do Google, de terceiros;
+       não podem ser marcadas como avaliação no próprio site. -->
+
   <!-- Fontes acima da dobra (letreiro/títulos e navegação/selos). Caveat e Plus Jakarta Sans carregam sob demanda. -->
-  <!-- Injetado por script só em http(s): em file:// o preload de fonte (sempre CORS) gera erro de console.
-       Sem JS, as fontes carregam normalmente pelo @font-face — o preload só antecipa. -->
+  <!-- Injetados por script só em http(s): em file:// o preload de fonte (sempre CORS) e o manifest geram erro
+       de console. Sem JS, as fontes carregam normalmente pelo @font-face — o preload só antecipa. -->
   <script>
     (function (d) {
       if (location.protocol === 'file:') return;
+      var m = d.createElement('link');
+      m.rel = 'manifest'; m.href = './site.webmanifest';
+      d.head.appendChild(m);
       ['bebas-neue-400-latin', 'montserrat-var-latin'].forEach(function (f) {
         var l = d.createElement('link');
         l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
@@ -55,10 +89,11 @@
       </div>
 
       <!-- Letreiro Topo Central -->
-      <div class="hero-top-brand" aria-hidden="true">
+      <h1 class="hero-top-brand">
         <span class="hero-brand-line1">MR. MACÁRIO</span>
         <span class="hero-brand-line2">BURGER</span>
-      </div>
+        <span class="visually-hidden">— hamburgueria artesanal na Vila da Saúde, São Paulo</span>
+      </h1>
 
       <!-- Letreiro de Fundo Gigante "MR. M" e "ÁRIO" Cobrindo a Extensão Total -->
       <div class="hero-bg-text" aria-hidden="true">
@@ -217,7 +252,7 @@
             <img src="./assets/menu-burguinho-800.webp"
                  srcset="./assets/menu-burguinho-480.webp 480w, ./assets/menu-burguinho-720.webp 720w, ./assets/menu-burguinho-800.webp 800w, ./assets/menu-burguinho-1200.webp 1200w"
                  sizes="(min-width: 1440px) 433px, (min-width: 1024px) 30vw, (min-width: 423px) 380px, 90vw"
-                 alt="Mr Burguinho clássico com salada fresca e blend suculento" 
+                 alt="Mr Burguinho: hambúrguer com cheddar, bacon, alface e tomate" 
                  class="menu-food-img" 
                  width="520" 
                  height="346" 
@@ -322,7 +357,7 @@
             <img src="./assets/lounge-left-800.webp"
                  srcset="./assets/lounge-left-480.webp 480w, ./assets/lounge-left-640.webp 640w, ./assets/lounge-left-800.webp 800w, ./assets/lounge-left-1200.webp 1200w"
                  sizes="(min-width: 1280px) 435px, (min-width: 380px) 342px, 90vw"
-                 alt="Amigos se divertindo no salão do Mr. Macário Burger com jogos e clima descontraído" 
+                 alt="Amigos rindo e jogando cartas em uma mesa de jogos" 
                  class="lounge-img" 
                  width="480" 
                  height="360" 
@@ -336,7 +371,7 @@
             <img src="./assets/trophy-5-800.webp"
                  srcset="./assets/trophy-5-480.webp 480w, ./assets/trophy-5-800.webp 800w, ./assets/trophy-5-1200.webp 1200w"
                  sizes="(min-width: 1440px) 421px, (min-width: 1024px) 30vw, 259px"
-                 alt="Troféu dourado nota máxima 5.0 com cinco estrelas no Google" 
+                 alt="Troféu dourado com a nota 5,0 e cinco estrelas, referência à nota 5,0 no Google" 
                  class="trophy-img" 
                  width="430" 
                  height="450" 
@@ -363,7 +398,7 @@
             <img src="./assets/lounge-right-800.webp"
                  srcset="./assets/lounge-right-480.webp 480w, ./assets/lounge-right-640.webp 640w, ./assets/lounge-right-800.webp 800w, ./assets/lounge-right-1200.webp 1200w"
                  sizes="(min-width: 1280px) 435px, (min-width: 380px) 342px, 90vw"
-                 alt="Clientes comemorando e jogando cartas e games no salão da hamburgueria" 
+                 alt="Grupo de amigos jogando cartas e se divertindo à mesa" 
                  class="lounge-img" 
                  width="480" 
                  height="360" 

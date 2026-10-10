@@ -409,3 +409,31 @@ Decididas sem consulta (sem impacto factual), conforme as regras do projeto:
 9. **Mantidos como estão:** os efeitos de pintura cara (blur do header, blend da textura,
    drop-shadows), o texto < 12 px dos selos (auditoria `font-size`, Melhores Práticas 96) e o
    `<script>` carregador de motion inline (pequeno; externo custaria uma requisição a mais).
+
+---
+
+## 12. Decisões da Etapa de SEO Local (10/10/2026)
+
+1. **`<h1>` = letreiro do hero** ("MR. MACÁRIO BURGER"). Era um `div` com `aria-hidden`; virou `<h1>`
+   com tamanho e peso padrão neutralizados (`inherit`) e um complemento só para leitores de tela
+   ("— hamburgueria artesanal na Vila da Saúde, São Paulo", dado real do CLIENTE.md). Pixels idênticos
+   nas 12 resoluções.
+2. **Tipo schema.org: `Restaurant`.** O CLIENTE.md mostra "Hamburgueria" com refeição no local,
+   retirada e entrega; `FastFoodRestaurant` não descreve hamburgueria artesanal com salão.
+3. **Publicado no JSON-LD só o que está confirmado:** nome, endereço completo com CEP, telefone,
+   cozinha e Instagram (@mrmacarioburger). **Não publicados** (ficam comentados no `<head>`):
+   horário (só a bio do Instagram; seg/ter não confirmado), faixa de preço (estimativa de 9 usuários
+   do Google) e link do cardápio (só o domínio oia.99app.com). **`aggregateRating` não entra**: as
+   63 avaliações 5,0 são do Google, de terceiros. Sem `geo`: o plus code 99HM+WV é curto e precisaria
+   de conversão por referência; endereço com CEP basta.
+4. **Domínio em um único campo** (`seo.config.json`). O build publica ou comenta todas as tags
+   absolutas, além de `robots.txt` e `sitemap.xml`.
+5. **Imagem OG** = composição aprovada do hero renderizada pelo próprio site, sem comandas, selos,
+   pílulas e "BURGER" pequeno (texto pequeno demais para miniatura). Sem pessoas e sem fotos com
+   autorização pendente.
+6. **Favicons/manifest** gerados do logo real (selo oficial). O `theme-color`/manifest usa
+   `--bg-cream` (#f4ede3), o fundo do header. O manifest é ligado por script só em http(s): em
+   `file://` o Chrome gera erro de CORS ao buscá-lo.
+7. **`alt` corrigidos para descrever a imagem, sem afirmar o que não é verificável:** as fotos de
+   "mesa de jogos" não são do salão real (§1 deste documento: o salão real tem fliperamas e booths
+   vermelhos), então o `alt` deixou de dizer "no salão do Mr. Macário Burger".

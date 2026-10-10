@@ -1534,3 +1534,27 @@ html[data-motion-mode="reduced"] * {
     aspect-ratio: 1600 / 533;
   }
 }
+
+/* ==========================================================================
+   SEO — semântica sem mudança visual
+   ========================================================================== */
+/* O letreiro do hero virou o <h1> da página: neutraliza tamanho/peso padrão do h1
+   para o resultado ficar idêntico ao <div> anterior (margem já zerada no reset). */
+h1.hero-top-brand {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Texto lido por leitores de tela e buscadores, invisível na tela */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
